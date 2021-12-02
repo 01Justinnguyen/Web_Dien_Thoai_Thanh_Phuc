@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Requests\categoryRequest;
 use App\Models\categories;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('admin.page.categoies.create');
+
     }
 
     /**
@@ -24,7 +26,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = categories::where('parent_id', 0)->get();
+        return view('admin.page.categoies.create', compact('categories'));
     }
 
     /**
@@ -33,9 +36,12 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(categoryRequest $request)
     {
-        //
+        $data = $request->all();
+        categories::create($data);
+
+        return response()->json(['status' => true]);
     }
 
     /**
@@ -46,7 +52,7 @@ class CategoriesController extends Controller
      */
     public function show(categories $categories)
     {
-        //
+
     }
 
     /**
