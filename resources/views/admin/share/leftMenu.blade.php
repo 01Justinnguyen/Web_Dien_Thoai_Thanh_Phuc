@@ -37,7 +37,7 @@
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center" href="/admin/categories/create"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">Create Categories</span></a>
                     </li>
-                    <li class=""><a class="d-flex align-items-center" href=""><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="eCommerce">List Categories</span></a>
+                    <li class=""><a class="d-flex align-items-center" href="/admin/categories/index"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="eCommerce">List Categories</span></a>
                     </li>
                 </ul>
             </li>

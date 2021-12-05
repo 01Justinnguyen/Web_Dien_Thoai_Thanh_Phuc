@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\categoryRequest;
 use App\Models\categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
@@ -16,26 +17,21 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-
+        $listCategories = DB::table('categories as A')
+                        ->leftJoin('categories as B', 'A.parent_id', 'B.id')
+                        ->select('A.*', 'B.name as nameParent')
+                        ->get();
+        return view('admin.page.categoies.listCategories', compact('listCategories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $categories = categories::where('parent_id', 0)->get();
         return view('admin.page.categoies.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(categoryRequest $request)
     {
         $data = $request->all();
@@ -44,12 +40,20 @@ class CategoriesController extends Controller
         return response()->json(['status' => true]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\categories  $categories
-     * @return \Illuminate\Http\Response
-     */
+    public function updateIsView($id)
+    {
+        $category = categories::find($id);
+
+        if($category){
+            $category->is_view = ($category->is_view + 1) % 2;
+            $category->save();
+
+            return response()->json(true);
+        }
+
+        return response()->json(false);
+    }
+
     public function show(categories $categories)
     {
 
