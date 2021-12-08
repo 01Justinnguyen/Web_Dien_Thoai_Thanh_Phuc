@@ -20,6 +20,13 @@ Route::get('/admin/categories/create', [\App\Http\Controllers\CategoriesControll
 Route::post('/admin/categories/create', [\App\Http\Controllers\CategoriesController::class, 'store']);
 Route::get('/admin/categories/index', [\App\Http\Controllers\CategoriesController::class, 'index']);
 Route::get('/admin/categories/update-is-view/{id}', [\App\Http\Controllers\CategoriesController::class, 'updateIsView']);
+Route::get('/admin/categories/delete_only/{id}', [\App\Http\Controllers\CategoriesController::class, 'destroyOnly']);
+Route::get('/admin/categories/delete_all/{id}', [\App\Http\Controllers\CategoriesController::class, 'destroyAll']);
+Route::get('/admin/categories/edit/{id}', [\App\Http\Controllers\CategoriesController::class, 'edit']);
+Route::get('/admin/products/create', [\App\Http\Controllers\ProductController::class, 'create']);
+
+
+
 
 
 

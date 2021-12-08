@@ -104,7 +104,7 @@
 
                 };
                 $.ajax({
-                    url : '/admin/createCategories/create',
+                    url : '/admin/categories/create',
                     type: 'post',
                     data: payload,
                     success: function($xxx){

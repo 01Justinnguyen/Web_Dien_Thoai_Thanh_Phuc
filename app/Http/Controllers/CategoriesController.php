@@ -8,7 +8,7 @@ use App\Models\categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CategoriesController extends Controller
+class   CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,8 @@ class CategoriesController extends Controller
                         ->leftJoin('categories as B', 'A.parent_id', 'B.id')
                         ->select('A.*', 'B.name as nameParent')
                         ->get();
-        return view('admin.page.categoies.listCategories', compact('listCategories'));
+        $categories = categories::where('parent_id', 0)->get();
+        return view('admin.page.categoies.index', compact('listCategories', 'categories'));
     }
 
 
@@ -65,9 +66,17 @@ class CategoriesController extends Controller
      * @param  \App\Models\categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function edit(categories $categories)
+    public function edit($id)
     {
-        //
+        $category = categories::find($id);
+
+        if($category){
+            return response()->json(["data" => $category]);
+        }else {
+            toastr()->error("Category not exits");
+            return redirect('/admin/categories/index');
+            return $this->index();
+        }
     }
 
     /**
@@ -82,14 +91,33 @@ class CategoriesController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\categories  $categories
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(categories $categories)
+
+    public function destroyOnly($id)
     {
-        //
+        $category = categories::find($id);
+        if($category){
+            $category->delete();
+            $listCate = categories::where('parent_id', $id)->get();
+            foreach($listCate as $key => $value){
+            $value->parent_id = 0;
+            $value->save();
+        }
+        return response()->json(true);
+        }
+        return response()->json(false);
+    }
+
+    public function destroyAll($id)
+    {
+        $category = categories::find($id);
+        if($category){
+            $category->delete();
+            $listCate = categories::where('parent_id', $id)->get();
+            foreach($listCate as $key => $value){
+                $value->delete();
+            }
+            return response()->json(true);
+        }
+        return response()->json(false);
     }
 }
