@@ -23,6 +23,7 @@ Route::get('/admin/categories/update-is-view/{id}', [\App\Http\Controllers\Categ
 Route::get('/admin/categories/delete_only/{id}', [\App\Http\Controllers\CategoriesController::class, 'destroyOnly']);
 Route::get('/admin/categories/delete_all/{id}', [\App\Http\Controllers\CategoriesController::class, 'destroyAll']);
 Route::get('/admin/categories/edit/{id}', [\App\Http\Controllers\CategoriesController::class, 'edit']);
+Route::post('/admin/categories/update/{id}', [\App\Http\Controllers\CategoriesController::class, 'update']);
 Route::get('/admin/products/create', [\App\Http\Controllers\ProductController::class, 'create']);
 
 

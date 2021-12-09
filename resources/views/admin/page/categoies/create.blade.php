@@ -58,7 +58,7 @@
                     </div>
                     <div class="row">
                         <div class="col-4">
-                        <button id="createcategory" type="button" class="btn btn-outline-success round waves-effect">Create Category</button>
+                            <button id="createcategory" type="button" class="btn btn-outline-success round waves-effect">Create Category</button>
                         </div>
                     </div>
                 </div>

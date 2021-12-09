@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Requests\categoryRequest;
+use App\Http\Requests\Admin\Category\createRequest;
+use App\Http\Requests\Admin\Category\updateRequest;
 use App\Models\categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class   CategoriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $listCategories = DB::table('categories as A')
@@ -33,7 +29,7 @@ class   CategoriesController extends Controller
     }
 
 
-    public function store(categoryRequest $request)
+    public function store(createRequest $request)
     {
         $data = $request->all();
         categories::create($data);
@@ -60,12 +56,7 @@ class   CategoriesController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\categories  $categories
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $category = categories::find($id);
@@ -74,21 +65,18 @@ class   CategoriesController extends Controller
             return response()->json(["data" => $category]);
         }else {
             toastr()->error("Category not exits");
-            return redirect('/admin/categories/index');
+            // return redirect('/admin/categories/index');
             return $this->index();
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\categories  $categories
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, categories $categories)
+
+    public function update(updateRequest $request)
     {
-        //
+        $data = $request->all();
+        $category = categories::find($request->id);
+        $category->update($data);
+        return response()->json(['status' => true]);
     }
 
 
