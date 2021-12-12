@@ -61,7 +61,7 @@
                             </select></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div>
                         </div>
 
-                        <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
+                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                             <label class="form-label" for="basicInput">Is_view</label>
                             <select class="form-control" id="is_view" required="">
                                 <option value="">Choose...</option>
@@ -112,7 +112,7 @@
                                 <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#details" role="tab"><i class="icofont icofont-contacts"></i>Details</a></li>
                                 <li class="nav-item"><a class="nav-link"data-bs-toggle="pill" href="#reviews" role="tab"><i class="icofont icofont-contacts"></i>Reviews</a></li>
                             </ul>
-                            <div class="tab-content mt-3">
+                            <div class="tab-content">
                                 <div class="tab-pane fade active show" id="infoproduct" role="tabpanel">
                                     <textarea id="ckeditorinfoproduct" cols="30" class="form-control" rows="10"></textarea>
                                 </div>
@@ -143,8 +143,8 @@
                                 CKEDITOR.replace('ckeditorreviews', options);
                             </script>
                         </div>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-outline-success round waves-effect">Create Product</button>
+                        <div class="">
+                            <button style="float: right" type="button" class="btn btn-outline-success round waves-effect">Create Product</button>
                         </div>
                     </div>
                 </div>
