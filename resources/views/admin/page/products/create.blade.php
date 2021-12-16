@@ -8,145 +8,156 @@
                     <h4 class="card-title">Create Product</h4>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control credit-card-mask" placeholder="" id="name">
-                        </div>
-                        <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
-                            <label class="form-label">Slug</label>
-                            <input type="text" class="form-control credit-card-mask" placeholder="" id="slug">
-                        </div>
-                        <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
-                            <label class="form-label" for="basicInput">Category_Id</label>
-                        <select class="form-control" id="category-id" required="">
-                            <option value=0> Root </option>
-                            {{-- @foreach ($categories as $value)
-                            <option value={{$value->id}}> {{$value->name}} </option>
-                            @endforeach --}}
-                        </select>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
-                            <label class="form-label">Code Product</label>
-                            <input type="text" class="form-control credit-card-mask" placeholder="" id="code">
-                        </div>
-
-                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
-                            <label class="form-label" for="basicInput">Quantity</label>
-                            <input type="number" class="form-control credit-card-mask" placeholder="" id="quantity">
-                        </div>
-                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
-                            <label class="form-label">Price root</label>
-                            <input type="number" class="form-control credit-card-mask" placeholder="" id="price_root">
-                        </div>
-                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
-                            <label class="form-label">Price sale</label>
-                            <input type="number" class="form-control credit-card-mask" placeholder="" id="price_sale">
-                        </div>
-
-                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
-                            <label class="form-label" for="select2-multiple">Color</label>
-                            <div class="position-relative"><select class="select2 form-select select2-hidden-accessible" id="select2-multiple" multiple="" data-select2-id="select2-multiple" tabindex="-1" aria-hidden="true">
-                                <optgroup label="Choose...">
-                                    <option value="0">Null</option>
-                                    <option value="1">White</option>
-                                    <option value="2">Red</option>
-                                    <option value="3">Blue</option>
-                                    <option value="4">Black</option>
-                                    <option value="5">Green</option>
-                                    <option value="6">Yellow</option>
-                                    <option value="">Other...</option>
-                                </optgroup>
-
-                            </select></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
-                            <label class="form-label" for="basicInput">Is_view</label>
-                            <select class="form-control" id="is_view" required="">
-                                <option value="">Choose...</option>
-                                <option value=1>Visible</option>
-                                <option value=0>Disable</option>
-                            </select>
-                        </div>
-                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
-                            <label class="form-label" for="basicInput">Status</label>
-                            <select id="status" class="form-control" required="">
-                                <option>Choose...</option>
-                                {{-- hàng có sẵn --}}
-                                <option value="1">Available</option>
-                                {{-- hết hàng --}}
-                                <option value="2">Out of stock</option>
-                                {{-- sắp ra mắt --}}
-                                <option value="3">Comming soon</option>
-                            </select>
-                        </div>
-                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
-                            <label class="form-label" for="basicInput">Feature</label>
-                            <select id="feature" class="form-control" required="">
-                                <option>Choose...</option>
-                                <option value="1">New Arrival</option>
-                                <option value="0">Bestseller</option>
-                            </select>
-                        </div>
-
-                        <div class="col-xl-4 col-md-3 col-sm-12 mb-2">
-                            <label class="form-label" for="basicInput">Image</label>
-                            <div class="input-group">
-                              <input name="banner" id="banner" class="form-control" required>
-                              <a id="lfm" data-input="banner" data-preview="holderbanner" class="lfm btn btn-light">
-                                Choose
-                              </a>
+                    {{-- <form action="{{ Route('create.Product') }}" method="POST">
+                        @csrf --}}
+                        <div class="row">
+                            <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control credit-card-mask" placeholder="" name="name" id="name">
                             </div>
-                            <img id="holderbanner" class="img-thumbnail mt-1" style="width:405px; height:300px" >
-                          </div>
-                          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                          <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
-                          <script>
-                                $('.lfm').filemanager('banner');
-                          </script>
-                        <div class="col-xl-8 col-md-3 col-sm-12 mb-2 mt-2">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#infoproduct" role="tab"><i class="fa fa-edge"></i>Info Product</a></li>
-                                <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#description" role="tab"><i class="icofont icofont-man-in-glasses"></i>Description</a></li>
-                                <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#details" role="tab"><i class="icofont icofont-contacts"></i>Details</a></li>
-                                <li class="nav-item"><a class="nav-link"data-bs-toggle="pill" href="#reviews" role="tab"><i class="icofont icofont-contacts"></i>Reviews</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane fade active show" id="infoproduct" role="tabpanel">
-                                    <textarea id="ckeditorinfoproduct" cols="30" class="form-control" rows="10"></textarea>
-                                </div>
-                                <div class="tab-pane fade" id="description" role="tabpanel">
-                                    <textarea id="ckeditordescription" cols="30" class="form-control" rows="10"></textarea>
-                                </div>
-                                <div class="tab-pane fade" id="details" role="tabpanel">
-                                    <textarea id="ckeditordetails" cols="30" class="form-control" rows="10"></textarea>
-                                </div>
-                                <div class="tab-pane fade" id="reviews" role="tabpanel">
-                                    <textarea id="ckeditorreviews" cols="30" class="form-control" rows="10"></textarea>
-                                </div>
+                            <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
+                                <label class="form-label">Slug</label>
+                                <input type="text" class="form-control credit-card-mask" placeholder="" id="slug" name="slug">
+                            </div>
+                            <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
+                                <label class="form-label" for="basicInput">Category_Id</label>
+                            <select name="category_id" class="form-control" id="category_id" required="">
+                                <option value=0> Root </option>
+                                @foreach ($categories as $value)
+                                    <option value={{$value->id}}> {{$value->name}} </option>
+                                @endforeach
+                            </select>
+                            </div>
+                            <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
+                                <label class="form-label">Code Product</label>
+                                <input type="text" class="form-control credit-card-mask" placeholder="" id="code_product" name="code_product">
+                            </div>
+                            <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label" for="basicInput">Quantity</label>
+                                <input type="number" class="form-control credit-card-mask" placeholder="" id="qty" name="qty">
+                            </div>
+                            <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label">Price root</label>
+                                <input type="number" class="form-control credit-card-mask" placeholder="" id="price_root" name="price_root">
+                            </div>
+                            <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label">Price sale</label>
+                                <input type="number" class="form-control credit-card-mask" placeholder="" id="price_sell" name="price_sell">
                             </div>
 
-                            <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+                            <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label" for="basicInput">color</label>
+                                <select class="form-control" id="color" required="">
+                                        <option value="">Choose...</option>
+                                        <option value="0">No Color</option>
+                                        <option value="1">White</option>
+                                        <option value="2">Red</option>
+                                        <option value="3">Blue</option>
+                                        <option value="4">Black</option>
+                                        <option value="5">Green</option>
+                                        <option value="6">Yellow</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label" for="basicInput">Is_view</label>
+                                <select name="is_view" class="form-control" id="is_view" required="">
+                                    <option value="">Choose...</option>
+                                    <option value=1>Visible</option>
+                                    <option value=0>Disable</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label" for="basicInput">Status</label>
+                                <select name="status" id="status" class="form-control" required="">
+                                    <option>Choose...</option>
+                                    {{-- hàng có sẵn --}}
+                                    <option value="0">Available</option>
+                                    {{-- hết hàng --}}
+                                    <option value="1">Out of stock</option>
+                                    {{-- sắp ra mắt --}}
+                                    <option value="2">Comming soon</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label" for="basicInput">Feature</label>
+                                <select name="feature" id="feature" class="form-control" required="">
+                                    <option>Choose...</option>
+                                    <option value="0">Bestseller</option>
+                                    <option value="1">New Arrival</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label" for="basicInput">Select Version</label>
+                                <select class="form-control" id="select_version" required="">
+                                        <option value="">Choose...</option>
+                                        <option value="0">Null</option>
+                                        <option value="1">64 GB</option>
+                                        <option value="2">128 GB</option>
+                                        <option value="3">256 GB</option>
+                                        <option value="4">512 GB</option>
+                                        <option value="5">1 TB</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xl-4 col-md-3 col-sm-12 mb-2">
+                                <label class="form-label" for="basicInput">Image</label>
+                                <div class="input-group">
+                                <input name="image_product" id="image_product" class="form-control" required>
+                                <a id="lfm" data-input="image_product" data-preview="holderbanner" class="lfm btn btn-light">
+                                    Choose
+                                </a>
+                                </div>
+                                <img id="holderbanner" class="img-thumbnail mt-1" style="width:405px; height:300px" >
+                            </div>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                            <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
                             <script>
-                                var options = {
-                                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-                                };
+                                    $('.lfm').filemanager('banner');
                             </script>
-                            <script>
-                                CKEDITOR.replace('ckeditorinfoproduct', options);
-                                CKEDITOR.replace('ckeditordescription', options);
-                                CKEDITOR.replace('ckeditordetails', options);
-                                CKEDITOR.replace('ckeditorreviews', options);
-                            </script>
+                            <div class="col-xl-8 col-md-3 col-sm-12 mb-2 mt-2">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#info_product" role="tab"><i class="fa fa-edge"></i>Info Product</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#description" role="tab"><i class="icofont icofont-man-in-glasses"></i>Description</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#details" role="tab"><i class="icofont icofont-contacts"></i>Details</a></li>
+                                    <li class="nav-item"><a class="nav-link"data-bs-toggle="pill" href="#reviews" role="tab"><i class="icofont icofont-contacts"></i>Reviews</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="info_product" role="tabpanel">
+                                        <textarea name="info_product" id="ckeditorInfoproduct" cols="30" class="form-control" rows="10"></textarea>
+                                    </div>
+                                    <div class="tab-pane fade" id="description" role="tabpanel">
+                                        <textarea name="description" id="ckeditorDescription" cols="30" class="form-control" rows="10"></textarea>
+                                    </div>
+                                    <div class="tab-pane fade" id="details" role="tabpanel">
+                                        <textarea name="details" id="ckeditorDetails" cols="30" class="form-control" rows="10"></textarea>
+                                    </div>
+                                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                        <textarea name="reviews" id="ckeditorReviews" cols="30" class="form-control" rows="10"></textarea>
+                                    </div>
+                                </div>
+
+                                <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+                                <script>
+                                    var options = {
+                                        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                                        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                                        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                                        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+                                    };
+                                </script>
+                                <script>
+                                    CKEDITOR.replace('ckeditorInfoproduct', options);
+                                    CKEDITOR.replace('ckeditorDescription', options);
+                                    CKEDITOR.replace('ckeditorDetails', options);
+                                    CKEDITOR.replace('ckeditorReviews', options);
+                                </script>
+                            </div>
+                            <div class="">
+                                <button id="createProduct" style="float: right" type="button" class="btn btn-outline-success round waves-effect">Create Product</button>
+                            </div>
                         </div>
-                        <div class="">
-                            <button style="float: right" type="button" class="btn btn-outline-success round waves-effect">Create Product</button>
-                        </div>
-                    </div>
+                    {{-- </form> --}}
                 </div>
             </div>
         </div>
@@ -179,6 +190,45 @@
                 str = str.replace(/^-+|-+$/g, '');
                 return str;
             }
+            $("#createProduct").click(function(){
+
+                var payload = {
+                    'name'          :   $("#name").val(),
+                    'slug'          :   $("#slug").val(),
+                    'category_id'   :   $("#category_id").val(),
+                    'code_product'  :   $("#code_product").val(),
+                    'qty'           :   $("#qty").val(),
+                    'price_root'    :   $("#price_root").val(),
+                    'price_sell'    :   $("#price_sell").val(),
+                    'color'         :   $("#color").val(),
+                    'select_version':   $("#select_version").val(),
+                    'is_view'       :   $("#is_view").val(),
+                    'status'        :   $("#status").val(),
+                    'feature'       :   $("#feature").val(),
+                    'image_product' :   $("#image_product").val(),
+                    'info_product'  :   CKEDITOR.instances["ckeditorInfoproduct"].getData(),
+                    'description'   :   CKEDITOR.instances["ckeditorDescription"].getData(),
+                    'details'       :   CKEDITOR.instances["ckeditorDetails"].getData(),
+                    'reviews'       :   CKEDITOR.instances["ckeditorReviews"].getData(),
+                };
+                $.ajax({
+                    url : '{{ Route('create.Product') }}',
+                    type: 'post',
+                    data: payload,
+                    success: function($xxx){
+                        if($xxx.status == true){
+                            toastr.success("Created product successfully!!!");
+                        }
+                        // location.reload();
+                    },
+                    error: function($errors){
+                        var listErrors = $errors.responseJSON.errors;
+                        $.each(listErrors, function(key, value) {
+                            toastr.error(value[0]);
+                        });
+                    }
+                });
+            });
     });
 </script>
 @endsection

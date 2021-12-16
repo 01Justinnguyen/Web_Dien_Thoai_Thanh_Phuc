@@ -22,11 +22,12 @@ class CreateProductsTable extends Migration
             $table->string('code_product');
             $table->integer('category_id');
             $table->integer('rating')->nullable();
-            $table->string('color')->default(0);
+            $table->string('color');
+            $table->integer('select_version')->nullable();
             $table->integer('is_view')->default(1);
             $table->integer('status');
             $table->integer('feature');
-            $table->string('info_product');
+            $table->string('info_product')->nullable();
             $table->string('image_product');
             $table->integer('qty')->nullable();
             $table->string('description')->nullable();

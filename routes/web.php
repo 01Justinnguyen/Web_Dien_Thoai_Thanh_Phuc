@@ -25,6 +25,13 @@ Route::get('/admin/categories/delete_all/{id}', [\App\Http\Controllers\Categorie
 Route::get('/admin/categories/edit/{id}', [\App\Http\Controllers\CategoriesController::class, 'edit']);
 Route::post('/admin/categories/update/{id}', [\App\Http\Controllers\CategoriesController::class, 'update']);
 Route::get('/admin/products/create', [\App\Http\Controllers\ProductController::class, 'create']);
+Route::post('/admin/products/create', [\App\Http\Controllers\ProductController::class, 'store'])->name('create.Product');
+Route::get('/admin/products/index', [\App\Http\Controllers\ProductController::class, 'index']);
+Route::get('/admin/products/delete/{id}', [\App\Http\Controllers\ProductController::class, 'destroy']);
+Route::post('/admin/products/changeView', [\App\Http\Controllers\ProductController::class, 'changeValueView'])->name('change.View');
+
+
+
 
 
 

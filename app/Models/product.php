@@ -18,6 +18,7 @@ class product extends Model
         'category_id',
         'rating',
         'color',
+        'select_version',
         'is_view',
         'status',
         'feature',

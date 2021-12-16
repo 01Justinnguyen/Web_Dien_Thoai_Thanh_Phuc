@@ -114,8 +114,6 @@
                 <h1 class="text-center mb-1" id="addNewCardTitle">Notification</h1>
                 <input type="hidden" id="category_id">
                 <p> Are you sure to delete this category?</p>
-
-
                     <div class="col-12 text-center">
                         <button type="submit" id="delete_only" class="btn btn-danger me-1 mt-1 waves-effect waves-float waves-light">Delete Only</button>
                         <button type="submit" id="delete_all" class="btn btn-warning me-1 mt-1 waves-effect waves-float waves-light">Delete All</button>
@@ -195,10 +193,8 @@ $(document).ready(function() {
                         $('#parent_id').val(response.data.parent_id);
                         var src= $('#banner').val(response.data.banner);
                         $('#holderbanner').val(src);
-
                     }
                 });
-
 
                 $("#updateCategory").click(function(){
                     var payload1 = {

@@ -109,7 +109,7 @@
                     data: payload,
                     success: function($xxx){
                         if($xxx.status == true){
-                            toastr.success("You are create product successfully!");
+                            toastr.success("Created product successfully!!!");
                         }
                         location.reload();
                     },
