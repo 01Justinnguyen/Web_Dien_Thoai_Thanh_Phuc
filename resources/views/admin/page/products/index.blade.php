@@ -120,9 +120,9 @@
                                             <label class="form-label" for="basicInput">Category_Id</label>
                                         <select class="form-control" id="category_id" required="">
                                             <option value=0> Root </option>
-                                            {{-- @foreach ($category as $value)
-                                            <option value={{$value->id}}> {{$value->name}} </option>
-                                            @endforeach --}}
+                                            @foreach ($categories as $value)
+                                                <option value={{$value->id}}> {{$value->name}} </option>
+                                            @endforeach
                                         </select>
                                         </div>
                                         <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
@@ -145,7 +145,7 @@
                                         <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Select Version</label>
                                             <select class="form-control" id="version" required="">
-                                                    <option value="">Choose...</option>
+                                                    <option value="0">Choose...</option>
                                                     <option value="0">Null</option>
                                                     <option value="1">64 GB</option>
                                                     <option value="2">128 GB</option>
@@ -157,7 +157,7 @@
                                         <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Color</label>
                                             <select class="form-control" id="color" required="">
-                                                    <option value="">Choose...</option>
+                                                    <option value="0">Choose...</option>
                                                     <option value="0">No Color</option>
                                                     <option value="1">White</option>
                                                     <option value="2">Red</option>
@@ -220,7 +220,7 @@
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane fade" id="info_product" role="tabpanel">
-                                                    <textarea id="ckeditorInfoproduct" cols="30" class="form-control" rows="10"></textarea>
+                                                    <textarea id="ckeditorInfoproduct" cols="30" class="form-control" rows="10">{{ $products->info_product }}</textarea>
                                                 </div>
                                                 <div class="tab-pane fade active show file-text"  id="description" role="tabpanel">
                                                     <textarea id="ckeditorDescription" cols="30" class="form-control" rows="10"></textarea>
@@ -307,7 +307,7 @@
                 data: payload,
                 success: function($data) {
                     if ($data.status == false) {
-                    toastr.warning('Please do not interfere with the system!');
+                        toastr.warning('Please do not interfere with the system!');
                     } else {
                         toastr.success('You have changed status successfully!!!');
                         if ($data.is_view == 1) {
@@ -329,7 +329,7 @@
             $("#product_edit").val(id);
             e.preventDefault();
                 $.ajax({
-                    url: '/admin/product/edit/' + id,
+                    url: '/admin/products/edit/' + id,
                     type: 'get',
                     success: function(response) {
                         $('#name').val(response.data.name);
@@ -354,6 +354,22 @@
                     }
                 });
         });
+    });
+</script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+    var table = $('#datatable').DataTable();
+    table.on('click', '.callEdit', function() {
+        $tr = $(this).closest('tr');
+    if ($($tr).hasClass('child')) {
+        $tr = $tr.prev('.parent');
+    }
+    var src = $('#image_product').attr('src');
+    $('#holderimage').attr('src', $tr.find('img').attr('src'));
+    });
     });
 </script>
 @endsection

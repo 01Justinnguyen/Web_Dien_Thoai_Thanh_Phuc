@@ -19,7 +19,8 @@ class ProductController extends Controller
         $products = product::join('categories', 'category_id', 'categories.id')
                                 ->select('products.*', 'categories.name as nameCate')
                                 ->get();
-        return view('admin.page.products.index', compact('products'));
+        $categories = categories::where('is_view', 1)->get();
+        return view('admin.page.products.index', compact('products', 'categories'));
     }
 
     /**
@@ -33,12 +34,7 @@ class ProductController extends Controller
         return view('admin.page.products.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(createRequest $request)
     {
         $data = $request->all();

@@ -48,7 +48,7 @@
                             <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
                                 <label class="form-label" for="basicInput">color</label>
                                 <select class="form-control" id="color" required="">
-                                        <option value="">Choose...</option>
+                                        <option value="0">Choose...</option>
                                         <option value="0">No Color</option>
                                         <option value="1">White</option>
                                         <option value="2">Red</option>
@@ -62,7 +62,7 @@
                             <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
                                 <label class="form-label" for="basicInput">Is_view</label>
                                 <select name="is_view" class="form-control" id="is_view" required="">
-                                    <option value="">Choose...</option>
+                                    <option value="0">Choose...</option>
                                     <option value=1>Visible</option>
                                     <option value=0>Disable</option>
                                 </select>
@@ -90,7 +90,7 @@
                             <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
                                 <label class="form-label" for="basicInput">Select Version</label>
                                 <select class="form-control" id="select_version" required="">
-                                        <option value="">Choose...</option>
+                                        <option value="0">Choose...</option>
                                         <option value="0">Null</option>
                                         <option value="1">64 GB</option>
                                         <option value="2">128 GB</option>
@@ -212,7 +212,7 @@
                     'reviews'       :   CKEDITOR.instances["ckeditorReviews"].getData(),
                 };
                 $.ajax({
-                    url : '{{ Route('create.Product') }}',
+                    url : '/admin/products/create',
                     type: 'post',
                     data: payload,
                     success: function($xxx){

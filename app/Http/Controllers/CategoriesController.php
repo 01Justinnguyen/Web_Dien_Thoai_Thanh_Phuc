@@ -8,7 +8,7 @@ use App\Models\categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class   CategoriesController extends Controller
+class CategoriesController extends Controller
 {
 
     public function index()
