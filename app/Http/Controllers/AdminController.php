@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Auth\loginRequest;
 use App\Http\Requests\Admin\Auth\RegisterRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -17,6 +19,11 @@ class AdminController extends Controller
     public function viewRegister()
     {
         return view('admin.page.auth.register');
+    }
+
+    public function viewForget()
+    {
+        return view('admin.page.auth.forgot');
     }
 
     public function register(RegisterRequest $request)
@@ -33,6 +40,20 @@ class AdminController extends Controller
         return redirect('/admin/login');
     }
 
+    public function login(LoginRequest $request){
+
+        $data = $request->only('email', 'password');
+
+        $admin = Auth::guard('admin')->attempt($data);
+
+       if($admin){
+            toastr()->success('Đăng nhập thành công');
+            return redirect('/');
+        } else {
+            toastr()->error('Bạn nhập sai mât khẩu hoặc tài khoản');
+            return redirect('/admin/login');
+        }
+    }
 
 
 

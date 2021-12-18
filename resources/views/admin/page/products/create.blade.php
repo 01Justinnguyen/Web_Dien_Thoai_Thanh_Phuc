@@ -8,8 +8,8 @@
                     <h4 class="card-title">Create Product</h4>
                 </div>
                 <div class="card-body">
-                    {{-- <form action="{{ Route('create.Product') }}" method="POST">
-                        @csrf --}}
+                     <form id="editForm" class="row gy-1 pt-75" onsubmit="return false" novalidate="novalidate">
+
                         <div class="row">
                             <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
                                 <label class="form-label">Name</label>
@@ -157,7 +157,7 @@
                                 <button id="createProduct" style="float: right" type="button" class="btn btn-outline-success round waves-effect">Create Product</button>
                             </div>
                         </div>
-                    {{-- </form> --}}
+                    </form>
                 </div>
             </div>
         </div>

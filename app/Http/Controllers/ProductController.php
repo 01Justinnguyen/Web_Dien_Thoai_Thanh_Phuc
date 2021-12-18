@@ -23,11 +23,7 @@ class ProductController extends Controller
         return view('admin.page.products.index', compact('products', 'categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $categories = categories::where('is_view', 1)->get();
@@ -62,20 +58,19 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = product::find($id);
-
-        if($product){
-            return response()->json(["data" => $product]);
+        $products = product::find($id);
+        if($products){
+            // return response()->json(["data"  => $product]);
+            return response()->json(["data" => $products]);
         }else {
             toastr()->error("Product does not exits");
-            return $this->index();
         }
     }
 
     public function changeValueView(Request $request)
     {
         $id = $request->id;
-        $product = Product::find($id);
+        $product = product::find($id);
         if($product){
             // $product->is_view = ! $product->is_view;
             $product->is_view = ($product->is_view + 1) % 2;
