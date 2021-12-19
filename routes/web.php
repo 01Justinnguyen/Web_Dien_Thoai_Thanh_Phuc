@@ -37,6 +37,8 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     Route::get('/products/delete/{id}', [\App\Http\Controllers\ProductController::class, 'destroy']);
     Route::get('/products/edit/{id}', [\App\Http\Controllers\ProductController::class, 'edit']);
     Route::post('/products/changeView', [\App\Http\Controllers\ProductController::class, 'changeValueView'])->name('change.View');
+    Route::post('/products/update/{id}', [\App\Http\Controllers\ProductController::class, 'update']);
+
 
 });
 

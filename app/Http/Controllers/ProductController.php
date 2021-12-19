@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Admin\Product\createRequest;
+use App\Http\Requests\Admin\Product\updateRequest;
 use App\Models\categories;
 use App\Models\product;
 use Illuminate\Http\Request;
@@ -82,9 +83,12 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, product $product)
+    public function update(updateRequest $request)
     {
-        //
+        $data = $request->all();
+        $product = product::find($request->id);
+        $product->update($data);
+        return response()->json(['status' => true]);
     }
 
     /**

@@ -56,36 +56,44 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-xl-4 col-md-6 col-12">
+                                        <div class="col-xl-6 col-md-6 col-12">
                                             <div class="mb-1">
                                                 <label class="form-label" for="basicInput">Name Category</label>
                                                     <input type="text" name="name" id="name" class="form-control" required>
                                             </div>
                                         </div>
-                                        <div class="form-group col-xl-4 col-md-6 col-12">
-                                            <label class="form-label" for="basicInput">Parent_id</label>
-                                            <select class="form-control" id="parent_id" name="parent_id" required="">
-                                                <option value="0"> Root </option>
-                                                @foreach ($categories as $value)
-                                                    <option value={{$value->id}}>{{$value->name}} </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-xl-4 col-md-6 col-12">
-                                            <label class="form-label" for="basicInput">Banner</label>
-                                              <div class="input-group">
-                                                <input name="banner" id="banner" class="form-control" required>
-                                                <a data-input="banner" data-preview="holderbanner" class="lfm btn btn-light">
-                                                  Choose
-                                                </a>
-                                              </div>
-                                              <img id="holderbanner" class="img-thumbnail" data-onload="loadImage()" data-def-dd="photo" name="photo" >
+                                        <div class="col-xl-6 col-md-6 col-12">
+                                            <div class="mb-1">
+                                                <label class="form-label" for="basicInput">Slug Category</label>
+                                                    <input type="text" name="slug" id="slug" class="form-control" required>
                                             </div>
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                                            <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
-                                            <script>
-                                                  $('.lfm').filemanager('banner');
-                                            </script>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xl-6 col-md-6 col-12">
+                                                <label class="form-label" for="basicInput">Parent_id</label>
+                                                <select class="form-control" id="parent_id" name="parent_id" required="">
+                                                    <option value="0"> Root </option>
+                                                    @foreach ($categories as $value)
+                                                        <option value={{$value->id}}>{{$value->name}} </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6 col-md-6 col-12">
+                                                <label class="form-label" for="basicInput">Banner</label>
+                                                <div class="input-group">
+                                                    <input name="banner" id="banner" class="form-control" required>
+                                                    <a data-input="banner" data-preview="holderbanner" class="lfm btn btn-light">
+                                                    Choose
+                                                    </a>
+                                                </div>
+                                                <img id="holderbanner" class="img-thumbnail" data-onload="loadImage()" data-def-dd="photo" name="photo" >
+                                                </div>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                                <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+                                                <script>
+                                                    $('.lfm').filemanager('banner');
+                                                </script>
+                                            </div>
                                         </div>
                                 </div>
                             </div>
@@ -138,6 +146,22 @@
 </script>
 <script>
 $(document).ready(function() {
+    $("#name").blur(function(){
+                $("#slug").val(toSlug($("#name").val()));
+            });
+
+            function toSlug(str) {
+                str = str.toLowerCase();
+                str = str
+                    .normalize('NFD') // chuyển chuỗi sang unicode tổ hợp
+                    .replace(/[\u0300-\u036f]/g, ''); // xóa các ký tự dấu sau khi tách tổ hợp
+                str = str.replace(/[đĐ]/g, 'd');
+                str = str.replace(/([^0-9a-z-\s])/g, '');
+                str = str.replace(/(\s+)/g, '-');
+                str = str.replace(/-+/g, '-');
+                str = str.replace(/^-+|-+$/g, '');
+                return str;
+         }
     $(".is_view").on('change', function() {
         var id = $(this).data('id');
         $.ajax({
@@ -190,6 +214,7 @@ $(document).ready(function() {
                     success: function(response) {
                         console.log(response);
                         $('#name').val(response.data.name);
+                        $('#slug').val(response.data.slug);
                         $('#parent_id').val(response.data.parent_id);
                         var src= $('#banner').val(response.data.banner);
                         $('#holderbanner').val(src);
@@ -199,6 +224,7 @@ $(document).ready(function() {
                 $("#updateCategory").click(function(){
                     var payload1 = {
                     'name'              :   $('#name').val(),
+                    'slug'              :   $("#slug").val(),
                     'parent_id'         :   $("#parent_id").val(),
                     'banner'            :    $('#banner').val(),
                 };
@@ -211,7 +237,6 @@ $(document).ready(function() {
                                 toastr.success("Product create successfully!");
                             }
                             location.reload();
-
                         },
                         error: function($errors){
                             var listErrors = $errors.responseJSON.errors;

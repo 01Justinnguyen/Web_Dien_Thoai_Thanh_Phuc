@@ -79,7 +79,7 @@
             <div class="modal-body px-sm-5 mx-50 pb-5">
                 <h1 class="text-center mb-1" id="addNewCardTitle">Notification</h1>
                 <input type="hidden" id="product_id">
-                <p> Are you sure to delete this product?</p>
+                <p class="text-center"> Are you sure to delete this product?</p>
                     <div class="col-12 text-center">
                         <button type="submit" id="delete" class="btn btn-danger me-1 mt-1 waves-effect waves-float waves-light">Delete</button>
                         <button type="reset" class="btn btn-outline-secondary mt-1 waves-effect" data-bs-dismiss="modal" aria-label="Close">
@@ -113,6 +113,14 @@
                                             <label class="form-label">Name</label>
                                             <input type="text" class="form-control credit-card-mask" placeholder="" id="name">
                                         </div>
+                                        <div class="col-xl-4 col-md-3 col-sm-12 mb-2">
+                                            <label class="form-label" for="basicInput">Is_view</label>
+                                            <select class="form-control" id="is_view" required="">
+                                                <option value="">Choose...</option>
+                                                <option value=1>Visible</option>
+                                                <option value=0>Disable</option>
+                                            </select>
+                                        </div>
                                         <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
                                             <label class="form-label">Slug</label>
                                             <input type="text" class="form-control credit-card-mask" placeholder="" id="slug">
@@ -143,7 +151,7 @@
                                             <label class="form-label">Price sale</label>
                                             <input type="number" class="form-control credit-card-mask" placeholder="" id="price_sale">
                                         </div>
-                                        <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
+                                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Select Version</label>
                                             <select class="form-control" id="version" required="">
                                                     <option value="">Choose...</option>
@@ -155,7 +163,7 @@
                                                     <option value="5">1 TB</option>
                                             </select>
                                         </div>
-                                        <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
+                                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Color</label>
                                             <select class="form-control" id="color" required="">
                                                     <option value="">Choose...</option>
@@ -168,14 +176,7 @@
                                                     <option value="6">Yellow</option>
                                             </select>
                                         </div>
-                                        <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
-                                            <label class="form-label" for="basicInput">Is_view</label>
-                                            <select class="form-control" id="is_view" required="">
-                                                <option value="">Choose...</option>
-                                                <option value=1>Visible</option>
-                                                <option value=0>Disable</option>
-                                            </select>
-                                        </div>
+
                                         <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Status</label>
                                             <select id="status" class="form-control" required="">
@@ -256,7 +257,7 @@
                         </div>
                     </div>
                     <div class="col-12 text-center mt-2 pt-50">
-                        <button type="submit" id="updateCategory" class="btn btn-primary me-1 waves-effect waves-float waves-light">Update</button>
+                        <button type="submit" id="updateProduct" class="btn btn-primary me-1 waves-effect waves-float waves-light">Update</button>
                         <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal" aria-label="Close">
                             Cancle
                         </button>
@@ -280,6 +281,22 @@
 
 <script>
     $(document).ready(function(){
+        $("#name").blur(function(){
+                $("#slug").val(toSlug($("#name").val()));
+            });
+
+            function toSlug(str) {
+                str = str.toLowerCase();
+                str = str
+                    .normalize('NFD') // chuyển chuỗi sang unicode tổ hợp
+                    .replace(/[\u0300-\u036f]/g, ''); // xóa các ký tự dấu sau khi tách tổ hợp
+                str = str.replace(/[đĐ]/g, 'd');
+                str = str.replace(/([^0-9a-z-\s])/g, '');
+                str = str.replace(/(\s+)/g, '-');
+                str = str.replace(/-+/g, '-');
+                str = str.replace(/^-+|-+$/g, '');
+                return str;
+            }
         var row;
         $(document).ready(function(){
             var row;
@@ -341,7 +358,7 @@
                 url: '/admin/products/edit/' + id,
                 type: 'get',
                 success : function(response){
-                    $('#name').val(response.data.name);
+                        $('#name').val(response.data.name);
                         $('#slug').val(response.data.slug);
                         $('#price_root').val(response.data.price_root);
                         $('#price_sale').val(response.data.price_sell);
@@ -354,14 +371,52 @@
                         $('#feature').val(response.data.feature);
                         $('#info_product').val(response.data.info_product);
                         $('#quantity').val(response.data.qty);
-                        $('#detail').val(response.data.details);
+                        $('#details').val(response.data.details);
                         $('#description').val(response.data.description);
-                        $('#review').val(response.data.reviews);
+                        $('#reviews').val(response.data.reviews);
                         $('#image_product').val(response.data.image_product);
                 }
             });
-        });
 
+        $("#updateProduct").click(function(){
+                    var payload1 = {
+                    'name'          :   $("#name").val(),
+                    'slug'          :   $("#slug").val(),
+                    'category_id'   :   $("#category_id").val(),
+                    'code_product'  :   $("#code_product").val(),
+                    'qty'           :   $("#quantity").val(),
+                    'price_root'    :   $("#price_root").val(),
+                    'price_sale'    :   $("#price_sale").val(),
+                    'color'         :   $("#color").val(),
+                    'version'       :   $("#version").val(),
+                    'is_view'       :   $("#is_view").val(),
+                    'status'        :   $("#status").val(),
+                    'feature'       :   $("#feature").val(),
+                    'image_product' :   $("#image_product").val(),
+                    'info_product'  :   CKEDITOR.instances["ckeditorInfoproduct"].getData(),
+                    'description'   :   CKEDITOR.instances["ckeditorDescription"].getData(),
+                    'details'       :   CKEDITOR.instances["ckeditorDetails"].getData(),
+                    'reviews'       :   CKEDITOR.instances["ckeditorReviews"].getData(),
+                };
+                    $.ajax({
+                        url : '/admin/products/update/' + id,
+                        type: 'post',
+                        data: payload1,
+                        success: function($xxx){
+                            if($xxx.status == true){
+                                toastr.success("Updated product successfully!");
+                            }
+                            location.reload();
+                        },
+                        error: function($errors){
+                            var listErrors = $errors.responseJSON.errors;
+                            $.each(listErrors, function(key, value) {
+                                toastr.error(value[0]);
+                            });
+                        }
+                 });
+            });
+        });
     });
 </script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
