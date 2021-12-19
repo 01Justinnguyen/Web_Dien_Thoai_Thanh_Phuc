@@ -19,9 +19,9 @@ Route::get('/', function () {
     });
 
 Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
-    // Route::get('/', function () {
-    //     return view('admin.share.master');
+    // Route::group(['prefix' => '/admin' , 'middleware' => 'checkAminLogin'], function(){
     // });
+
     Route::get('/categories/create', [\App\Http\Controllers\CategoriesController::class, 'create']);
     Route::post('/categories/create', [\App\Http\Controllers\CategoriesController::class, 'store']);
     Route::get('/categories/index', [\App\Http\Controllers\CategoriesController::class, 'index']);
@@ -37,8 +37,13 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     Route::get('/products/delete/{id}', [\App\Http\Controllers\ProductController::class, 'destroy']);
     Route::get('/products/edit/{id}', [\App\Http\Controllers\ProductController::class, 'edit']);
     Route::post('/products/changeView', [\App\Http\Controllers\ProductController::class, 'changeValueView'])->name('change.View');
+
 });
 
+Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], function(){
+    Route::get('/logout', [\App\Http\Controllers\AdminController::class, 'Logout']);
+
+});
 
     Route::get('/admin/register', [\App\Http\Controllers\AdminController::class, 'viewRegister']);
     Route::post('/admin/register', [\App\Http\Controllers\AdminController::class, 'register'])->name('adminRegister');

@@ -55,7 +55,12 @@ class AdminController extends Controller
         }
     }
 
-
+    public function Logout()
+    {
+        // $id = Auth::id();
+        Auth::logout();
+        return redirect('/admin/login');
+    }
 
 
 
