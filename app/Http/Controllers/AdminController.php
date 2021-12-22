@@ -8,6 +8,8 @@ use App\Http\Requests\Admin\Auth\loginRequest;
 use App\Http\Requests\Admin\Auth\RegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterMail;
 
 class AdminController extends Controller
 {
@@ -32,10 +34,12 @@ class AdminController extends Controller
         $data['password'] = bcrypt($data['password']);
         $data['hash'] = ($data['password']);
 
-
         Admin::create($data);
 
         toastr()->success('Your admin account has been created successfully!');
+
+        $dataMail['fullname'] = $request->fullname;
+        Mail::to($request->email)->send(new RegisterMail($dataMail));
 
         return redirect('/admin/login');
     }

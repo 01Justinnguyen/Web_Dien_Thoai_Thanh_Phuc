@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-        return view('admin.share.master');
-    });
+// Route::get('/', function () {
+//         return view('admin.share.master');
+//     });
 
 Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     // Route::group(['prefix' => '/admin' , 'middleware' => 'checkAminLogin'], function(){
@@ -54,6 +54,13 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
 
     Route::get('/admin/forgot-password', [\App\Http\Controllers\AdminController::class, 'viewForget']);
 
+
+
+
+    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/errors', [\App\Http\Controllers\HomeController::class, 'errors']);
+    Route::get('/detail', [\App\Http\Controllers\HomeController::class, 'detail']);
+    Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'profile']);
 
 
 
