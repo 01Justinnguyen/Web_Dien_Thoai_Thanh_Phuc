@@ -1,182 +1,285 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="/public/profile.css">
-</head>
-<body>
-    <div class="container">
-        <div class="main-body">
 
-              <!-- Breadcrumb -->
-              <nav aria-label="breadcrumb" class="main-breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                  <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                </ol>
-              </nav>
-              <!-- /Breadcrumb -->
+<!doctype html>
+<html class="no-js" lang="zxx">
 
-              <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex flex-column align-items-center text-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                        <div class="mt-3">
-                          <h4>John Doe</h4>
-                          <p class="text-secondary mb-1">Full Stack Developer</p>
-                          <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                          <button class="btn btn-primary">Follow</button>
-                          <button class="btn btn-outline-primary">Message</button>
-                        </div>
-                      </div>
+<!-- contact32:04-->
+ @include('client.headCSS')
+    <body>
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+        <!-- Begin Body Wrapper -->
+        <div class="body-wrapper">
+            <!-- Begin Header Area -->
+            @include('client.top')
+            <!-- Header Area End Here -->
+            <!-- Begin Li's Breadcrumb Area -->
+            <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Profie</li>
+                        </ul>
                     </div>
-                  </div>
-                  <div class="card mt-3">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
-                        <span class="text-secondary">https://bootdey.com</span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github mr-2 icon-inline"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>Github</h6>
-                        <span class="text-secondary">bootdey</span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter mr-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>Twitter</h6>
-                        <span class="text-secondary">@bootdey</span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram mr-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
-                        <span class="text-secondary">bootdey</span>
-                      </li>
-                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
-                        <span class="text-secondary">bootdey</span>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
-                <div class="col-md-8">
-                  <div class="card mb-3">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Full Name</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          Kenneth Valdez
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Email</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          fip@jukmuh.al
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Phone</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          (239) 816-9029
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Mobile</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          (320) 380-4539
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Address</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                          Bay Area, San Francisco, CA
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row gutters-sm">
-                    <div class="col-sm-6 mb-3">
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                          <small>Web Design</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Website Markup</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>One Page</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Mobile Template</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Backend API</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 mb-3">
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                          <small>Web Design</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Website Markup</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>One Page</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Mobile Template</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Backend API</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
+            <!-- Li's Breadcrumb Area End Here -->
+            <!-- Begin Contact Main Page Area -->
+            <div class="contact-main-page mt-40 mb-40 mb-md-40 mb-sm-40 mb-xs-40">
+                <div class="container mb-60">
+                    <div id="google-map">
+                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.5212581183214!2d108.20755351465125!3d16.059941588886666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b4239d8e51%3A0x96e408c6b0419760!2zVHLGsOG7nW5nIMSQ4bqhaSBI4buNYyBEdXkgVMOibg!5e1!3m2!1svi!2s!4v1640195307554!5m2!1svi!2s" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="container" style="margin-top:-90px; margin-left:270px">
+                    <div class="row" style="width: 1000px;">
+                        <div class="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
+                            <div class="contact-page-side-content">
+                                <h3 class="contact-page-title">Contact Us</h3>
+                                <p class="contact-page-message mb-25">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.</p>
+                                <div class="single-contact-block">
+                                    <h4><i class="fa fa-fax"></i> Address</h4>
+                                    <p>123 Main Street, Anytown, CA 12345 – USA</p>
+                                </div>
+                                <div class="single-contact-block">
+                                    <h4><i class="fa fa-phone"></i> Phone</h4>
+                                    <p>Mobile: (08) 123 456 789</p>
+                                    <p>Hotline: 1009 678 456</p>
+                                </div>
+                                <div class="single-contact-block last-child">
+                                    <h4><i class="fa fa-envelope-o"></i> Email</h4>
+                                    <p>yourmail@domain.com</p>
+                                    <p>support@hastech.company</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 order-2 order-lg-1">
+                            <div class="col-lg-6 col-md-12 order-2 order-lg-1" >
+                                <div class="team-member mb-90 mb-sm-60 mb-xs-60" >
+                                    <div class="team-thumb">
+                                        <img src="images/team/1.png" alt="Our Team Member">
+                                    </div>
+                                    <div class="team-content text-center">
+                                        <h3>Jonathan Scott</h3>
+                                        <p>IT Expert</p>
+                                        <a href="#">info@example.com</a>
+                                        <div class="team-social">
+                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                            <a href="#"><i class="fa fa-twitter"></i></a>
+                                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact Main Page Area End Here -->
+            <!-- Begin Footer Area -->
+            @include('client.footer')
+            <!-- Footer Area End Here -->
         </div>
-</body>
+        @include('client.footCSS')
+            <!-- Google Map -->
+            {{-- <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyChs2QWiAhnzz0a4OEhzqCXwx_qA9ST_lE"></script>
+
+            <script>
+                // When the window has finished loading create our google map below
+                google.maps.event.addDomListener(window, 'load', init);
+                function init() {
+                    // Basic options for a simple Google Map
+                    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+                    var mapOptions = {
+                        // How zoomed in you want the map to start at (always required)
+                        zoom: 12,
+                        scrollwheel: false,
+                        // The latitude and longitude to center the map (always required)
+                        center: new google.maps.LatLng(40.740610, -73.935242), // New York
+                        // How you would like to style the map.
+                        // This is where you would paste any style found on
+                        styles: [{
+                                "featureType": "water",
+                                "elementType": "geometry",
+                                "stylers": [{
+                                        "color": "#e9e9e9"
+                                    },
+                                    {
+                                        "lightness": 17
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "landscape",
+                                "elementType": "geometry",
+                                "stylers": [{
+                                        "color": "#f5f5f5"
+                                    },
+                                    {
+                                        "lightness": 20
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road.highway",
+                                "elementType": "geometry.fill",
+                                "stylers": [{
+                                        "color": "#ffffff"
+                                    },
+                                    {
+                                        "lightness": 17
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road.highway",
+                                "elementType": "geometry.stroke",
+                                "stylers": [{
+                                        "color": "#ffffff"
+                                    },
+                                    {
+                                        "lightness": 29
+                                    },
+                                    {
+                                        "weight": 0.2
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road.arterial",
+                                "elementType": "geometry",
+                                "stylers": [{
+                                        "color": "#ffffff"
+                                    },
+                                    {
+                                        "lightness": 18
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "road.local",
+                                "elementType": "geometry",
+                                "stylers": [{
+                                        "color": "#ffffff"
+                                    },
+                                    {
+                                        "lightness": 16
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "poi",
+                                "elementType": "geometry",
+                                "stylers": [{
+                                        "color": "#f5f5f5"
+                                    },
+                                    {
+                                        "lightness": 21
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "poi.park",
+                                "elementType": "geometry",
+                                "stylers": [{
+                                        "color": "#dedede"
+                                    },
+                                    {
+                                        "lightness": 21
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "labels.text.stroke",
+                                "stylers": [{
+                                        "visibility": "on"
+                                    },
+                                    {
+                                        "color": "#ffffff"
+                                    },
+                                    {
+                                        "lightness": 16
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "labels.text.fill",
+                                "stylers": [{
+                                        "saturation": 36
+                                    },
+                                    {
+                                        "color": "#333333"
+                                    },
+                                    {
+                                        "lightness": 40
+                                    }
+                                ]
+                            },
+                            {
+                                "elementType": "labels.icon",
+                                "stylers": [{
+                                    "visibility": "off"
+                                }]
+                            },
+                            {
+                                "featureType": "transit",
+                                "elementType": "geometry",
+                                "stylers": [{
+                                        "color": "#f2f2f2"
+                                    },
+                                    {
+                                        "lightness": 19
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "administrative",
+                                "elementType": "geometry.fill",
+                                "stylers": [{
+                                        "color": "#fefefe"
+                                    },
+                                    {
+                                        "lightness": 20
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "administrative",
+                                "elementType": "geometry.stroke",
+                                "stylers": [{
+                                        "color": "#fefefe"
+                                    },
+                                    {
+                                        "lightness": 17
+                                    },
+                                    {
+                                        "weight": 1.2
+                                    }
+                                ]
+                            }
+                        ]
+                    };
+
+                    // Get the HTML DOM element that will contain your map
+                    // We are using a div with id="map" seen below in the <body>
+                    var mapElement = document.getElementById('google-map');
+
+                    // Create the Google Map using our element and options defined above
+                    var map = new google.maps.Map(mapElement, mapOptions);
+
+                    // Let's also add a marker while we're at it
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(40.740610, -73.935242),
+                        map: map,
+                        title: 'Limupa',
+                        animation: google.maps.Animation.BOUNCE
+                    });
+                }
+            </script> --}}
+    </body>
+
+<!-- contact32:04-->
 </html>
