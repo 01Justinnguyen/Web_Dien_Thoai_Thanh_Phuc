@@ -109,11 +109,15 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
+                                        <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
                                             <label class="form-label">Name</label>
                                             <input type="text" class="form-control credit-card-mask" placeholder="" id="name">
                                         </div>
-                                        <div class="col-xl-4 col-md-3 col-sm-12 mb-2">
+                                        <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
+                                            <label class="form-label">Slug</label>
+                                            <input type="text" class="form-control credit-card-mask" placeholder="" id="slug">
+                                        </div>
+                                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Is_view</label>
                                             <select class="form-control" id="is_view" required="">
                                                 <option value="">Choose...</option>
@@ -121,11 +125,7 @@
                                                 <option value=0>Disable</option>
                                             </select>
                                         </div>
-                                        <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
-                                            <label class="form-label">Slug</label>
-                                            <input type="text" class="form-control credit-card-mask" placeholder="" id="slug">
-                                        </div>
-                                        <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
+                                        <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Category_Id</label>
                                         <select class="form-control" id="category_id" required="">
                                             <option value=0> Root </option>
@@ -239,14 +239,14 @@
                                         <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
                                         <script>
                                             var options = {
-                                        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                                        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                                        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                                        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+                                            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                                            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                                            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                                            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
                                     };
                                         </script>
                                         <script>
-                                           CKEDITOR.replace('ckeditorInfoproduct', options);
+                                            CKEDITOR.replace('ckeditorInfoproduct', options);
                                             CKEDITOR.replace('ckeditorDescription', options);
                                             CKEDITOR.replace('ckeditorDetails', options);
                                             CKEDITOR.replace('ckeditorReviews', options);
@@ -349,9 +349,15 @@
                 },
             });
         });
+
         $(".callEdit").click(function(e){
             var id = $(this).data('edit');
-            console.log(id);
+            // var info = CKEDITOR.replace('ckeditorInfoproduct');
+            // var details = CKEDITOR.instances["ckeditorDetails"].getData();
+            // console.log(details);
+            // var des = CKEDITOR.instances["ckeditorDescription"].getData();
+            // var reviews = CKEDITOR.instances["ckeditorReviews"].getData()
+            // console.log(id);
             $("#product_edit").val(id);
             e.preventDefault();
             $.ajax({
@@ -369,12 +375,12 @@
                         $('#is_view').val(response.data.is_view);
                         $('#status').val(response.data.status);
                         $('#feature').val(response.data.feature);
-                        $('#info_product').val(response.data.info_product);
                         $('#quantity').val(response.data.qty);
-                        $('#details').val(response.data.details);
-                        $('#description').val(response.data.description);
-                        $('#reviews').val(response.data.reviews);
                         $('#image_product').val(response.data.image_product);
+                        CKEDITOR.instances['ckeditorInfoproduct'].setData(response.data.info_product);
+                        CKEDITOR.instances['ckeditorDescription'].setData(response.data.description);
+                        CKEDITOR.instances['ckeditorDetails'].setData(response.data.details);
+                        CKEDITOR.instances['ckeditorReviews'].setData(response.data.reviews);
                 }
             });
 
@@ -441,8 +447,8 @@
     // var info = $('#info_product')
     // console.log(info);
     // $('#ckeditorInfoproduct').attr('info');
-    var info = $('#ckeditorInfoproduct').val(data[14]);
-    // console.log(info);
+    var info = $('#ckeditorInfoproduct').val(data[0]);
+    console.log(info);
     });
     });
 </script>
