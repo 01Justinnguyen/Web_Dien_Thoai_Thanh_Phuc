@@ -49,7 +49,7 @@
                                 <td value="{{ $value->select_version }}" >{{ $version[$value->select_version] }}</td>
                                 <td><span class="btn view {{$value->is_view == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-id="{{$value->id}}">{{ $value->is_view == 1 ? 'Visible' : 'Disable' }} </span></td>
                                 <td value="{{ $value->status }}">{{ $status[$value->status] }}</td>
-                                <td>{{ ($value->feature) ? 'New Arrival' : 'Bestseller' }}</td>
+                                <td>{{ ($value->feature) ? 'Bestseller' :  'New Arrival' }}</td>
                                 <td>{{$value->qty}}</td>
                                 <td><img src="{{$value->image_product}}" style="width:100px; height:100px" alt=""></td>
                                 <td>{!! $value->info_product !!}</td>
@@ -128,7 +128,7 @@
                                         <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Category_Id</label>
                                         <select class="form-control" id="category_id" required="">
-                                            <option value=0> Root </option>
+                                            <option value=0>Root</option>
                                             @foreach ($categories as $value)
                                                 <option value={{$value->id}}> {{$value->name}} </option>
                                             @endforeach
@@ -180,7 +180,7 @@
                                         <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Status</label>
                                             <select id="status" class="form-control" required="">
-                                                <option>Choose...</option>
+                                                <option value="0">Choose...</option>
                                                 {{-- hàng có sẵn --}}
                                                 <option value="0">Available</option>
                                                 {{-- hết hàng --}}
@@ -192,9 +192,9 @@
                                         <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Feature</label>
                                             <select id="feature" class="form-control" required="">
-                                                <option>Choose...</option>
-                                                <option value="1">New Arrival</option>
-                                                <option value="0">Bestseller</option>
+                                                <option value="0">Choose...</option>
+                                                <option value="1">Bestseller</option>
+                                                <option value="0">New Arrival</option>
                                             </select>
                                         </div>
 

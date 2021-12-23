@@ -25,8 +25,8 @@ class CreateProductsTable extends Migration
             $table->string('color');
             $table->integer('select_version')->default(0);
             $table->integer('is_view')->nullable();
-            $table->integer('status')->nullable();
-            $table->integer('feature')->nullable();
+            $table->integer('status')->default(0);
+            $table->integer('feature')->default(0);
             $table->string('info_product')->nullable();
             $table->string('image_product');
             $table->integer('qty')->nullable();

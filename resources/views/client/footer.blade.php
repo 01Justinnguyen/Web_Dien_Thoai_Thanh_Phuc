@@ -3,23 +3,15 @@
     <div class="footer-static-top">
         <div class="container">
             <!-- Begin Footer Shipping Area -->
-            <div class="footer-shipping pt-60 pb-55 pb-xs-25">
-                <div class="row">
+            <div class="footer-shipping pt-60 pb-30 pb-xs-25">
+                <div class="row" style="margin-top: -30px;">
                     <!-- Begin Li's Shipping Inner Box Area -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
-                        <div class="li-shipping-inner-box">
-                            <div class="shipping-icon">
-                                <img src="images/shipping-icon/1.png" alt="Shipping Icon">
-                            </div>
-                            <div class="shipping-text">
-                                <h2>Free Delivery</h2>
-                                <p>And free returns. See checkout for delivery dates.</p>
-                            </div>
-                        </div>
-                    </div>
+                    {{-- <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55"> --}}
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.5212581183214!2d108.20755351465125!3d16.059941588886666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b4239d8e51%3A0x96e408c6b0419760!2zVHLGsOG7nW5nIMSQ4bqhaSBI4buNYyBEdXkgVMOibg!5e1!3m2!1svi!2s!4v1640195307554!5m2!1svi!2s" style="border-radius: 5px 5px 5px 5px;" allowfullscreen="" loading="lazy"></iframe>
+                    {{-- </div> --}}
                     <!-- Li's Shipping Inner Box Area End Here -->
                     <!-- Begin Li's Shipping Inner Box Area -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
+                    {{-- <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
                         <div class="li-shipping-inner-box">
                             <div class="shipping-icon">
                                 <img src="images/shipping-icon/2.png" alt="Shipping Icon">
@@ -56,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Li's Shipping Inner Box Area End Here -->
+                    <!-- Li's Shipping Inner Box Area End Here --> --}}
                 </div>
             </div>
             <!-- Footer Shipping Area End Here -->
@@ -64,7 +56,7 @@
     </div>
     <!-- Footer Static Top Area End Here -->
     <!-- Begin Footer Static Middle Area -->
-    <div class="footer-static-middle">
+    <div class="footer-static-middle" style="margin-top: -30px">
         <div class="container">
             <div class="footer-logo-wrap pt-50 pb-35">
                 <div class="row">

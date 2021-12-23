@@ -22,7 +22,7 @@
                             <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
                                 <label class="form-label" for="basicInput">Category_Id</label>
                             <select name="category_id" class="form-control" id="category_id" required="">
-                                <option value=0> Root </option>
+                                <option value=0>Choose...</option>
                                 @foreach ($categories as $value)
                                     <option value={{$value->id}}> {{$value->name}} </option>
                                 @endforeach
@@ -70,7 +70,7 @@
                             <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                 <label class="form-label" for="basicInput">Status</label>
                                 <select name="status" id="status" class="form-control" required="">
-                                    <option>Choose...</option>
+                                    <option value="0">Choose...</option>
                                     {{-- hàng có sẵn --}}
                                     <option value="0">Available</option>
                                     {{-- hết hàng --}}
@@ -82,9 +82,9 @@
                             <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                 <label class="form-label" for="basicInput">Feature</label>
                                 <select name="feature" id="feature" class="form-control" required="">
-                                    <option>Choose...</option>
-                                    <option value="0">Bestseller</option>
-                                    <option value="1">New Arrival</option>
+                                    <option value="0">Choose...</option>
+                                    <option value="1">Bestseller</option>
+                                    <option value="0">New Arrival</option>
                                 </select>
                             </div>
                             <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
