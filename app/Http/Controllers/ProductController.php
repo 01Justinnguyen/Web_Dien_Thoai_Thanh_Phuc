@@ -18,18 +18,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $products = product::join('categories', 'category_id', 'categories.id')
-        //                         ->select('products.*', 'categories.name as nameCate')
-        //                         ->get();
-        // $brands = product::join('brands', 'brand_id', 'brands.id')
-        //                         ->select('product.*', 'brands.name as nameBrand')
-        //                         ->get();
-
-        $products = product::join('brands', 'brand_id', 'brands.id')
-            ->leftJoin('categories','category_id', 'categories.id')
-            ->select('products.*', 'categories.name as nameCate')
-            ->select('product.*', 'brands.name as nameBrand')
-            ->get();
+        $products = product::join('categories', 'category_id', 'categories.id')
+                                ->select('products.*', 'categories.name as nameCate')
+                                ->get();
         $categories = categories::where('is_view', 1)->get();
         return view('admin.page.products.index', compact('products', 'categories'));
     }

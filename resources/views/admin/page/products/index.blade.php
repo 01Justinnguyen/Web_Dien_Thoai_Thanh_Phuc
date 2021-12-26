@@ -46,7 +46,7 @@
                                 <td>{{ number_format($value->price_sell, 0, ',', '.') }} đ</td>
                                 <td>{{ $value->code_product }}</td>
                                 <td>{{ $value->nameCate }}</td>
-                                <td>{{ $value2->nameBrand }}</td>
+                                <td>{{$value->brand->name}}</td>
                                 <td><i class="badge rounded-pill badge-light-primary me-1">{{ $color[$value->color] }}</i></td>
                                 <td value="{{ $value->select_version }}" >{{ $version[$value->select_version] }}</td>
                                 <td><span class="btn view {{$value->is_view == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-id="{{$value->id}}">{{ $value->is_view == 1 ? 'Visible' : 'Disable' }} </span></td>
@@ -128,12 +128,12 @@
                                             </select>
                                         </div>
                                         <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
-                                            <label class="form-label" for="basicInput">Category_Id</label>
+                                            <label class="form-label" for="basicInput">Category</label>
                                         <select class="form-control" id="category_id" required="">
-                                            <option value=0>Root</option>
-                                            @foreach ($categories as $value)
-                                                <option value={{$value->id}}> {{$value->name}} </option>
-                                            @endforeach
+                                            <option value=0>Choose...</option>
+                                                @foreach ($categories as $value)
+                                                    <option value={{$value->id}}> {{$value->name}} </option>
+                                                @endforeach
                                         </select>
                                         </div>
                                         <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
@@ -354,12 +354,6 @@
 
         $(".callEdit").click(function(e){
             var id = $(this).data('edit');
-            // var info = CKEDITOR.replace('ckeditorInfoproduct');
-            // var details = CKEDITOR.instances["ckeditorDetails"].getData();
-            // console.log(details);
-            // var des = CKEDITOR.instances["ckeditorDescription"].getData();
-            // var reviews = CKEDITOR.instances["ckeditorReviews"].getData()
-            // console.log(id);
             $("#product_edit").val(id);
             e.preventDefault();
             $.ajax({

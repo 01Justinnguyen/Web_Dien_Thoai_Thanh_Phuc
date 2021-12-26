@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Admin\Category\createRequest;
 use App\Http\Requests\Admin\Category\updateRequest;
 use App\Models\categories;
+use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -100,7 +101,7 @@ class CategoriesController extends Controller
         $category = categories::find($id);
         if($category){
             $category->delete();
-            $listCate = categories::where('parent_id', $id)->get();
+            $listCate = product::where('category_id', $id)->get();
             foreach($listCate as $key => $value){
                 $value->delete();
             }

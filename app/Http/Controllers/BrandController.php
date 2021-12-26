@@ -82,18 +82,19 @@ class BrandController extends Controller
     }
 
 
-    // public function edit($id)
-    // {
-    //     $brand = brand::find($id);
+    public function edit($id)
+    {
+        $brand = brand::find($id);
 
-    //     if($brand){
-    //         return response()->json(["data" => $brand]);
-    //     }else {
-    //         toastr()->error("Category not exits");
-    //         // return redirect('/admin/categories/index');
-    //         return $this->index();
-    //     }
-    // }
+        if($brand){
+            return response()->json(["data" => $brand]);
+        }else {
+            toastr()->error("Brand not exits");
+            // return redirect('/admin/categories/index');
+            return $this->index();
+        }
+    }
+
 
     /**
      * Update the specified resource in storage.

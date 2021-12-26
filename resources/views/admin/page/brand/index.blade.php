@@ -28,7 +28,7 @@
                     <button data-id={{$value->id}} type="button" class="btn btn-primary waves-effect waves-float waves-light callModal" data-bs-toggle="modal" data-bs-target="#addNewCard">
                         Delete
                     </button>
-                    <button type="button" data-edit="{{$value->id}}" class="btn btn-danger callEdit" data-bs-toggle="modal" data-bs-target="#editCategory">
+                    <button type="button" data-edit="{{$value->id}}" class="btn btn-danger callEdit" data-bs-toggle="modal" data-bs-target="#editBrand">
                         Edit
                     </button>
                 </td>
@@ -39,7 +39,7 @@
 </div>
 
 
-<div class="modal fade" id="editCategory">
+<div class="modal fade" id="editBrand">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" data-select2-id="84">
         <div class="modal-content" data-select2-id="83">
             <div class="modal-header bg-transparent">
@@ -47,7 +47,7 @@
             </div>
             <div class="modal-body pb-5 px-sm-5 pt-50" data-select2-id="82">
                 <div class="text-center mb-2">
-                    <input type="hidden" id="category_edit">
+                    <input type="hidden" id="brand_edit">
                     <h1 class="mb-1">Edit Category</h1>
                 </div>
                 <form id="editForm" class="row gy-1 pt-75" onsubmit="return false" novalidate="novalidate">
@@ -58,13 +58,13 @@
                                     <div class="row">
                                         <div class="col-xl-6 col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="basicInput">Name Category</label>
+                                                <label class="form-label" for="basicInput">Name Brand</label>
                                                     <input type="text" name="name" id="name" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-md-6 col-12">
                                             <div class="mb-1">
-                                                <label class="form-label" for="basicInput">Slug Category</label>
+                                                <label class="form-label" for="basicInput">Slug Brand</label>
                                                     <input type="text" name="slug" id="slug" class="form-control" required>
                                             </div>
                                         </div>
@@ -93,6 +93,23 @@
                                                 <script>
                                                     $('.lfm').filemanager('banner');
                                                 </script>
+                                                <div class="form-group col-xl-4 col-md-6 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                        <label class="form-label" for="basicInput">Icon</label>
+                                                        <div class="input-group">
+                                                            <input id="icon" name="icon" class="form-control" required>
+                                                            <a data-input="icon" data-preview="holder-icon"  class="lfm btn btn-light"> Choose </a>
+                                                        </div>
+                                                        <img id="holder-icon" class="card-img-top" style="width:272px; height:254px; boder:5.5px">
+                                                        </div>
+                                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                                        <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+                                                        <script>
+                                                              $('.lfm').filemanager('icon');
+                                                        </script>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                 </div>
@@ -176,10 +193,10 @@ $(document).ready(function() {
         var id = $(this).data('id');
         console.log(id);
         row = $(this);
-        $("#category_id").val(id);
+        $("#brand_id").val(id);
     });
     $("#delete_only").click(function(){
-        var id = $("#category_id").val();
+        var id = $("#brand_id").val();
         $.ajax({
             url: '/admin/categories/delete_only/' + id,
             type: 'get',
@@ -205,18 +222,19 @@ $(document).ready(function() {
     $(".callEdit").click(function(e){
                 var id = $(this).data('edit');
                 console.log(id);
-                $("#category_edit").val(id);
+                $("#brand_edit").val(id);
                 e.preventDefault();
                 $.ajax({
-                    url: '/admin/categories/edit/' + id,
+                    url: '/admin/brand/edit/' + id,
                     type: 'get',
                     success: function(response) {
                         console.log(response);
                         $('#name').val(response.data.name);
                         $('#slug').val(response.data.slug);
-                        $('#parent_id').val(response.data.parent_id);
                         var src= $('#banner').val(response.data.banner);
                         $('#holderbanner').val(src);
+                        var src = $('#icon').val(response.data.icon);
+                        $('#holder-icon').val(src);
                     }
                 });
 
@@ -224,8 +242,8 @@ $(document).ready(function() {
                     var payload1 = {
                     'name'              :   $('#name').val(),
                     'slug'              :   $("#slug").val(),
-                    'parent_id'         :   $("#parent_id").val(),
-                    'banner'            :    $('#banner').val(),
+                    'icon'              :   $("#icon").val(),
+                    'banner'            :   $('#banner').val(),
                 };
                     $.ajax({
                         url : '/admin/categories/update/' + id,
@@ -270,17 +288,18 @@ $(document).ready(function() {
     var data = table.row($tr).data();
     console.log(data);
 
-    var src = $('#banneredit').attr('src');
+    var src = $('#brand_edit').attr('src');
     var parent = data[2];
     console.log(src);
     console.log(parent);
 
     $('#name').val(data[1]);
-    $('#banner').val(src);
+    // $('#banner').val(src);
+    // var src = $('#banner').attr('src');
     $('#holderbanner').attr('src', $tr.find('img').attr('src'));
-
-    $('#editForm').attr('action', '/admin/category/update/' + data[0]);
-    $('#editCategory ').modal('show');
+    // $('#holder-icon').attr('src', $tr.find('img').attr('src'));
+    // var src = $('#icon').attr('src');
+    $('#holder-icon').attr('src', $tr.find('img').attr('src'));
     });
 
 
