@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('price_sell')->nullable();
             $table->string('code_product');
             $table->integer('category_id');
+            $table->integer('brand_id');
             $table->integer('rating')->nullable();
             $table->string('color');
             $table->integer('select_version')->default(0);

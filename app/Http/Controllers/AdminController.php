@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\loginRequest;
 use App\Http\Requests\Admin\Auth\RegisterRequest;
+use App\Jobs\sendMailJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -39,7 +40,9 @@ class AdminController extends Controller
         toastr()->success('Your admin account has been created successfully!');
 
         $dataMail['fullname'] = $request->fullname;
-        Mail::to($request->email)->send(new RegisterMail($dataMail));
+        // Mail::to($request->email)->send(new RegisterMail($dataMail));
+
+        sendMailJob::dispatch($request->email, $dataMail);
 
         return redirect('/admin/login');
     }

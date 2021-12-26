@@ -25,7 +25,7 @@
                             <img src="images/team/1.png" alt="Our Team Member">
                         </div>
                         <div class="team-content text-center" style="padding: 15px">
-                            <h3>Phạm Đức Kiệt</h3>
+                            <h3>Nguyễn Thanh Phúc</h3>
                             <p>Member</p>
                             <a href="#">info@example.com</a>
                         </div>
@@ -34,113 +34,145 @@
             </div>
             <div class="col-lg-8">
                 <div class="col-lg-12 col-md-12 order-2 order-lg-1">
-                    <div class="contact-page-side-content">
-                        <h3 class="contact-page-title">Thông Tin Cá Nhân</h3>
+                    <div class="row">
 
-                        <div class="single-contact-block">
-                            <h4><i class="fa fa-fax"></i> Address</h4>
-                            <p>Bình Hiệp - Bình Sơn - Quảng Ngãi</p>
+                            <div class="col-lg-12">
+                                <div class="li-product-tab">
+                                    <ul class="nav li-product-menu">
+                                       <li><a class="active" data-toggle="tab" href="#li-info"><span><i class="fa fa-address-card"></i> About</span></a></li>
+                                       <li><a data-toggle="tab" href="#li-purchased-product"><span><i class="fa fa-shopping-cart"></i> Purchased products</span></a></li>
+                                       <li><a data-toggle="tab" href="#li-delivering"><span><i class="fa fa-truck"></i> Your Order</span></a></li>
+                                    </ul>
+                                </div>
+                                <!-- Begin Li's Tab Menu Content Area -->
+                            </div>
+                        <div class="col-12">
+                        <div class="tab-content">
+                            <div id="li-info" class="tab-pane active show" role="tabpanel">
+                                <br>
+                                <div class="single-contact mt-3">
+                                    <h4><i class="fa fa-fax"></i> Address</h4>
+                                    <p>Bình Hiệp - Bình Sơn - Quảng Ngãi</p>
+                                </div>
+                                <br>
+                                <div class="single-contact">
+                                    <h4><i class="fa fa-phone"></i> Phone</h4>
+                                    <p>Mobile: 0393900816</p>
+                                </div>
+                                <br>
+                                <div class="single-contact last-child">
+                                    <h4><i class="fa fa-envelope-o"></i> Email</h4>
+                                    <p>yourmail@domain.com</p>
+                                </div>
+                                <br>
+                                    <button type="submit" id="updateCategory"
+                                        class="btn btn-warning me-1 waves-effect waves-float waves-light">Setting</button>
+                            </div>
+
+                            <div id="li-purchased-product" class="tab-pane" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-12">
+                                            <div class="table-content table-responsive">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <br>
+                                                            <br>
+                                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                                            <td class="li-product-thumbnail"><a href="#"><img style="width:60px;height:60px" src="images/product/small-size/5.jpg" alt="Li's Product Image"></a></td>
+                                                            <td class="li-product-name"><a href="#">Accusantium dolorem1</a></td>
+                                                            <td class="li-product-price"><span class="amount">$46.80</span></td>
+                                                            <td class="quantity"><span class="amount">x1</span></td>
+                                                            <td class="li-product-price"><span class="amount">Total: $46.80</span></td>
+                                                            <td>
+                                                                <button type="submit" class="btn btn-warning me-1 waves-effect waves-float waves-light">Rating</button>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                                            <td class="li-product-thumbnail"><a href="#"><img style="width:60px;height:60px" src="images/product/small-size/6.jpg" alt="Li's Product Image"></a></td>
+                                                            <td class="li-product-name"><a href="#">Mug Today is a good day</a></td>
+                                                            <td class="li-product-price"><span class="amount">$71.80</span></td>
+                                                            <td class="quantity"><span class="amount">x2</span></td>
+                                                            <td class="li-product-price"><span class="amount">Total: $143.60</span></td>
+                                                            <td>
+                                                                <button type="submit" class="btn btn-warning me-1 waves-effect waves-float waves-light">Buy Again</button>
+                                                            </td>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="li-delivering" class="tab-pane" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-12">
+                                            <div class="table-content table-responsive">
+                                                <br>
+                                                    <h6>Waiting for submission</h6>
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                           <br>
+                                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                                            <td class="li-product-thumbnail"><a href="#"><img style="width:40px;height:40px" src="images/product/small-size/5.jpg" alt="Li's Product Image"></a></td>
+                                                            <td class="li-product-name"><a href="#">Accusantium dolorem1</a></td>
+                                                            <td class="li-product-price"><span class="amount">$46.80</span></td>
+                                                            <td class="quantity"><span class="amount">x1</span></td>
+                                                            <td class="li-product-price"><span class="amount">Total: $46.80</span></td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                                            <td class="li-product-thumbnail"><a href="#"><img style="width:40px;height:40px" src="images/product/small-size/6.jpg" alt="Li's Product Image"></a></td>
+                                                            <td class="li-product-name"><a href="#">Mug Today is a good day</a></td>
+                                                            <td class="li-product-price"><span class="amount">$71.80</span></td>
+                                                            <td class="quantity"><span class="amount">x2</span></td>
+                                                            <td class="li-product-price"><span class="amount">Total: $143.60</span></td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <br>
+                                                <h6>Delivering</h6>
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                                            <td class="li-product-thumbnail"><a href="#"><img style="width:30px;height:30px" src="images/product/small-size/5.jpg" alt="Li's Product Image"></a></td>
+                                                            <td class="li-product-name"><a href="#">Accusantium dolorem1</a></td>
+                                                            <td class="li-product-price"><span class="amount">$46.80</span></td>
+                                                            <td class="quantity"><span class="amount">x1</span></td>
+                                                            <td class="li-product-price"><span class="amount">Total: $46.80</span></td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
+                                                            <td class="li-product-thumbnail"><a href="#"><img style="width:40px;height:40px" src="images/product/small-size/6.jpg" alt="Li's Product Image"></a></td>
+                                                            <td class="li-product-name"><a href="#">Mug Today is a good day</a></td>
+                                                            <td class="li-product-price"><span class="amount">$71.80</span></td>
+                                                            <td class="quantity"><span class="amount">x2</span></td>
+                                                            <td class="li-product-price"><span class="amount">Total: $143.60</span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="single-contact-block">
-                            <h4><i class="fa fa-phone"></i> Phone</h4>
-                            <p>Mobile: 0393900816</p>
-                        </div>
-                        <div class="single-contact-block last-child">
-                            <h4><i class="fa fa-envelope-o"></i> Email</h4>
-                            <p>yourmail@domain.com</p>
-                        </div>
-                        <div class="single-contact-block last-child text-center">
-                            <button type="submit" id="updateCategory"
-                                class="btn btn-success me-1 waves-effect waves-float waves-light">Setting</button>
-                        </div>
+                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     </div>
-    <div class="contact-main-page mt-40 mb-40 mb-md-40 mb-sm-40 mb-xs-40">
-        <div class="container mb-60">
-            <div class="counterup-area">
-                <div class="container-fluid p-0">
-                    <div class="row no-gutters">
-                        <div class="col-lg-3 col-md-6">
-                            <!-- Begin Limupa Counter Area -->
-                            <div class="limupa-counter white-smoke-bg" style="cursor: pointer">
-                                <div class="container">
-                                    <div class="counter-img">
-                                        <img src="images/about-us/icon/1.png" alt="">
-                                    </div>
-                                    <div class="counter-info">
-                                        <div class="counter-number">
-                                            <h3 class="counter">2169</h3>
-                                        </div>
-                                        <div class="counter-text">
-                                            <span>HAPPY CUSTOMERS</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- limupa Counter Area End Here -->
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <!-- Begin limupa Counter Area -->
-                            <div class="limupa-counter gray-bg" style="cursor: pointer">
-                                <div class="counter-img">
-                                    <img src="images/about-us/icon/2.png" alt="">
-                                </div>
-                                <div class="counter-info">
-                                    <div class="counter-number">
-                                        <h3 class="counter">869</h3>
-                                    </div>
-                                    <div class="counter-text">
-                                        <span>AWARDS WINNED</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- limupa Counter Area End Here -->
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <!-- Begin limupa Counter Area -->
-                            <div class="limupa-counter white-smoke-bg" style="cursor: pointer">
-                                <div class="counter-img">
-                                    <img src="images/about-us/icon/3.png" alt="">
-                                </div>
-                                <div class="counter-info">
-                                    <div class="counter-number">
-                                        <h3 class="counter">689</h3>
-                                    </div>
-                                    <div class="counter-text">
-                                        <span>HOURS WORKED</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- limupa Counter Area End Here -->
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <!-- Begin limupa Counter Area -->
-                            <div class="limupa-counter gray-bg" style="cursor: pointer">
-                                <div class="counter-img">
-                                    <img src="images/about-us/icon/4.png" alt="">
-                                </div>
-                                <div class="counter-info">
-                                    <div class="counter-number">
-                                        <h3 class="counter">2169</h3>
-                                    </div>
-                                    <div class="counter-text">
-                                        <span>COMPLETE PROJECTS</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- limupa Counter Area End Here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @include('client.footer')
-    </div>
+    @include('client.footer')
     @include('client.footCSS')
+
 </body>
 </html>

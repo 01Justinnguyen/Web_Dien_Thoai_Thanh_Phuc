@@ -40,6 +40,13 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     Route::post('/products/update/{id}', [\App\Http\Controllers\ProductController::class, 'update']);
 
 
+    Route::get('/brand/create', [\App\Http\Controllers\BrandController::class, 'create']);
+    Route::get('/brand/index', [\App\Http\Controllers\BrandController::class, 'index']);
+    Route::post('/brand/create', [\App\Http\Controllers\BrandController::class, 'store']);
+    Route::get('/brand/update-is-view/{id}', [\App\Http\Controllers\BrandController::class, 'updateIsView']);
+    Route::get('/brand/delete_all/{id}', [\App\Http\Controllers\BrandController::class, 'destroyAll']);
+
+
 });
 
 Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], function(){

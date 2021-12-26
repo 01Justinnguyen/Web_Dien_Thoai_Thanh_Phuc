@@ -11,23 +11,32 @@
                      <form id="editForm" class="row gy-1 pt-75" onsubmit="return false" novalidate="novalidate">
 
                         <div class="row">
-                            <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
+                            <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control credit-card-mask" placeholder="" name="name" id="name">
                             </div>
-                            <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
+                            <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
                                 <label class="form-label">Slug</label>
                                 <input type="text" class="form-control credit-card-mask" placeholder="" id="slug" name="slug">
                             </div>
-                            <div class="col-xl-4 col-md-4 col-sm-12 mb-2">
-                                <label class="form-label" for="basicInput">Category_Id</label>
-                            <select name="category_id" class="form-control" id="category_id" required="">
-                                <option value=0>Choose...</option>
-                                @foreach ($categories as $value)
-                                    <option value={{$value->id}}> {{$value->name}} </option>
-                                @endforeach
-                            </select>
+                            <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
+                                    <label class="form-label" for="basicInput">Category_Id</label>
+                                <select name="category_id" class="form-control" id="category_id" required="">
+                                    <option value=0>Choose...</option>
+                                    @foreach ($category as $value)
+                                        <option value={{$value->id}}> {{$value->name}} </option>
+                                    @endforeach
+                                </select>
                             </div>
+                            <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
+                                    <label class="form-label" for="basicInput">Brand_id</label>
+                                <select name="brand_id" class="form-control" id="brand_id" required="">
+                                    <option value=0>Choose...</option>
+                                    @foreach ($brand as $value)
+                                        <option value={{$value->id}}> {{$value->name}} </option>
+                                    @endforeach
+                                </select>
+                             </div>
                             <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
                                 <label class="form-label">Code Product</label>
                                 <input type="text" class="form-control credit-card-mask" placeholder="" id="code_product" name="code_product">
@@ -196,6 +205,7 @@
                     'name'          :   $("#name").val(),
                     'slug'          :   $("#slug").val(),
                     'category_id'   :   $("#category_id").val(),
+                    'brand_id'      :   $("#brand_id").val(),
                     'code_product'  :   $("#code_product").val(),
                     'qty'           :   $("#qty").val(),
                     'price_root'    :   $("#price_root").val(),

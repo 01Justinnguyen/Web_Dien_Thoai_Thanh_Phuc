@@ -52,5 +52,15 @@
                 </ul>
             </li>
         </ul>
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item"><a class="d-flex align-items-center" href=""><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Brands</span><span class="badge badge-light-warning rounded-pill ms-auto me-2">2</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="/admin/brand/create"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">Create Brands</span></a>
+                    </li>
+                    <li class=""><a class="d-flex align-items-center" href="/admin/brand/index"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="eCommerce">List Brands</span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>

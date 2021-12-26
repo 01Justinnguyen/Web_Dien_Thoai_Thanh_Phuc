@@ -16,7 +16,8 @@
                             <th>Price Root</th>
                             <th>Price Sell</th>
                             <th>Code</th>
-                            <th>Category_id</th>
+                            <th>Category</th>
+                            <th>Brand</th>
                             <th>Color</th>
                             <th>Version</th>
                             <th>Is View</th>
@@ -45,6 +46,7 @@
                                 <td>{{ number_format($value->price_sell, 0, ',', '.') }} đ</td>
                                 <td>{{ $value->code_product }}</td>
                                 <td>{{ $value->nameCate }}</td>
+                                <td>{{ $value2->nameBrand }}</td>
                                 <td><i class="badge rounded-pill badge-light-primary me-1">{{ $color[$value->color] }}</i></td>
                                 <td value="{{ $value->select_version }}" >{{ $version[$value->select_version] }}</td>
                                 <td><span class="btn view {{$value->is_view == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-id="{{$value->id}}">{{ $value->is_view == 1 ? 'Visible' : 'Disable' }} </span></td>

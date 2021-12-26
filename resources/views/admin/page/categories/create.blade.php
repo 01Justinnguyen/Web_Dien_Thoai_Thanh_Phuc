@@ -21,7 +21,7 @@
                                 <input id="slug" type="text" class="form-control" required>
                             </div>
                         </div>
-                        <div class="form-group col-xl-4 col-md-6 col-12">
+                        {{-- <div class="form-group col-xl-4 col-md-6 col-12">
                             <label class="form-label" for="basicInput">Parent_id</label>
                             <select class="form-control" id="parent_id" required="">
                                 <option value=0> Root </option>
@@ -29,7 +29,7 @@
                                 <option value={{$value->id}}> {{$value->name}} </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="form-group col-xl-4 col-md-6 col-12">
                             <label class="form-label" for="basicInput">Is_View</label>
                             <select id="is_view" class="form-control" required="">

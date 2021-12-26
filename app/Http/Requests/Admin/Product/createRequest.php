@@ -26,6 +26,7 @@ class createRequest extends FormRequest
         return [
             'name'        => 'required|max:100',
             'slug'        => 'required|max:100',
+            'brand_id'    => 'required|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
             'is_view'     => 'required|boolean',
             'price_root'  => 'required|numeric',

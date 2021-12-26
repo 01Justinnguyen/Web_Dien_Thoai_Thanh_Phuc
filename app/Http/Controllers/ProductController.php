@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Admin\Product\createRequest;
 use App\Http\Requests\Admin\Product\updateRequest;
+use App\Models\brand;
 use App\Models\categories;
 use App\Models\product;
 use Illuminate\Http\Request;
@@ -17,9 +18,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = product::join('categories', 'category_id', 'categories.id')
-                                ->select('products.*', 'categories.name as nameCate')
-                                ->get();
+        // $products = product::join('categories', 'category_id', 'categories.id')
+        //                         ->select('products.*', 'categories.name as nameCate')
+        //                         ->get();
+        // $brands = product::join('brands', 'brand_id', 'brands.id')
+        //                         ->select('product.*', 'brands.name as nameBrand')
+        //                         ->get();
+
+        $products = product::join('brands', 'brand_id', 'brands.id')
+            ->leftJoin('categories','category_id', 'categories.id')
+            ->select('products.*', 'categories.name as nameCate')
+            ->select('product.*', 'brands.name as nameBrand')
+            ->get();
         $categories = categories::where('is_view', 1)->get();
         return view('admin.page.products.index', compact('products', 'categories'));
     }
@@ -27,8 +37,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = categories::where('is_view', 1)->get();
-        return view('admin.page.products.create', compact('categories'));
+        $category = categories::where('is_view', 1)->get();
+        $brand = brand::where('is_view', 1)->get();
+        return view('admin.page.products.create', compact('category', 'brand'));
     }
 
 

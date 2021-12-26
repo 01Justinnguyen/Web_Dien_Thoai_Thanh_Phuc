@@ -18,14 +18,14 @@ class CategoriesController extends Controller
                         ->select('A.*', 'B.name as nameParent')
                         ->get();
         $categories = categories::where('parent_id', 0)->get();
-        return view('admin.page.categoies.index', compact('listCategories', 'categories'));
+        return view('admin.page.categories.index', compact('listCategories', 'categories'));
     }
 
 
     public function create()
     {
         $categories = categories::where('parent_id', 0)->get();
-        return view('admin.page.categoies.create', compact('categories'));
+        return view('admin.page.categories.create', compact('categories'));
     }
 
 
