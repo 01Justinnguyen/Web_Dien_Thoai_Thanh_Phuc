@@ -27,6 +27,7 @@ class updateRequest extends FormRequest
             'name'        => 'required|max:100',
             'slug'        => 'required|max:100',
             'category_id' => 'required|exists:categories,id',
+            'brand_id'    => 'required|exists:brands,id',
             'is_view'     => 'required|boolean',
             'price_root'  => 'required|numeric',
             'price_sell'  => 'max:'. $this->price_root,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\brand;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Brand\CreateRequest;
+use App\Http\Requests\Admin\Brand\updateBrand;
 use App\Models\product;
 use Illuminate\Http\Request;
 
@@ -103,9 +104,12 @@ class BrandController extends Controller
      * @param  \App\Models\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, brand $brand)
+    public function update(updateBrand $request)
     {
-        //
+        $data = $request->all();
+        $category = brand::find($request->id);
+        $category->update($data);
+        return response()->json(['status' => true]);
     }
 
     /**

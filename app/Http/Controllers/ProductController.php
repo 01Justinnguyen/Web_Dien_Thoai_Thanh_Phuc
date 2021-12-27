@@ -22,7 +22,8 @@ class ProductController extends Controller
                                 ->select('products.*', 'categories.name as nameCate')
                                 ->get();
         $categories = categories::where('is_view', 1)->get();
-        return view('admin.page.products.index', compact('products', 'categories'));
+        $brands = brand::where('is_view', 1)->get();
+        return view('admin.page.products.index', compact('products', 'categories', 'brands'));
     }
 
 

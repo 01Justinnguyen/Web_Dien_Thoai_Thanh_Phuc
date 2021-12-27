@@ -46,7 +46,7 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     Route::get('/brand/update-is-view/{id}', [\App\Http\Controllers\BrandController::class, 'updateIsView']);
     Route::get('/brand/delete_all/{id}', [\App\Http\Controllers\BrandController::class, 'destroyAll']);
     Route::get('/brand/edit/{id}', [\App\Http\Controllers\BrandController::class, 'edit']);
-
+    Route::post('/brand/update/{id}', [\App\Http\Controllers\BrandController::class, 'update']);
 });
 
 Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], function(){

@@ -6,8 +6,8 @@
             <tr>
                 <th class="text-center">STT</th>
                 <th class="text-center">Name Category</th>
-                <th class="text-center">Parent Id</th>
-                <th class="text-center">Banner</th>
+                {{-- <th class="text-center">Parent Id</th> --}}
+                {{-- <th class="text-center">Banner</th> --}}
                 <th class="text-center">Status</th>
                 <th class="text-center">Actions</th>
             </tr>
@@ -17,8 +17,8 @@
             <tr class="text-center">
                 <td style="width:30px"> {{$key+1}} </td>
                 <td> {{$value->name}}</td>
-                <td> {{empty($value->nameParent) ? 'root' : $value->nameParent}}</td>
-                <td><img  id="banneredit" style="width:100px; height:100px" src="{{$value->banner}}"></td>
+                {{-- <td> {{empty($value->nameParent) ? 'root' : $value->nameParent}}</td> --}}
+                {{-- <td><img  id="banneredit" style="width:100px; height:100px" src="{{$value->banner}}"></td> --}}
                 <td>
                     <div class="form-check form-switch">
                         <input type="checkbox" class="form-check-input is_view" data-id="{{ $value->id }}" {{ $value->is_view ? 'checked' : '' }}>
@@ -68,7 +68,7 @@
                                                     <input type="text" name="slug" id="slug" class="form-control" required>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="form-group col-xl-6 col-md-6 col-12">
                                                 <label class="form-label" for="basicInput">Parent_id</label>
                                                 <select class="form-control" id="parent_id" name="parent_id" required="">
@@ -94,7 +94,7 @@
                                                     $('.lfm').filemanager('banner');
                                                 </script>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                 </div>
                             </div>
                         </div>

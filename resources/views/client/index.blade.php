@@ -8,7 +8,7 @@
                 <div class="slider-area">
                     <div class="slider-active owl-carousel">
                         <!-- Begin Single Slide Area -->
-                        <div class="single-slide align-center-left  animation-style-01 bg-1">
+                        <div class="single-slide align-center-left  animation-style-01 bg-1" style="background-image: url(https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-2.jpg)">
                             <div class="slider-progress"></div>
                             <div class="slider-content">
                                 <h5>Sale Offer <span>-20% Off</span> This Week</h5>
@@ -21,7 +21,7 @@
                         </div>
                         <!-- Single Slide Area End Here -->
                         <!-- Begin Single Slide Area -->
-                        <div class="single-slide align-center-left animation-style-02 bg-2">
+                        <div class="single-slide align-center-left animation-style-02 bg-2" style="background-image: url(https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-9.jpg)">
                             <div class="slider-progress"></div>
                             <div class="slider-content">
                                 <h5>Sale Offer <span>Black Friday</span> This Week</h5>

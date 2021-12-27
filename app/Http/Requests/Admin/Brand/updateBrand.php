@@ -25,7 +25,7 @@ class updateBrand extends FormRequest
     {
         return [
             'name'          => 'required',
-            'is_view'       => 'required|boolean',
+            // 'is_view'       => 'required|boolean',
         ];
     }
 }

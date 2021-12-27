@@ -103,7 +103,7 @@
             <div class="modal-body px-sm-5 mx-50 pb-5" data-select2-id="82">
                 <div class="text-center mb-2">
                     <input type="hidden" id="product_edit">
-                    <h1 class="mb-1">Edit Category</h1>
+                    <h1 class="mb-1">Edit Product</h1>
                 </div>
                 <form id="editForm" class="row gy-1 pt-75" onsubmit="return false" novalidate="novalidate">
                     <div class="row">
@@ -119,7 +119,7 @@
                                             <label class="form-label">Slug</label>
                                             <input type="text" class="form-control credit-card-mask" placeholder="" id="slug">
                                         </div>
-                                        <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
+                                        <div class="col-xl-2 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Is_view</label>
                                             <select class="form-control" id="is_view" required="">
                                                 <option value="">Choose...</option>
@@ -127,11 +127,18 @@
                                                 <option value=0>Disable</option>
                                             </select>
                                         </div>
-                                        <div class="col-xl-3 col-md-4 col-sm-12 mb-2">
+                                        <div class="col-xl-2 col-md-4 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Category</label>
                                         <select class="form-control" id="category_id" required="">
-                                            <option value=0>Choose...</option>
                                                 @foreach ($categories as $value)
+                                                    <option value={{$value->id}}> {{$value->name}} </option>
+                                                @endforeach
+                                        </select>
+                                        </div>
+                                        <div class="col-xl-2 col-md-4 col-sm-12 mb-2">
+                                            <label class="form-label" for="basicInput">Brand</label>
+                                        <select class="form-control" id="brand_id" required="">
+                                                @foreach ($brands as $value)
                                                     <option value={{$value->id}}> {{$value->name}} </option>
                                                 @endforeach
                                         </select>
@@ -366,6 +373,7 @@
                         $('#price_sale').val(response.data.price_sell);
                         $('#code_product').val(response.data.code_product);
                         $('#category_id').val(response.data.category_id);
+                        $('#brand_id').val(response.data.brand_id);
                         $('#color').val(response.data.color);
                         $('#version').val(response.data.select_version);
                         $('#is_view').val(response.data.is_view);
@@ -385,6 +393,7 @@
                     'name'          :   $("#name").val(),
                     'slug'          :   $("#slug").val(),
                     'category_id'   :   $("#category_id").val(),
+                    'brand_id'      :   $("#brand_id").val(),
                     'code_product'  :   $("#code_product").val(),
                     'qty'           :   $("#quantity").val(),
                     'price_root'    :   $("#price_root").val(),
@@ -436,13 +445,6 @@
     // console.log(data);
     var src = $('#image_product').attr('src');
     $('#holderimage').attr('src', $tr.find('img').attr('src'));
-    // var id = data[5];
-    // var cke = data[14];
-    // alert(cke);
-    // $('#category_id').val(id);
-    // var info = $('#info_product')
-    // console.log(info);
-    // $('#ckeditorInfoproduct').attr('info');
     var info = $('#ckeditorInfoproduct').val(data[0]);
     console.log(info);
     });
