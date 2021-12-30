@@ -16,20 +16,20 @@
         <tbody>
             @foreach ($listSub as $key => $value )
             <tr class="text-center">
-                <td><img style="width:100px; height:100px" src="{{$value->main_banner_2}}"></td>
+                <td><img style="width:100px; height:100px" src="{{$value->small_banner_1}}"></td>
 
                 <td>
-                    <span class="btn view1 {{$value->is_view == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view1="{{$value->id}}">{{ $value->is_view == 1 ? 'Visible' : 'Disable' }} </span>
+                    <span class="btn view1 {{$value->is_view_1 == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view1="{{$value->id}}">{{ $value->is_view_1 == 1 ? 'Visible' : 'Disable' }} </span>
                 </td>
-                <td><img style="width:100px; height:100px" src="{{$value->main_banner_2}}"></td>
+                <td><img style="width:100px; height:100px" src="{{$value->small_banner_2}}"></td>
 
                 <td>
-                    <span class="btn view2 {{$value->is_view == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view2="{{$value->id}}">{{ $value->is_view == 1 ? 'Visible' : 'Disable' }} </span>
+                    <span class="btn view2 {{$value->is_view_2 == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view2="{{$value->id}}">{{ $value->is_view_2 == 1 ? 'Visible' : 'Disable' }} </span>
                 </td>
-                <td><img style="width:100px; height:100px" src="{{$value->main_banner_2}}"></td>
+                <td><img style="width:100px; height:100px" src="{{$value->sub_banner}}"></td>
 
                 <td>
-                    <span class="btn view3 {{$value->is_view == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view3="{{$value->id}}">{{ $value->is_view == 1 ? 'Visible' : 'Disable' }} </span>
+                    <span class="btn view3 {{$value->is_view_sub == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view3="{{$value->id}}">{{ $value->is_view_sub == 1 ? 'Visible' : 'Disable' }} </span>
                 </td>
                 <td>
                     <button type="button" data-sub="{{$value->id}}" class="btn btn-danger callSub callModal1" data-bs-toggle="modal" data-bs-target="#editSub">
@@ -111,7 +111,7 @@
             <div class="modal-body pb-5 px-sm-5 pt-50" data-select2-id="82">
                 <div class="text-center mb-2">
                     <input type="hidden" id="banner_edit">
-                    <h1 class="mb-1">Edit Banner</h1>
+                    <h1 class="mb-1">Edit MainBanner</h1>
                 </div>
                 <form id="editForm" class="row gy-1 pt-75" onsubmit="return false" novalidate="novalidate">
                     <div class="row match-height">
@@ -236,7 +236,7 @@ $(document).ready(function() {
 
         $(".view1").click(function(){
             var text = $(this);
-            var idX = $(this).data('id');
+            var idX = $(this).data('view1');
             var variable = {
                 'id'    : idX,
             };
@@ -265,7 +265,7 @@ $(document).ready(function() {
 
         $(".view2").click(function(){
             var text = $(this);
-            var idX = $(this).data('id');
+            var idX = $(this).data('view2');
             var variable = {
                 'id'    : idX,
             };
@@ -294,7 +294,7 @@ $(document).ready(function() {
 
         $(".view3").click(function(){
             var text = $(this);
-            var idX = $(this).data('id');
+            var idX = $(this).data('view3');
             var variable = {
                 'id'    : idX,
             };
@@ -331,11 +331,11 @@ $(document).ready(function() {
         row = $(this);
         $("#banner_id").val(id);
     });
+
     $("#delete_banner").click(function(){
         var id = $("#banner_id").val();
-
         $.ajax({
-            url: '/admin/banner/delete/' + id,
+            url: '/admin/banner/deleteMain/' + id,
             type: 'get',
             success: function($data) {
                 toastr.success('Deleted banner successfully!', 'Success');
@@ -351,16 +351,14 @@ $(document).ready(function() {
                 $("#banner_edit").val(id);
                 e.preventDefault();
                 $.ajax({
-                    url: '/admin/banner/edit/' + id,
+                    url: '/admin/banner/editMain/' + id,
                     type: 'get',
                     success: function(response) {
-
                         $('#name').val(response.data.name_product);
                         $('#price').val(response.data.start_price);
                         $('#sale').val(response.data.sale_offer);
                         $('#banner').val(response.data.main_banner_1);
                         $('#is_view').val(response.data.is_view);
-
                     }
                 });
 
@@ -417,7 +415,7 @@ $(document).ready(function() {
 
     $('#holderbanner').attr('src', $tr.find('img').attr('src'));
 
-
+    $('#holdericon').attr('src', $tr.find('.img1 img').attr('src'));
     });
     });
 </script>

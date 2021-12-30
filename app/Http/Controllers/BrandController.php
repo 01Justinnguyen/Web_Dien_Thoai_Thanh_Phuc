@@ -86,7 +86,6 @@ class BrandController extends Controller
     public function edit($id)
     {
         $brand = brand::find($id);
-
         if($brand){
             return response()->json(["data" => $brand]);
         }else {

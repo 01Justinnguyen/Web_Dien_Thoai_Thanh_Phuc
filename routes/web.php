@@ -56,8 +56,9 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     Route::post('/banner/update-is-viewSub1', [\App\Http\Controllers\BannerController::class, 'updateIsViewSub1'])->name('change.Sub1');
     Route::post('/banner/update-is-viewSub2', [\App\Http\Controllers\BannerController::class, 'updateIsViewSub2'])->name('change.Sub2');
     Route::post('/banner/update-is-viewSub3', [\App\Http\Controllers\BannerController::class, 'updateIsViewSub3'])->name('change.Sub3');
-
-
+    Route::get('/banner/deleteMain/{id}', [\App\Http\Controllers\BannerController::class, 'destroyMain']);
+    Route::get('/banner/editMain/{id}', [\App\Http\Controllers\BannerController::class, 'editMain']);
+    Route::post('/banner/updateMain/{id}', [\App\Http\Controllers\BannerController::class, 'updateMain']);
 
 });
 

@@ -71,11 +71,11 @@ class BannerController extends Controller
     public function updateIsViewSub1(Request $request)
     {
         $id = $request->id;
-        $banner = SubBanner::find($id);
-        if($banner){
-            $banner->is_view_1 = ($banner->is_view_1 + 1) % 2;
-            $banner->save();
-            return response()->json(['status' => true, 'is_view' => $banner->is_view_1]);
+        $banner1 = SubBanner::find($id);
+        if($banner1){
+            $banner1->is_view_1 = ($banner1->is_view_1 + 1) % 2;
+            $banner1->save();
+            return response()->json(['status' => true, 'is_view_1' => $banner1->is_view_1]);
         } else {
             // Tìm không thấy
             return response()->json(['status' => false]);
@@ -85,11 +85,11 @@ class BannerController extends Controller
     public function updateIsViewSub2(Request $request)
     {
         $id = $request->id;
-        $banner = SubBanner::find($id);
-        if($banner){
-            $banner->is_view_2 = ($banner->is_view_2 + 1) % 2;
-            $banner->save();
-            return response()->json(['status' => true, 'is_view' => $banner->is_view_2]);
+        $banner2 = SubBanner::find($id);
+        if($banner2){
+            $banner2->is_view_2 = ($banner2->is_view_2 + 1) % 2;
+            $banner2->save();
+            return response()->json(['status' => true, 'is_view_2' => $banner2->is_view_2]);
         } else {
             // Tìm không thấy
             return response()->json(['status' => false]);
@@ -99,15 +99,26 @@ class BannerController extends Controller
     public function updateIsViewSub3(Request $request)
     {
         $id = $request->id;
-        $banner = SubBanner::find($id);
-        if($banner){
-            $banner->is_view_sub = ($banner->is_view_sub + 1) % 2;
-            $banner->save();
-            return response()->json(['status' => true, 'is_view' => $banner->is_view_sub]);
+        $banner3 = SubBanner::find($id);
+        if($banner3){
+            $banner3->is_view_sub = ($banner3->is_view_sub + 1) % 2;
+            $banner3->save();
+            return response()->json(['status' => true, 'is_view_sub' => $banner3->is_view_sub]);
         } else {
             // Tìm không thấy
             return response()->json(['status' => false]);
         }
+    }
+
+
+    public function destroyMain($id)
+    {
+        $MainBanner = MainBanner::find($id);
+        if($MainBanner){
+            $MainBanner->delete();
+            return response()->json(true);
+        }
+        return response()->json(false);
     }
 
 
@@ -122,9 +133,16 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function editMain($id)
     {
-        //
+        $MainBanner = MainBanner::find($id);
+        if($MainBanner){
+            return response()->json(["data" => $MainBanner]);
+        }else {
+            toastr()->error("Brand not exits");
+            // return redirect('/admin/categories/index');
+            return $this->index();
+        }
     }
 
     /**
