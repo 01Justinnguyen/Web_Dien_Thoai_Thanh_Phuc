@@ -47,6 +47,18 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     Route::get('/brand/delete_all/{id}', [\App\Http\Controllers\BrandController::class, 'destroyAll']);
     Route::get('/brand/edit/{id}', [\App\Http\Controllers\BrandController::class, 'edit']);
     Route::post('/brand/update/{id}', [\App\Http\Controllers\BrandController::class, 'update']);
+
+    Route::get('/banner/create', [\App\Http\Controllers\BannerController::class, 'create']);
+    Route::get('/banner/index', [\App\Http\Controllers\BannerController::class, 'index']);
+    Route::post('/banner/createMain', [\App\Http\Controllers\BannerController::class, 'storeMain']);
+    Route::post('/banner/createSub', [\App\Http\Controllers\BannerController::class, 'storeSub']);
+    Route::post('/banner/update-is-viewMain', [\App\Http\Controllers\BannerController::class, 'updateIsViewMain'])->name('change.Main');
+    Route::post('/banner/update-is-viewSub1', [\App\Http\Controllers\BannerController::class, 'updateIsViewSub1'])->name('change.Sub1');
+    Route::post('/banner/update-is-viewSub2', [\App\Http\Controllers\BannerController::class, 'updateIsViewSub2'])->name('change.Sub2');
+    Route::post('/banner/update-is-viewSub3', [\App\Http\Controllers\BannerController::class, 'updateIsViewSub3'])->name('change.Sub3');
+
+
+
 });
 
 Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], function(){
