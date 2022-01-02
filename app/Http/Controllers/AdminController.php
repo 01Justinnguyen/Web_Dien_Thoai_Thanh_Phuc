@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\checkAdmin;
+use App\Http\Requests\Admin\Auth\checkLogin;
 use App\Http\Requests\Admin\Auth\loginRequest;
+use App\Http\Requests\Admin\Auth\PasswordRequest;
 use App\Http\Requests\Admin\Auth\RegisterRequest;
 use App\Jobs\sendMailJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterMail;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -29,11 +33,37 @@ class AdminController extends Controller
         return view('admin.page.auth.forgot');
     }
 
+    public function CheckForget(Request $request)
+    {
+        $data['email'] = $request->email;
+        // $taiKhoan   = Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]);
+        // $taiKhoan   = Auth::guard('user')->attempt($mangLogin);
+        if(Auth::guard('admin')->attempt($data) == Auth::user()){
+                return response()->json(['status' => true, 'message' => 'You need to confirm your account!!']);
+            } else {
+                return response()->json(['status' => false, 'message' => 'Logged in successfully!']);
+        // } else {
+        //     return response()->json(['status' => false, 'message' => 'You entered the wrong password or account!']);
+        }
+        // $data = $request->all();
+        // if(Auth::guard('admin')->check())
+        // {
+        //         return response()->json(['status' => true, 'message' => 'You need to confirm your account!!']);
+        // } else {
+        //         return response()->json(['status' => false, 'message' => 'NONE!!']);
+        // }
+    }
+
+    public function viewForget2()
+    {
+        return view('admin.page.auth.forgot2');
+    }
+
     public function register(RegisterRequest $request)
     {
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
-        $data['hash'] = ($data['password']);
+        $data['hash'] = Str::uuid();
 
         Admin::create($data);
 
@@ -47,7 +77,8 @@ class AdminController extends Controller
         return redirect('/admin/login');
     }
 
-    public function login(LoginRequest $request){
+    public function login(LoginRequest $request)
+    {
 
         $data = $request->only('email', 'password');
 
@@ -70,7 +101,10 @@ class AdminController extends Controller
     }
 
 
-
+    public function newPass(PasswordRequest $request)
+    {
+        dd($request->toArray());
+    }
 
     public function index()
     {

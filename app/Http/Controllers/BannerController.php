@@ -10,11 +10,7 @@ use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $listMain = MainBanner::all();
@@ -22,22 +18,13 @@ class BannerController extends Controller
         return view('admin.page.banner.index', compact('listMain', 'listSub'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('admin.page.banner.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function storeMain(Request $request)
     {
         $data = $request->all();
@@ -127,42 +114,47 @@ class BannerController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
+
     public function editMain($id)
     {
         $MainBanner = MainBanner::find($id);
         if($MainBanner){
             return response()->json(["data" => $MainBanner]);
         }else {
-            toastr()->error("Brand not exits");
+            toastr()->error("Banner not exits");
             // return redirect('/admin/categories/index');
             return $this->index();
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Banner $banner)
+    public function updateMain(Request $request)
     {
-        //
+        $data = $request->all();
+        $MainBanner = MainBanner::find($request->id);
+        $MainBanner->update($data);
+        return response()->json(['status' => true]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
+    public function editSub($id)
+    {
+        $SubBanner = SubBanner::find($id);
+        if($SubBanner){
+            return response()->json(["data" => $SubBanner]);
+        }else {
+            toastr()->error("Banner not exits");
+            // return redirect('/admin/categories/index');
+            return $this->index();
+        }
+    }
+
+    public function updateSub(Request $request)
+    {
+        $data = $request->all();
+        $SubBanner = SubBanner::find($request->id);
+        $SubBanner->update($data);
+        return response()->json(['status' => true]);
+    }
+
     public function destroy(Banner $banner)
     {
         //

@@ -37,7 +37,8 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
     <!-- END: Custom CSS-->
-
+    @toastr_css
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <!-- END: Head-->
 
@@ -54,8 +55,8 @@
             <div class="content-body">
                 <div class="auth-wrapper auth-cover">
                     <div class="auth-inner row m-0">
-                        <!-- Brand logo--><a class="brand-logo" href="index.html">
-                            <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
+                        <!-- Brand logo--><a class="brand-logo">
+                            {{-- <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
                                 <defs>
                                     <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
                                         <stop stop-color="#000000" offset="0%"></stop>
@@ -77,7 +78,7 @@
                                         </g>
                                     </g>
                                 </g>
-                            </svg>
+                            </svg> --}}
                             <h2 class="brand-text text-primary ms-1">Vuexy</h2>
                         </a>
                         <!-- /Brand logo-->
@@ -91,14 +92,14 @@
                             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
                                 <h2 class="card-title fw-bold mb-1">Forgot Password? 🔒</h2>
                                 <p class="card-text mb-2">Enter your email and we'll send you instructions to reset your password</p>
-                                <form class="auth-forgot-password-form mt-2" action="auth-reset-password-cover.html" method="POST">
+                                <div class="auth-forgot-password-form mt-2">
                                     <div class="mb-1">
                                         <label class="form-label" for="forgot-password-email">Email</label>
-                                        <input class="form-control" id="forgot-password-email" type="text" name="forgot-password-email" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
+                                        <input class="form-control" id="email" type="text" name="email" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
                                     </div>
-                                    <button class="btn btn-primary w-100" tabindex="2">Send reset link</button>
-                                </form>
-                                <p class="text-center mt-2"><a href="auth-login-cover.html"><i data-feather="chevron-left"></i> Back to login</a></p>
+                                    <button class="btn btn-primary w-100" id="checkLogin" tabindex="2">Send reset link</button>
+                                </div>
+                                <p class="text-center mt-2"><a href="/admin/login"><i data-feather="chevron-left"></i> Back to login</a></p>
                             </div>
                         </div>
                         <!-- /Forgot password-->
@@ -107,7 +108,6 @@
             </div>
         </div>
     </div>
-    <!-- END: Content-->
 
 
     <!-- BEGIN: Vendor JS-->
@@ -124,7 +124,7 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="../../../app-assets/js/scripts/pages/auth-forgot-password.js"></script>
+    {{-- <script src="../../../app-assets/js/scripts/pages/auth-forgot-password.js"></script> --}}
     <!-- END: Page JS-->
 
     <script>
@@ -139,5 +139,39 @@
     </script>
 </body>
 <!-- END: Body-->
-
+    @jquery
+    @toastr_js
+    @toastr_render
+    <!-- END: Content-->
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+<script>
+    $(document).ready(function(){
+        $("#checkLogin").click(function(){
+            console.log('ahihi');
+            var payload = {
+                'email'       :    $("#email").val(),
+            };
+            $.ajax({
+                url : '/admin/checkForgot-password',
+                type: 'post',
+                data: payload,
+                success: function($data){
+                    console.log($data);
+                },
+                error: function($errors){
+                    var listErrors = $errors.responseJSON.errors;
+                    $.each(listErrors, function(key, value){
+                        toastr.error(value[0]);
+                    });
+                },
+            });
+        });
+    });
+</script>
 </html>

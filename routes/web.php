@@ -59,12 +59,13 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     Route::get('/banner/deleteMain/{id}', [\App\Http\Controllers\BannerController::class, 'destroyMain']);
     Route::get('/banner/editMain/{id}', [\App\Http\Controllers\BannerController::class, 'editMain']);
     Route::post('/banner/updateMain/{id}', [\App\Http\Controllers\BannerController::class, 'updateMain']);
+    Route::get('/banner/editSub/{id}', [\App\Http\Controllers\BannerController::class, 'editSub']);
+    Route::post('/banner/updateSub/{id}', [\App\Http\Controllers\BannerController::class, 'updateSub']);
 
 });
 
 Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], function(){
     Route::get('/logout', [\App\Http\Controllers\AdminController::class, 'Logout']);
-
 });
 
     Route::get('/admin/register', [\App\Http\Controllers\AdminController::class, 'viewRegister']);
@@ -73,7 +74,10 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
     Route::post('/admin/login', [\App\Http\Controllers\AdminController::class, 'Login'])->name('Login');
 
     Route::get('/admin/forgot-password', [\App\Http\Controllers\AdminController::class, 'viewForget']);
+    Route::post('/admin/checkForgot-password', [\App\Http\Controllers\AdminController::class, 'CheckForget']);
 
+    Route::get('/admin/forgot2-password', [\App\Http\Controllers\AdminController::class, 'viewForget2']);
+    Route::get('/admin/new-password', [\App\Http\Controllers\AdminController::class, 'newPass']);
 
 
 

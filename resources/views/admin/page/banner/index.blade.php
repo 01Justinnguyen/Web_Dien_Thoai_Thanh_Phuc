@@ -1,7 +1,8 @@
 @extends('admin.share.master')
 @section('content')
+{{-- *****BẢNG BANNER PHỤ***** --}}
 <div class="table-responsive">
-    <table class="table table-bordered">
+    <table id="datatable" class="table table-bordered">
         <thead >
             <tr>
                 <th class="text-center">Small Banner 1</th>
@@ -16,23 +17,23 @@
         <tbody>
             @foreach ($listSub as $key => $value )
             <tr class="text-center">
-                <td><img style="width:100px; height:100px" src="{{$value->small_banner_1}}"></td>
+                <td class="img1"><img style="width:100px; height:100px" src="{{$value->small_banner_1}}"></td>
 
                 <td>
                     <span class="btn view1 {{$value->is_view_1 == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view1="{{$value->id}}">{{ $value->is_view_1 == 1 ? 'Visible' : 'Disable' }} </span>
                 </td>
-                <td><img style="width:100px; height:100px" src="{{$value->small_banner_2}}"></td>
+                <td class="img2" ><img style="width:100px; height:100px" src="{{$value->small_banner_2}}"></td>
 
                 <td>
                     <span class="btn view2 {{$value->is_view_2 == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view2="{{$value->id}}">{{ $value->is_view_2 == 1 ? 'Visible' : 'Disable' }} </span>
                 </td>
-                <td><img style="width:100px; height:100px" src="{{$value->sub_banner}}"></td>
+                <td class="sub" ><img style="width:100px; height:100px" src="{{$value->sub_banner}}"></td>
 
                 <td>
                     <span class="btn view3 {{$value->is_view_sub == 1 ? 'btn-outline-success' : ' btn-outline-danger'}} round waves-effect" data-view3="{{$value->id}}">{{ $value->is_view_sub == 1 ? 'Visible' : 'Disable' }} </span>
                 </td>
                 <td>
-                    <button type="button" data-sub="{{$value->id}}" class="btn btn-danger callSub callModal1" data-bs-toggle="modal" data-bs-target="#editSub">
+                    <button type="button" data-sub="{{$value->id}}" class="btn btn-danger callSub" data-bs-toggle="modal" data-bs-target="#editSub">
                         Edit
                     </button>
                 </td>
@@ -41,8 +42,9 @@
         </tbody>
     </table>
 </div>
+ {{-- *****BẢNG BANNER CHÍNH***** --}}
 <div class="table-responsive">
-    <table class="table table-bordered">
+    <table id="datatable2" class="table table-bordered">
         <thead class="table-dark">
             <tr>
                 <th>STT</th>
@@ -51,7 +53,6 @@
                 <th class="text-center">Start price</th>
                 <th class="text-center">Offer Sale</th>
                 <th class="text-center">Is_view</th>
-
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
@@ -59,7 +60,7 @@
             @foreach ($listMain as $key => $value )
             <tr class="text-center">
                 <td>{{$key+1}}</td>
-                <td><img id="banner" style="width:100px; height:100px" src="{{$value->main_banner_1}}"></td>
+                <td class="main"><img style="width:100px; height:100px" src="{{$value->main_banner_1}}"></td>
                 <td> {{$value->name_product}}</td>
                 <td> {{$value->start_price}}</td>
                 <td> {{$value->sale_offer}}</td>
@@ -79,7 +80,7 @@
         </tbody>
     </table>
 </div>
-
+  {{-- ******XÓA BANNER CHÍNH****** --}}
 <div class="modal fade" id="addNewCard">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -100,8 +101,7 @@
         </div>
     </div>
 </div>
-
-
+{{-- ******SỬA BANNER CHÍNH****** --}}
 <div class="modal fade" id="editBanner">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" data-select2-id="84">
         <div class="modal-content" data-select2-id="83">
@@ -153,9 +153,6 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 mt-1">
-                                            <br>
-                                            <br>
-                                            <br>
                                             <div class="mb-1 row">
                                                 <label class="form-label" for="basicInput">Name Product</label>
                                                 <input type="text" id="name" class="form-control" placeholder="eg. Chamcham Galaxy S9 | S9+" >
@@ -169,14 +166,14 @@
                                                 <label class="form-label" for="basicInput">Sale offer</label>
                                                 <input type="text" id="sale" class="form-control" placeholder="eg. -20% Off" >
                                             </div>
-                                            <div class="row">
+                                            {{-- <div class="row">
                                                 <label class="form-label" for="basicInput">Is_view</label>
                                             <select class="form-control" id="is_view" required="">
                                                 <option value="">Choose...</option>
                                                 <option value=1>Visible</option>
                                                 <option value=0>Disable</option>
                                             </select>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +181,7 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <button type="button" id="createBanner" class="btn btn-outline-success round waves-effect">Button</button>
+                        <button type="button" id="updateBanner" class="btn btn-outline-success round waves-effect">Button</button>
                     </div>
                 </form>
             </div>
@@ -192,6 +189,90 @@
     </div>
 </div>
 
+{{-- *****CHỈNH SỦA BANNER PHỤ***** --}}
+<div class="modal fade" id="editSub">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" data-select2-id="84">
+        <div class="modal-content" data-select2-id="83">
+            <div class="modal-header bg-transparent">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pb-5 px-sm-5 pt-50" data-select2-id="82">
+                <div class="text-center mb-2">
+                    <input type="hidden" id="sub_edit">
+                    <h1 class="mb-1">Edit Sub Banner</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-xl-6 col-md-6 col-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <label class="form-label" for="basicInput">Small Banner 1</label>
+                                            <div class="input-group">
+                                                <input id="smallBanner" name="smallBanner" class="form-control" required="">
+                                                <a data-input="smallBanner" data-preview="holdersmall1" class="lfm btn btn-light waves-effect waves-float waves-light"> Choose </a>
+                                            </div>
+                                            <img id="holdersmall1" class="card-img-top" style="width:300px; height:150px; margin-top:30px">
+                                            </div>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                            <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+                                            <script>
+                                                  $('.lfm').filemanager('banner');
+                                            </script>
+                                        </div>
+                                        </div>
+                                    <div class="form-group col-xl-6 col-md-6 col-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <label class="form-label" for="basicInput">Small Banner 2</label>
+                                        <div class="input-group">
+                                            <input id="smallBanner2" name="smallBanner2" class="form-control" required="">
+                                            <a data-input="smallBanner2" data-preview="holdersmall2" class="lfm btn btn-light waves-effect waves-float waves-light"> Choose </a>
+                                        </div>
+                                        <img id="holdersmall2" class="card-img-top" style="width:300px; height:150px; margin-top:30px">
+                                        </div>
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                        <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+                                        <script>
+                                              $('.lfm').filemanager('banner');
+                                        </script>
+                                    </div>
+                                    </div>
+
+                                    <div class="form-group col-xl-7 col-md-6 col-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <label class="form-label" for="basicInput">Sub Banner</label>
+                                            <div class="input-group">
+                                                <input id="subBanner" name="subBanner" class="form-control" required="">
+                                                <a data-input="subBanner" data-preview="holdersub" class="lfm btn btn-light waves-effect waves-float waves-light"> Choose </a>
+                                            </div>
+                                            <img id="holdersub" class="card-img-top" style="width:600px; height:200px; margin-top:30px">
+                                            </div>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                            <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+                                            <script>
+                                                  $('.lfm').filemanager('subBanner');
+                                            </script>
+                                        </div>
+                                    </div>
+
+                                        <div class="row" style="margin-top: 20px;">
+                                        <div class="col-4">
+                                        <button type="button" id="updateSub" class="btn btn-outline-success round waves-effect">Button</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 @section('js')
@@ -358,19 +439,21 @@ $(document).ready(function() {
                         $('#price').val(response.data.start_price);
                         $('#sale').val(response.data.sale_offer);
                         $('#banner').val(response.data.main_banner_1);
-                        $('#is_view').val(response.data.is_view);
+                        // $('#is_view').val(response.data.is_view);
                     }
                 });
 
 
-                $("#updateCategory").click(function(){
+                $("#updateBanner").click(function(){
                     var payload1 = {
-                    'name'              :   $('#name').val(),
-                    'parent_id'         :   $("#parent_id").val(),
-                    'banner'            :    $('#banner').val(),
+                    'name_product'            :   $('#name').val(),
+                    'start_price'             :   $('#price').val(),
+                    'sale_offer'              :   $('#sale').val(),
+                    'main_banner_1'           :   $('#banner').val(),
+                    // 'is_view'                 :   $('#is_view').val(),
                 };
                     $.ajax({
-                        url : '/admin/category/update/' + id,
+                        url : '/admin/banner/updateMain/' + id,
                         type: 'post',
                         data: payload1,
                         success: function($xxx){
@@ -388,7 +471,48 @@ $(document).ready(function() {
                         }
                     });
             });
-        });
+    });
+    $(".callSub").click(function(e){
+            var id = $(this).data('sub');
+            $("#sub_edit").val(id);
+            e.preventDefault();
+            $.ajax({
+                url: '/admin/banner/editSub/' + id,
+                type: 'get',
+                success: function(response) {
+                    $('#smallBanner').val(response.data.small_banner_1);
+                    $('#smallBanner2').val(response.data.small_banner_2);
+                    $('#subBanner').val(response.data.sub_banner);
+                }
+            });
+
+
+            $("#updateSub").click(function(){
+                var payload1 = {
+                    'small_banner_1'            :   $('#smallBanner').val(),
+                    'small_banner_2'            :   $('#smallBanner2').val(),
+                    'sub_banner'                :   $('#subBanner').val(),
+                };
+                    $.ajax({
+                        url : '/admin/banner/updateSub/' + id,
+                        type: 'post',
+                        data: payload1,
+                        success: function($xxx){
+                            if($xxx.status == true){
+                                toastr.success("Product create successfully!");
+                            }
+                            location.reload();
+
+                        },
+                        error: function($errors){
+                            var listErrors = $errors.responseJSON.errors;
+                            $.each(listErrors, function(key, value) {
+                                toastr.error(value[0]);
+                            });
+                        }
+                    });
+            });
+    });
 });
 </script>
 
@@ -400,6 +524,25 @@ $(document).ready(function() {
 
     var table = $('#datatable').DataTable();
 
+    table.on('click', '.callSub', function() {
+        $tr = $(this).closest('tr');
+    if ($($tr).hasClass('child')) {
+        $tr = $tr.prev('.parent');
+    }
+    var data = table.row($tr).data();
+
+    $('#holdersmall1').attr('src', $tr.find('.img1 img').attr('src'));
+    $('#holdersmall2').attr('src', $tr.find('.img2 img').attr('src'));
+    $('#holdersub').attr('src', $tr.find('.sub img').attr('src'));
+
+    });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+
+    var table = $('#datatable2').DataTable();
+
     table.on('click', '.callEdit', function() {
 
 
@@ -409,13 +552,7 @@ $(document).ready(function() {
     }
     var data = table.row($tr).data();
 
-    var src = $('#banner').attr('src');
-
-    $('#banner').val(src);
-
-    $('#holderbanner').attr('src', $tr.find('img').attr('src'));
-
-    $('#holdericon').attr('src', $tr.find('.img1 img').attr('src'));
+    $('#holderbanner').attr('src', $tr.find('.main img').attr('src'));
     });
     });
 </script>
