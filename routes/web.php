@@ -81,8 +81,9 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
 
 
 
-    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/errors', [\App\Http\Controllers\HomeController::class, 'errors']);
+
     Route::get('/detail', [\App\Http\Controllers\HomeController::class, 'detail']);
     Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'profile']);
 

@@ -97,6 +97,9 @@
                                         <label class="form-label" for="forgot-password-email">Email</label>
                                         <input class="form-control" id="email" type="text" name="email" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
                                     </div>
+                                    {{-- <div class="mb-1">
+                                        <input value="" class="form-control" id="email" type="text" name="password" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
+                                    </div> --}}
                                     <button class="btn btn-primary w-100" id="checkLogin" tabindex="2">Send reset link</button>
                                 </div>
                                 <p class="text-center mt-2"><a href="/admin/login"><i data-feather="chevron-left"></i> Back to login</a></p>
@@ -109,69 +112,73 @@
         </div>
     </div>
 
-
-    <!-- BEGIN: Vendor JS-->
-    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
-    <script src="../../../app-assets/js/core/app-menu.js"></script>
-    <script src="../../../app-assets/js/core/app.js"></script>
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-    {{-- <script src="../../../app-assets/js/scripts/pages/auth-forgot-password.js"></script> --}}
-    <!-- END: Page JS-->
-
-    <script>
-        $(window).on('load', function() {
-            if (feather) {
-                feather.replace({
-                    width: 14,
-                    height: 14
-                });
-            }
-        })
-    </script>
 </body>
 <!-- END: Body-->
-    @jquery
-    @toastr_js
-    @toastr_render
-    <!-- END: Content-->
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
+   <!-- BEGIN: Vendor JS-->
+   <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+   <!-- BEGIN Vendor JS-->
+
+   <!-- BEGIN: Page Vendor JS-->
+   <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+   <!-- END: Page Vendor JS-->
+
+   <!-- BEGIN: Theme JS-->
+   <script src="../../../app-assets/js/core/app-menu.js"></script>
+   <script src="../../../app-assets/js/core/app.js"></script>
+   <!-- END: Theme JS-->
+
+   <!-- BEGIN: Page JS-->
+   {{-- <script src="../../../app-assets/js/scripts/pages/auth-forgot-password.js"></script> --}}
+   <!-- END: Page JS-->
+
+   <script>
+       $(window).on('load', function() {
+           if (feather) {
+               feather.replace({
+                   width: 14,
+                   height: 14
+               });
+           }
+       })
+   </script>
+   @jquery
+   @toastr_js
+   @toastr_render
+   <!-- END: Content-->
+   <script>
+       $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+       });
+   </script>
 <script>
-    $(document).ready(function(){
-        $("#checkLogin").click(function(){
-            console.log('ahihi');
-            var payload = {
-                'email'       :    $("#email").val(),
-            };
-            $.ajax({
-                url : '/admin/checkForgot-password',
-                type: 'post',
-                data: payload,
-                success: function($data){
-                    console.log($data);
-                },
-                error: function($errors){
-                    var listErrors = $errors.responseJSON.errors;
-                    $.each(listErrors, function(key, value){
-                        toastr.error(value[0]);
-                    });
-                },
-            });
-        });
-    });
+   $(document).ready(function(){
+       $("#checkLogin").click(function(){
+           console.log('ahihi');
+           var payload = {
+               'email'       :    $("#email").val(),
+           };
+           $.ajax({
+               url : '/admin/checkForgot-password',
+               type: 'post',
+               data: payload,
+               success: function($data){
+                   console.log($data)
+                   if($data.status == false){
+                       toastr.error($data.message);
+                   } else {
+                    toastr.success($data.message);
+                   }
+               },
+               error: function($errors){
+                   var listErrors = $errors.responseJSON.errors;
+                   $.each(listErrors, function(key, value){
+                       toastr.error(value[0]);
+                   });
+               },
+           });
+       });
+   });
 </script>
 </html>

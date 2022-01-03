@@ -30,34 +30,28 @@ class AdminController extends Controller
 
     public function viewForget()
     {
-        return view('admin.page.auth.forgot');
-    }
-
-    public function CheckForget(Request $request)
-    {
-        $data['email'] = $request->email;
-        // $taiKhoan   = Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]);
-        // $taiKhoan   = Auth::guard('user')->attempt($mangLogin);
-        if(Auth::guard('admin')->attempt($data) == Auth::user()){
-                return response()->json(['status' => true, 'message' => 'You need to confirm your account!!']);
-            } else {
-                return response()->json(['status' => false, 'message' => 'Logged in successfully!']);
-        // } else {
-        //     return response()->json(['status' => false, 'message' => 'You entered the wrong password or account!']);
-        }
-        // $data = $request->all();
-        // if(Auth::guard('admin')->check())
-        // {
-        //         return response()->json(['status' => true, 'message' => 'You need to confirm your account!!']);
-        // } else {
-        //         return response()->json(['status' => false, 'message' => 'NONE!!']);
-        // }
+        $password = Admin::all();
+        return view('admin.page.auth.forgot', compact('password'));
     }
 
     public function viewForget2()
     {
         return view('admin.page.auth.forgot2');
     }
+
+    public function CheckForget(checkLogin $request)
+    {
+        $data = $request->only('email', 'password');
+        // $taiKhoan   = Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]);
+        $taiKhoan   = Auth::guard('admin')->attempt($data);
+        if($taiKhoan){
+                return response()->json(['status' => true, 'message' => 'You need to confirm your account!!']);
+            } else {
+                return response()->json(['status' => false, 'message' => 'Logged in successfully!']);
+            }
+    }
+
+
 
     public function register(RegisterRequest $request)
     {
