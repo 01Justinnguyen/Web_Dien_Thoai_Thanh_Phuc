@@ -6,9 +6,11 @@ use App\Models\Home;
 use App\Http\Controllers\Controller;
 use App\Models\brand;
 use App\Models\categories;
+use App\Models\MainBanner;
 use App\Models\product;
 use App\Models\SubBanner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -35,7 +37,9 @@ class HomeController extends Controller
         $product = product::where('feature', 0)->get();
         $product2 = product::where('feature', 1)->get();
         $product3 = product::where('status', 2)->get();
-        return view('client.index', compact('category', 'brand', 'banner', 'product', 'product2', 'product3'));
+        $listProducts = product::where('is_view', 1)->get();
+        $mainBanner = MainBanner::where('is_view', 1)->get();
+        return view('client.index', compact('category', 'brand', 'banner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner'));
     }
 
     /**

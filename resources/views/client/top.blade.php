@@ -235,13 +235,12 @@
                                 @foreach ($category as $value)
                                 <li class="dropdown-holder"><a href="">{{$value->name}}</a>
                                     <ul class="hb-dropdown">
-                                        @foreach ($brand as $value2)
-                                            <li class=""><a href="">{{ $value2->name }}</a></li>
+                                        @foreach ($brand as $value)
+                                            <li class=""><a href="">{{ $value->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>
                                 @endforeach
-
                             </ul>
                         </nav>
                     </div>
