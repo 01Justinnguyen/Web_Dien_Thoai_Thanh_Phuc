@@ -24,22 +24,53 @@ class HomeController extends Controller
         return view('client.detail');
     }
 
+    public function shopProduct()
+    {
+        return view('client.shopProduct');
+    }
+
     public function errors()
     {
         return view('client.404');
     }
 
+    public function shopCategory($id)
+    {
+        $data = product::find($id);
+        if($data){
+            $product = product::where('category_id', $data->category_id)->get();
+            return view('client.shopCategory', compact('product', 'data'));
+        } else {
+            toastr()->error("Product is not exits");
+            return redirect('/');
+        }
+        // return view('client.shopCategory');
+    }
+
+    public function loginRegister()
+    {
+        return view('client.login_register');
+    }
+
+    public function checkOut()
+    {
+        return view('client.checkout');
+    }
+
+    public function cart()
+    {
+        return view('client.cart');
+    }
+
     public function index()
     {
-        $category = categories::where('is_view', 1)->get();
-        $brand = brand::where('is_view', 1)->get();
         $banner = SubBanner::all();
+        $mainBanner = MainBanner::where('is_view', 1)->get();
         $product = product::where('feature', 0)->get();
         $product2 = product::where('feature', 1)->get();
         $product3 = product::where('status', 2)->get();
         $listProducts = product::where('is_view', 1)->get();
-        $mainBanner = MainBanner::where('is_view', 1)->get();
-        return view('client.index', compact('category', 'brand', 'banner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner'));
+        return view('client.index', compact('banner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner'));
     }
 
     /**

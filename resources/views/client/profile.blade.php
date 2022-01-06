@@ -1,10 +1,7 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-@include('client.headCSS')
-
+@extends('client.master')
+@section('content')
 <body>
-    <div class="body-wrapper">
-        @include('client.top')
+    <div class="body-wrapper" style="margin-top: -20px">
         <div class="breadcrumb-area">
             <div class="container">
                 <div class="breadcrumb-content">
@@ -147,7 +144,6 @@
                                                             <td class="li-product-price"><span class="amount">$46.80</span></td>
                                                             <td class="quantity"><span class="amount">x1</span></td>
                                                             <td class="li-product-price"><span class="amount">Total: $46.80</span></td>
-
                                                         </tr>
                                                         <tr>
                                                             <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
@@ -171,8 +167,5 @@
         </div>
     </div>
     </div>
-    @include('client.footer')
-    @include('client.footCSS')
-
 </body>
-</html>
+@endsection

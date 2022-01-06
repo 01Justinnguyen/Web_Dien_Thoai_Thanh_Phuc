@@ -5,9 +5,6 @@
 <!-- index28:48-->
     @include('client.headCSS')
     <body>
-    <!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
         <!-- Begin Body Wrapper -->
         <div class="body-wrapper">
             <!-- Begin Header Area -->
@@ -17,7 +14,6 @@
             @yield('content')
             <!-- Slider With Banner Area End Here -->
             <!-- Begin Product Area -->
-
             @include('client.footer')
             <!-- Footer Area End Here -->
             <!-- Begin Quick View | Modal Area -->
