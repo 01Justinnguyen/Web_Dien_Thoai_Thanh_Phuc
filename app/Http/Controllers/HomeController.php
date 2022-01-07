@@ -36,15 +36,15 @@ class HomeController extends Controller
 
     public function shopCategory($id)
     {
-        $data = product::find($id);
+        $data = categories::find($id);
+        $brands = brand::where('is_view', 1)->first();
         if($data){
-            $product = product::where('category_id', $data->category_id)->get();
+            $product = product::where('category_id', $data->id)->get();
             return view('client.shopCategory', compact('product', 'data'));
         } else {
             toastr()->error("Product is not exits");
             return redirect('/');
         }
-        // return view('client.shopCategory');
     }
 
     public function loginRegister()
