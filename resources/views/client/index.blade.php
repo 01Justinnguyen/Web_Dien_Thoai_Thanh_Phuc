@@ -28,17 +28,19 @@
             <!-- Slider Area End Here -->
             <!-- Begin Li Banner Area -->
             <div class="col-lg-4 col-md-4 text-center pt-xs-30">
-                @foreach ($banner as $value)
-                <div class="li-banner" >
-                    <a href="#" >
-                        <img src="{{ $value->small_banner_1 }}" alt="" >
-                    </a>
-                </div>
-                <div class="li-banner" >
+                @foreach ( $SmallBanner1 as $value )
+                <div class="li-banner">
                     <a href="#">
-                        <img src="{{ $value->small_banner_2 }}" alt="" >
+                        <img src="{{$value->small_banner_1}}" alt="">
                     </a>
                 </div>
+                @endforeach
+                @foreach ($SmallBanner2 as $value)
+                    <div class="li-banner mt-15 mt-sm-30 mt-xs-30">
+                        <a href="#">
+                            <img src="{{$value->small_banner_1}}" alt="">
+                        </a>
+                    </div>
                 @endforeach
             </div>
             <!-- Li Banner Area End Here -->
@@ -265,7 +267,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <!-- Begin Li's Static Home Image Area -->
-                @foreach ($banner as $value)
+                @foreach ($SubBanner as $value)
                     <div class="li-static-home-image" style="background-image: url({{$value->sub_banner}})"></div>
                 @endforeach
             </div>

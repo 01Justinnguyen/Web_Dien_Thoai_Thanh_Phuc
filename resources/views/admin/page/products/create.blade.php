@@ -65,6 +65,11 @@
                                         <option value="4">Black</option>
                                         <option value="5">Green</option>
                                         <option value="6">Yellow</option>
+                                        <option value="7">Brown</option>
+                                        <option value="8">Navy Blue</option>
+                                        <option value="9">Pink</option>
+                                        <option value="10">Gray</option>
+                                        <option value="11">Orange</option>
                                 </select>
                             </div>
 

@@ -175,14 +175,17 @@
                                         <div class="col-xl-3 col-md-3 col-sm-12 mb-2">
                                             <label class="form-label" for="basicInput">Color</label>
                                             <select class="form-control" id="color" required="">
-                                                    <option value="">Choose...</option>
-                                                    <option value="0">No Color</option>
-                                                    <option value="1">White</option>
-                                                    <option value="2">Red</option>
-                                                    <option value="3">Blue</option>
-                                                    <option value="4">Black</option>
-                                                    <option value="5">Green</option>
-                                                    <option value="6">Yellow</option>
+                                                <option value="1">White</option>
+                                                <option value="2">Red</option>
+                                                <option value="3">Blue</option>
+                                                <option value="4">Black</option>
+                                                <option value="5">Green</option>
+                                                <option value="6">Yellow</option>
+                                                <option value="7">Brown</option>
+                                                <option value="8">Navy Blue</option>
+                                                <option value="9">Pink</option>
+                                                <option value="10">Gray</option>
+                                                <option value="11">Orange</option>
                                             </select>
                                         </div>
 

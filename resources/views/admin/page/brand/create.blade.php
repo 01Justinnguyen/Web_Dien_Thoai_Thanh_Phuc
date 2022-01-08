@@ -121,7 +121,7 @@
                         if($xxx.status == true){
                             toastr.success("Created category successfully!");
                         }
-                        location.reload();
+                        // location.reload();
                     },
                     error: function($errors){
                         var listErrors = $errors.responseJSON.errors;

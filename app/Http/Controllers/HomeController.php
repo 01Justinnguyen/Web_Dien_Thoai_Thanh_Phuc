@@ -64,13 +64,15 @@ class HomeController extends Controller
 
     public function index()
     {
-        $banner = SubBanner::all();
+        $SmallBanner1 = SubBanner::where('is_view_1', 1)->limit(1)->get();
+        $SmallBanner2 = SubBanner::where('is_view_2', 1)->limit(1)->get();
+        $SubBanner = SubBanner::where('is_view_sub', 1)->limit(1)->get();
         $mainBanner = MainBanner::where('is_view', 1)->get();
         $product = product::where('feature', 0)->get();
         $product2 = product::where('feature', 1)->get();
         $product3 = product::where('status', 2)->get();
         $listProducts = product::where('is_view', 1)->get();
-        return view('client.index', compact('banner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner'));
+        return view('client.index', compact('SmallBanner1', 'SmallBanner2', 'SubBanner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner'));
     }
 
     /**
