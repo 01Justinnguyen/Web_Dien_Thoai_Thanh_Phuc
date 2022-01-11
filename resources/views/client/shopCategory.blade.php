@@ -61,12 +61,16 @@
             </header>
             <!-- Header Area End Here -->
             <!-- Begin Li's Breadcrumb Area -->
-            <div class="breadcrumb-area">
+            <div class="breadcrumb-area" style="margin-top: -20px">
                 <div class="container">
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li class="active">Shop Left Sidebar</li>
+                            @foreach ($category as $value_brand)
+                                @if ($value_brand->id == $data->id)
+                                    <li class="active">{{$value_brand->name}}</li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -99,22 +103,6 @@
                                         <span>All Products</span>
                                     </div>
                                 </div>
-                                {{-- <!-- product-select-box start -->
-                                <div class="product-select-box">
-                                    <div class="product-short">
-                                        <p>Sort By:</p>
-                                        <select class="nice-select">
-                                            <option value="trending">Relevance</option>
-                                            <option value="sales">Name (A - Z)</option>
-                                            <option value="sales">Name (Z - A)</option>
-                                            <option value="rating">Price (Low &gt; High)</option>
-                                            <option value="date">Rating (Lowest)</option>
-                                            <option value="price-asc">Model (A - Z)</option>
-                                            <option value="price-asc">Model (Z - A)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- product-select-box end --> --}}
                             </div>
                             <!-- shop-top-bar end -->
                             <!-- shop-products-wrapper start -->
@@ -128,10 +116,14 @@
                                                     <!-- single-product-wrap start -->
                                                     <div class="single-product-wrap">
                                                         <div class="product-image">
-                                                            <a href="single-product.html">
+                                                            <a href="/detail/{{$value->slug}}-{{$value->id}}">
                                                                 <img src="{{ $value->image_product }}" alt="Li's Product Image">
                                                             </a>
-                                                            <span class="sticker">New</span>
+                                                            <span class="sticker" style="color: yellow">
+                                                                @if(!empty($value->price_sell))
+                                                                    <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
+                                                                @endif
+                                                            </span>
                                                         </div>
                                                         <div class="product_desc">
                                                             <div class="product_desc_info">
@@ -141,17 +133,19 @@
                                                                     </h5>
                                                                     <div class="rating-box">
                                                                         <ul class="rating">
-                                                                            <li><i class="fa fa-star-o"></i></li>
-                                                                            <li><i class="fa fa-star-o"></i></li>
-                                                                            <li><i class="fa fa-star-o"></i></li>
-                                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                                            @php
+                                                                                $star = rand(4, 5);
+                                                                            @endphp
+                                                                            @for ($x=1;$x<=$star;$x++)
+                                                                                <li><i class="fa fa-star-o"></i></li>
+                                                                            @endfor
                                                                         </ul>
                                                                     </div>
                                                                 </div>
                                                                 <h4><a class="product_name" href="single-product.html">{{ $value->name }}</a></h4>
                                                                 <div class="price-box">
-                                                                    <span class="new-price">$46.80</span>
+                                                                    <span class="new-price new-price-2">{{ empty($value->price_sell) ?  number_format($value->price_root, 0, '.', ',') . " đ" : number_format($value->price_sell, 0, '.', ',') . " đ"}}</span>
+                                                                    <span class="old-price">{{ empty($value->price_sell) ?  '' : number_format($value->price_root, 0, '.', ',') . " đ" }}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="add-actions">
@@ -170,25 +164,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="paginatoin-area">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 pt-xs-15">
-                                                <p>Showing 1-12 of 13 item(s)</p>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <ul class="pagination-box pt-xs-20 pb-xs-15">
-                                                    <li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a>
-                                                    </li>
-                                                    <li class="active"><a href="#">1</a></li>
-                                                    <li><a href="#">2</a></li>
-                                                    <li><a href="#">3</a></li>
-                                                    <li>
-                                                      <a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <!-- shop-products-wrapper end -->
@@ -202,9 +177,8 @@
                                 <!-- category-sub-menu start -->
                                 <div class="category-sub-menu">
                                     <ul>
-                                        @foreach ($product as $value)
-                                            <li class=""><a href="# ">{{ $value->brand_id }}</a>
-                                            </li>
+                                        @foreach ($brand as $value)
+                                            <li class=""><a href="/shopProduct/{{$value->slug}}-{{$value->id}}">{{ $value->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -221,7 +195,7 @@
             </div>
             <!-- Footer Area End Here -->
             <!-- Begin Quick View | Modal Area -->
-            <div class="modal fade modal-wrapper" id="exampleModalCenter" >
+            {{-- <div class="modal fade modal-wrapper" id="exampleModalCenter" >
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -330,7 +304,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Quick View | Modal Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->

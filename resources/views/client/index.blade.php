@@ -72,22 +72,20 @@
                                 <!-- single-product-wrap start -->
                                 <div class="single-product-wrap">
                                     <div class="product-image">
-                                        <a href="single-product.html">
+                                        <a href="/detail/{{$value->slug}}-{{$value->id}}">
                                             <img src="{{ $value->image_product }}" alt="Li's Product Image">
                                         </a>
-                                        <span class="sticker">
-                                            <span class="sticker" style="color: yellow">
-                                                @if(!empty($value->price_sell))
-                                                    <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
-                                                @endif
-                                            </span>
+                                        <span class="{{ !empty($value->price_sell) ? 'sticker' : '' }}" style="color: yellow">
+                                            @if(!empty($value->price_sell))
+                                                <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
+                                            @endif
                                         </span>
                                     </div>
                                     <div class="product_desc">
                                         <div class="product_desc_info">
                                             <div class="product-review">
                                                 <h5 class="manufacturer">
-                                                    <a href="shop-left-sidebar.html">Đánh giá</a>
+                                                    <a href="#">Đánh giá</a>
                                                 </h5>
                                                 <div class="rating-box">
                                                     <ul class="rating">
@@ -101,7 +99,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <h4><a class="product_name" href="single-product.html">{{ $value->name }}</a></h4>
+                                            <h4><a class="product_name" href="/detail/{{$value->slug}}-{{$value->id}}">{{ $value->name }}</a></h4>
                                             <div class="price-box">
                                                 <span class="new-price new-price-2">{{ empty($value->price_sell) ?  number_format($value->price_root, 0, '.', ',') . " đ" : number_format($value->price_sell, 0, '.', ',') . " đ"}}</span>
                                                 <span class="old-price">{{ empty($value->price_sell) ?  '' : number_format($value->price_root, 0, '.', ',') . " đ" }}</span>
@@ -131,10 +129,10 @@
                             <!-- single-product-wrap start -->
                             <div class="single-product-wrap">
                                 <div class="product-image">
-                                    <a href="single-product.html">
+                                    <a href="/detail/{{$value->slug}}-{{$value->id}}">
                                         <img src="{{ $value->image_product }}" alt="Li's Product Image">
                                     </a>
-                                    <span class="sticker" style="color: yellow">
+                                    <span class="{{ !empty($value->price_sell) ? "sticker" : " " }}" style="color: yellow">
                                             @if(!empty($value->price_sell))
                                                 <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
                                             @endif
@@ -144,7 +142,7 @@
                                     <div class="product_desc_info">
                                         <div class="product-review">
                                             <h5 class="manufacturer">
-                                                <a href="shop-left-sidebar.html">Đánh giá</a>
+                                                <a href="#">Đánh giá</a>
                                             </h5>
                                             <div class="rating-box">
                                                 <ul class="rating">
@@ -158,7 +156,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h4><a class="product_name" href="single-product.html">{{ $value->name }}</a></h4>
+                                        <h4><a class="product_name" href="/detail/{{$value->slug}}-{{$value->id}}">{{ $value->name }}</a></h4>
                                         <div class="price-box">
                                             <span class="new-price new-price-2">{{ empty($value->price_sell) ?  number_format($value->price_root, 0, '.', ',') . " đ" : number_format($value->price_sell, 0, '.', ',') . " đ"}}</span>
                                             <span class="old-price">{{ empty($value->price_sell) ?  '' : number_format($value->price_root, 0, '.', ',') . " đ" }}</span>
@@ -205,20 +203,20 @@
                             <!-- single-product-wrap start -->
                             <div class="single-product-wrap">
                                 <div class="product-image">
-                                    <a href="single-product.html">
+                                    <a href="/detail/{{$value_product->slug}}-{{$value_product->id}}">
                                         <img src="{{ $value_product->image_product }}" alt="Li's Product Image">
                                     </a>
                                     <span class="sticker" style="color: yellow">
                                         @if(!empty($value_product->price_sell))
-                                                <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value_product->price_root - $value_product->price_sell) / $value_product->price_root * 100, 0) }}%</span>
-                                            @endif
+                                            <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value_product->price_root - $value_product->price_sell) / $value_product->price_root * 100, 0) }}%</span>
+                                        @endif
                                     </span>
                                 </div>
                                 <div class="product_desc">
                                     <div class="product_desc_info">
                                         <div class="product-review">
                                             <h5 class="manufacturer">
-                                                <a href="shop-left-sidebar.html">Đánh giá</a>
+                                                <a href="#">Đánh giá</a>
                                             </h5>
                                             <div class="rating-box">
                                                 <ul class="rating">
@@ -231,7 +229,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h4><a class="product_name" href="single-product.html">{{ $value_product->name }}</a></h4>
+                                        <h4><a class="product_name" href="/detail/{{$value_product->slug}}-{{$value_product->id}}">{{ $value_product->name }}</a></h4>
                                         <div class="price-box">
                                             <div class="price-box">
                                                 <span class="new-price new-price-2">{{ empty($value_product->price_sell) ?  number_format($value_product->price_root, 0, '.', ',') . " đ" : number_format($value_product->price_sell, 0, '.', ',') . " đ"}}</span>

@@ -6,8 +6,8 @@
             <tr>
                 <th class="text-center">STT</th>
                 <th class="text-center">Name Brand</th>
-                <th class="text-center">Banner</th>
                 <th class="text-center">Icon</th>
+                <th class="text-center">Banner</th>
                 <th class="text-center">Is_View</th>
                 <th class="text-center">Actions</th>
             </tr>

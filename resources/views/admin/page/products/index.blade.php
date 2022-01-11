@@ -34,7 +34,7 @@
                     </thead>
                     <tbody>
                         @php
-                            $color = ['No Color', 'White', 'Red', 'Blue', 'Black', 'Green', 'Yellow'];
+                            $color = ['No Color', 'White', 'Red', 'Blue', 'Black', 'Green', 'Yellow', 'Brown', 'Navy Blue', 'Pink', 'Gray', 'Orange'];
                             $version = ['Null', '64GB', '128GB', '256GB', '512GB', '1TB'];
                             $status = ['Available', 'Out of stock', 'Coming soon'];
                         @endphp

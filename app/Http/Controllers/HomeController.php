@@ -11,6 +11,8 @@ use App\Models\product;
 use App\Models\SubBanner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 
 class HomeController extends Controller
 {
@@ -19,25 +21,72 @@ class HomeController extends Controller
         return view('client.profile');
     }
 
-    public function detail()
-    {
-        return view('client.detail');
-    }
-
-    public function shopProduct()
-    {
-        return view('client.shopProduct');
-    }
-
     public function errors()
     {
         return view('client.404');
     }
 
-    public function shopCategory($id)
+    public function thanks()
     {
+        return view('client.thanks');
+    }
+
+    public function wishlist()
+    {
+        return view('client.wishlist');
+    }
+
+    public function detail($slug)
+    {
+        $i = 0;
+        for($i = strlen($slug)-1; $i >= 0; $i--){
+            if($slug[$i] == '-'){
+                break;
+            }
+        }
+        $id = Str::substr($slug, $i + 1, strlen($slug)- $i);
+        $data = product::find($id);
+        $products = product::all();
+        if($data){
+            $product = product::where('id', $data->id)->get();
+            return view('client.detail', compact('product','data', 'products'));
+        } else {
+            toastr()->error("Product is not exits");
+            return redirect('/');
+        }
+    }
+
+    public function shopProduct($slug)
+    {
+        $i = 0;
+        for($i = strlen($slug)-1; $i >= 0; $i--){
+            if($slug[$i] == '-'){
+                break;
+            }
+        }
+        $id = Str::substr($slug, $i + 1, strlen($slug)- $i);
+        $data = brand::find($id);
+        $banner = brand::all();
+        if($data){
+            $product = product::where('brand_id', $data->id)->where('id', '<>', $id)->get();
+            return view('client.shopProduct', compact('product', 'data', 'banner'));
+        } else {
+            toastr()->error("Product is not exits");
+            return redirect('/');
+        }
+        return view('client.shopProduct');
+    }
+
+    public function shopCategory($slug)
+    {
+        $i = 0;
+        for($i = strlen($slug)-1; $i >= 0; $i--){
+            if($slug[$i] == '-'){
+                break;
+            }
+        }
+        $id = Str::substr($slug, $i + 1, strlen($slug)- $i);
         $data = categories::find($id);
-        $brands = brand::where('is_view', 1)->first();
         if($data){
             $product = product::where('category_id', $data->id)->get();
             return view('client.shopCategory', compact('product', 'data'));
@@ -45,6 +94,19 @@ class HomeController extends Controller
             toastr()->error("Product is not exits");
             return redirect('/');
         }
+
+    }
+    public function index()
+    {
+        $SmallBanner1 = SubBanner::where('is_view_1', 1)->limit(1)->get();
+        $SmallBanner2 = SubBanner::where('is_view_2', 1)->limit(1)->get();
+        $SubBanner = SubBanner::where('is_view_sub', 1)->limit(1)->get();
+        $mainBanner = MainBanner::where('is_view', 1)->get();
+        $product = product::where('feature', 0)->get();
+        $product2 = product::where('feature', 1)->get();
+        $product3 = product::where('status', 2)->get();
+        $listProducts = product::where('is_view', 1)->get();
+        return view('client.index', compact('SmallBanner1', 'SmallBanner2', 'SubBanner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner'));
     }
 
     public function loginRegister()
@@ -62,18 +124,6 @@ class HomeController extends Controller
         return view('client.cart');
     }
 
-    public function index()
-    {
-        $SmallBanner1 = SubBanner::where('is_view_1', 1)->limit(1)->get();
-        $SmallBanner2 = SubBanner::where('is_view_2', 1)->limit(1)->get();
-        $SubBanner = SubBanner::where('is_view_sub', 1)->limit(1)->get();
-        $mainBanner = MainBanner::where('is_view', 1)->get();
-        $product = product::where('feature', 0)->get();
-        $product2 = product::where('feature', 1)->get();
-        $product3 = product::where('status', 2)->get();
-        $listProducts = product::where('is_view', 1)->get();
-        return view('client.index', compact('SmallBanner1', 'SmallBanner2', 'SubBanner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner'));
-    }
 
     /**
      * Show the form for creating a new resource.

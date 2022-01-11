@@ -19,12 +19,12 @@
                 <div class="col-lg-12 col-md-12 order-2 order-lg-1" >
                     <div class="team-member mb-90 mb-sm-60 mb-xs-60" style="width: 300px">
                         <div class="team-thumb">
-                            <img src="images/team/1.png" alt="Our Team Member">
+                            <img src="/client/images/team/1.png" alt="Our Team Member">
                         </div>
                         <div class="team-content text-center" style="padding: 15px">
                             <h3>Nguyễn Thanh Phúc</h3>
                             <p>Member</p>
-                            <a href="#">info@example.com</a>
+                            <a href="#">phuc01112002@gmail.com</a>
                         </div>
                     </div>
                 </div>
@@ -49,17 +49,17 @@
                                 <br>
                                 <div class="single-contact mt-3">
                                     <h4><i class="fa fa-fax"></i> Address</h4>
-                                    <p>Bình Hiệp - Bình Sơn - Quảng Ngãi</p>
+                                    <p>Vạn Ninh - Quảng Ninh - Quảng Bình</p>
                                 </div>
                                 <br>
                                 <div class="single-contact">
                                     <h4><i class="fa fa-phone"></i> Phone</h4>
-                                    <p>Mobile: 0393900816</p>
+                                    <p>Mobile: 0913946574</p>
                                 </div>
                                 <br>
                                 <div class="single-contact last-child">
                                     <h4><i class="fa fa-envelope-o"></i> Email</h4>
-                                    <p>yourmail@domain.com</p>
+                                    <p>phuc01112002@gmail.com</p>
                                 </div>
                                 <br>
                                     <button type="submit" id="updateCategory"

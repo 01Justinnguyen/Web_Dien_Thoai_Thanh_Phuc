@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-md-4">
                     <div class="header-top-left">
                         <ul class="phone-wrap">
-                            <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
+                            <li><span>Telephone Enquiry:</span><a href="#">(+84) 913 946 574</a></li>
                         </ul>
                     </div>
                 </div>
@@ -27,30 +27,6 @@
                                     </ul>
                                 </div>
                             </li>
-                            <!-- Setting Area End Here -->
-                            <!-- Begin Currency Area -->
-                            {{-- <li>
-                                <span class="currency-selector-wrapper">Currency :</span>
-                                <div class="ht-currency-trigger"><span>USD $</span></div>
-                                <div class="currency ht-currency">
-                                    <ul class="ht-setting-list">
-                                        <li><a href="#">EUR €</a></li>
-                                        <li class="active"><a href="#">USD $</a></li>
-                                    </ul>
-                                </div>
-                            </li> --}}
-                            <!-- Currency Area End Here -->
-                            <!-- Begin Language Area -->
-                            {{-- <li>
-                                <span class="language-selector-wrapper">Language :</span>
-                                <div class="ht-language-trigger"><span>English</span></div>
-                                <div class="language ht-language">
-                                    <ul class="ht-setting-list">
-                                        <li class="active"><a href="#"><img src="images/menu/flag-icon/1.jpg" alt="">English</a></li>
-                                        <li><a href="#"><img src="images/menu/flag-icon/2.jpg" alt="">Français</a></li>
-                                    </ul>
-                                </div>
-                            </li> --}}
                             <!-- Language Area End Here -->
                         </ul>
                     </div>
@@ -67,7 +43,7 @@
                 <!-- Begin Header Logo Area -->
                 <div class="col-lg-3">
                     <div class="logo pb-sm-30 pb-xs-30">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="/client/images/menu/logo/1.jpg" alt="">
                         </a>
                     </div>
@@ -158,7 +134,7 @@
                         <ul class="hm-menu">
                             <!-- Begin Header Middle Wishlist Area -->
                             <li class="hm-wishlist">
-                                <a href="wishlist.html">
+                                <a href="/wishlist">
                                     <span class="cart-item-count wishlist-item-count">0</span>
                                     <i class="fa fa-heart-o"></i>
                                 </a>
@@ -177,7 +153,7 @@
                                     <ul class="minicart-product-list">
                                         <li>
                                             <a href="single-product.html" class="minicart-product-image">
-                                                <img src="images/product/small-size/5.jpg" alt="cart products">
+                                                <img src="/client/images/product/small-size/5.jpg" alt="cart products">
                                             </a>
                                             <div class="minicart-product-details">
                                                 <h6><a href="single-product.html">Aenean eu tristique</a></h6>
@@ -189,7 +165,7 @@
                                         </li>
                                         <li>
                                             <a href="single-product.html" class="minicart-product-image">
-                                                <img src="images/product/small-size/6.jpg" alt="cart products">
+                                                <img src="/client/images/product/small-size/6.jpg" alt="cart products">
                                             </a>
                                             <div class="minicart-product-details">
                                                 <h6><a href="single-product.html">Aenean eu tristique</a></h6>
@@ -202,10 +178,10 @@
                                     </ul>
                                     <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
                                     <div class="minicart-button">
-                                        <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
+                                        <a href="/cart" class="li-button li-button-fullwidth li-button-dark">
                                             <span>View Full Cart</span>
                                         </a>
-                                        <a href="checkout.html" class="li-button li-button-fullwidth">
+                                        <a href="/checkout" class="li-button li-button-fullwidth">
                                             <span>Checkout</span>
                                         </a>
                                     </div>
@@ -233,7 +209,7 @@
                                 <li class="dropdown-holder"><a href="{{ Route('index') }}">Home</a>
                                 </li>
                                 @foreach ($category as $value)
-                                    <li class="dropdown-holder"><a href="/shopCategory/{{$value->id}}">{{$value->name}}</a></li>
+                                    <li class="dropdown-holder"><a href="/shopCategory/{{$value->slug}}-{{$value->id}}">{{$value->name}}</a></li>
                                 @endforeach
                             </ul>
                         </nav>
