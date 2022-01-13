@@ -93,14 +93,26 @@
                                 <h2 class="card-title fw-bold mb-1">Forgot Password? 🔒</h2>
                                 <p class="card-text mb-2">Enter your email and we'll send you instructions to reset your password</p>
                                 <div class="auth-forgot-password-form mt-2">
-                                    <div class="mb-1">
-                                        <label class="form-label" for="forgot-password-email">Email</label>
-                                        <input class="form-control" id="email" type="text" name="email" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
-                                    </div>
-                                    {{-- <div class="mb-1">
-                                        <input value="" class="form-control" id="email" type="text" name="password" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
-                                    </div> --}}
-                                    <button class="btn btn-primary w-100" id="checkLogin" tabindex="2">Send reset link</button>
+                                    <form action="{{ Route('re_email') }}" method="POST">
+                                        @csrf
+                                        @if(session()->has('message'))
+                                        <div class="alert alert-success">
+                                            {!! session()->get('message') !!}
+                                        </div>
+                                        @elseif(session()->has('error'))
+                                        <div class="alert alert-danger">
+                                            {!! session()->get('error') !!}
+                                        </div>
+                                        @endif
+                                        <div class="mb-1">
+                                            <label class="form-label" for="forgot-password-email">Email</label>
+                                            <input class="form-control" id="email" type="text" name="email_account" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
+                                        </div>
+                                        {{-- <div class="mb-1">
+                                            <input value="" class="form-control" id="email" type="text" name="password" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />
+                                        </div> --}}
+                                        <button class="btn btn-primary w-100" type="submit" id="checkLogin" tabindex="2">Send reset link</button>
+                                    </form>
                                 </div>
                                 <p class="text-center mt-2"><a href="/admin/login"><i data-feather="chevron-left"></i> Back to login</a></p>
                             </div>
@@ -131,7 +143,7 @@
    {{-- <script src="../../../app-assets/js/scripts/pages/auth-forgot-password.js"></script> --}}
    <!-- END: Page JS-->
 
-   <script>
+   {{-- <script>
        $(window).on('load', function() {
            if (feather) {
                feather.replace({
@@ -140,19 +152,19 @@
                });
            }
        })
-   </script>
+   </script> --}}
    @jquery
    @toastr_js
    @toastr_render
    <!-- END: Content-->
-   <script>
+   {{-- <script>
        $.ajaxSetup({
            headers: {
                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
            }
        });
-   </script>
-<script>
+   </script> --}}
+{{-- <script>
    $(document).ready(function(){
        $("#checkLogin").click(function(){
            console.log('ahihi');
@@ -180,5 +192,5 @@
            });
        });
    });
-</script>
+</script> --}}
 </html>

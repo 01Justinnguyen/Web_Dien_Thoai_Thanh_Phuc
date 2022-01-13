@@ -74,7 +74,7 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
     Route::post('/admin/login', [\App\Http\Controllers\AdminController::class, 'Login'])->name('Login');
 
     Route::get('/admin/forgot-password', [\App\Http\Controllers\AdminController::class, 'viewForget']);
-    Route::post('/admin/checkForgot-password', [\App\Http\Controllers\AdminController::class, 'CheckForget']);
+    Route::post('/admin/checkForgot-password', [\App\Http\Controllers\AdminController::class, 'CheckForget'])->name('re_email');
 
     Route::get('/admin/forgot2-password', [\App\Http\Controllers\AdminController::class, 'viewForget2']);
     Route::get('/admin/new-password', [\App\Http\Controllers\AdminController::class, 'newPass']);
@@ -82,6 +82,8 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
 
 
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
+    Route::post('/search', [\App\Http\Controllers\HomeController::class, 'search'])->name('search.products');
+
     Route::get('/errors', [\App\Http\Controllers\HomeController::class, 'errors']);
     Route::get('/detail/{slug}', [\App\Http\Controllers\HomeController::class, 'detail']);
     Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'profile']);

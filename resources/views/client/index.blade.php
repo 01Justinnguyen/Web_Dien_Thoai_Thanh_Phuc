@@ -38,7 +38,7 @@
                 @foreach ($SmallBanner2 as $value)
                     <div class="li-banner mt-15 mt-sm-30 mt-xs-30">
                         <a href="#">
-                            <img src="{{$value->small_banner_1}}" alt="">
+                            <img src="{{$value->small_banner_2}}" alt="">
                         </a>
                     </div>
                 @endforeach

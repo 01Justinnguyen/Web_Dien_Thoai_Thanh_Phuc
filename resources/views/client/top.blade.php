@@ -125,8 +125,11 @@
                             <option value="15">Smartwatch</option>
                             <option value="16">Accessories</option>
                         </select>
-                        <input type="text" placeholder="Enter your search key ...">
-                        <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                        <form action="{{ Route('search.products') }}" method="POST">
+                            @csrf
+                            <input type="text" name="keywords_submit" placeholder="Enter your search key ...">
+                            <button class="li-btn" name="search_items" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </form>
                     <!-- Header Middle Searchbox Area End Here -->
                     <!-- Begin Header Middle Right Area -->
