@@ -18,6 +18,7 @@ class Admin extends Authenticatable
         'fullname',
         'rules_id',
         'hash',
+        'token',
         'is_block',
     ];
 }

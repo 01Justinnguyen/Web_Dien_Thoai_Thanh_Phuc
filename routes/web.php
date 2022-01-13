@@ -77,7 +77,7 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
     Route::post('/admin/checkForgot-password', [\App\Http\Controllers\AdminController::class, 'CheckForget'])->name('re_email');
 
     Route::get('/admin/forgot2-password', [\App\Http\Controllers\AdminController::class, 'viewForget2']);
-    Route::get('/admin/new-password', [\App\Http\Controllers\AdminController::class, 'newPass']);
+    Route::post('/admin/new-password', [\App\Http\Controllers\AdminController::class, 'newPass'])->name('reset.Pass');
 
 
 

@@ -1,4 +1,4 @@
-<h1> Chao ban, {{ $data['fullname'] }} </h1>
+{{-- <h1> Chao ban, {{ $data['fullname'] }} </h1> --}}
 <h2> welcome to our website </h2>
 <!DOCTYPE html>
 <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>

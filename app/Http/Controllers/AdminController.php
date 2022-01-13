@@ -35,9 +35,13 @@ class AdminController extends Controller
         return view('admin.page.auth.forgot', compact('password'));
     }
 
-    public function viewForget2()
+    public function viewForget2(Request $request)
     {
-        return view('admin.page.auth.forgot2');
+        $meta_desc = "Quen mat khau";
+        $meta_keywords = "Ques Mat Khau";
+        $meta_title = "Quen Mat Khau";
+        $url_canonical = $request->url();
+        return view('admin.page.auth.forgot2',compact('meta_desc','meta_keywords','meta_title','url_canonical'));
     }
 
     public function CheckForget(checkLogin $request)
@@ -61,7 +65,8 @@ class AdminController extends Controller
     if($user){
         $count_user = $user->count();
         if($count_user==0){
-            return redirect()->back()->with('error', 'Email chua duoc dang ky de khoi phuc mat khau');
+            toastr()->warning('Email chưa được đăng ký, vui lòng đăng ký email!!!');
+            return redirect('/admin/login');
         }else {
             $token_random = Str::random();
             $user = Admin::find($user_id);
@@ -69,21 +74,43 @@ class AdminController extends Controller
             $user->save();
 
             $to_email = $data['email_account'];
-            $link_reset_pass = url('/update-new-pass?email='.$to_email.'&token='.$token_random);
+            $link_reset_pass = url('/admin/forgot2-password?email='.$to_email.'&token='.$token_random);
 
             $data = array('name'=>$title_mail,'body'=>$link_reset_pass,'email'=>$data['email_account']);
 
             // Mail::to($request->email)->send(new registerUser($data));
-            Mail::send('mail.welcome',['data'=>$data], function($message) use ($title_mail,$data){
+            Mail::send('mail.newPassword',['data'=>$data], function($message) use ($title_mail,$data){
                 $message->to($data['email'])->subject($title_mail);
                 $message->from($data['email'],$title_mail);
             });
-            return redirect()->back()->with('message', 'Gui mail thanh cong,vui long vao email de reset password');
+            // return redirect()->back()->with('message', 'Gui mail thanh cong,vui long vao email de reset password');
+            toastr()->success('Gửi mail thành công, vui lòng kiểm tra email để lấy lại mật khẩu!!!');
+            return redirect()->back();
         }
     }
     }
 
-
+    public function newPass(PasswordRequest $request)
+    {
+        $data = $request->all();
+        $token_random = Str::random();
+        $user = Admin::where('email','=',$data['email'])->where('token','=',$data['token'])->get();
+        $count = $user->count();
+        foreach ($user as $value) {
+         $user_id = $value->id;
+     }
+        if($count>0){
+            $reset = Admin::find($user_id);
+            $reset->password = bcrypt($data['password']);
+            $reset->token = $token_random;
+            $reset->save();
+            toastr()->success('Mật khẩu đã được cập nhật!!!');
+            return redirect('admin/login');
+        }else{
+            toastr()->warning('Vui lòng nhập lại email vì link này đã quá hạn!!!');
+            return redirect('/admin/forgot-password');
+        }
+    }
 
     public function register(RegisterRequest $request)
     {
@@ -96,12 +123,13 @@ class AdminController extends Controller
         toastr()->success('Your admin account has been created successfully!');
 
         $dataMail['fullname'] = $request->fullname;
-        // Mail::to($request->email)->send(new RegisterMail($dataMail));
+        Mail::to($request->email)->send(new RegisterMail($dataMail));
 
-        sendMailJob::dispatch($request->email, $dataMail);
+        // sendMailJob::dispatch($request->email, $dataMail);
 
         return redirect('/admin/login');
     }
+
 
     public function login(LoginRequest $request)
     {
@@ -127,10 +155,6 @@ class AdminController extends Controller
     }
 
 
-    public function newPass(PasswordRequest $request)
-    {
-        dd($request->toArray());
-    }
 
     public function index()
     {

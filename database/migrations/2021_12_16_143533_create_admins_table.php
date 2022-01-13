@@ -19,6 +19,7 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->string('fullname');
             $table->string('hash')->nullable();
+            $table->string('token')->nullable();
             $table->integer('is_block')->default(0);
             $table->integer('rules_id')->default(0);
             $table->timestamps();

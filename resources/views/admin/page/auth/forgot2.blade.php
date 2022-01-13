@@ -88,13 +88,26 @@
                         </div>
                         <!-- /Left Text-->
                         <!-- Reset password-->
+                        @php
+                            $token = $_GET['token'];
+                            $email = $_GET['email']
+                        @endphp
                         <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
                                 <h2 class="card-title fw-bold mb-1">Reset Password 🔒</h2>
                                 <p class="card-text mb-2">Your new password must be different from previously used passwords</p>
-                                <form class="auth-reset-password-form mt-2" action="" method="">
+                                <form class="auth-reset-password-form mt-2" action="{{ Route('reset.Pass') }}" method="POST">
                                     @csrf
-                                    <div class="mb-1">
+                                    @if(session()->has('message'))
+                                    <div class="alert alert-success">
+                                        {!! session()->get('message') !!}
+                                    </div>
+                                    @elseif(session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        {!! session()->get('error') !!}
+                                    </div>
+                                    @endif
+                                    {{-- <div class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="reset-password-new">Password Old</label>
                                         </div>
@@ -106,7 +119,9 @@
                                                 {{ $errors->first('password_old') }}
                                             </span>
                                         @endif --}}
-                                    </div>
+                                    {{-- </div> --}}
+                                    <input type="hidden" name="email" value={{$email}}>
+                                    <input type="hidden" name="token" value={{$token}}>
                                     <div class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="reset-password-new">New Password</label>
@@ -125,7 +140,7 @@
                                             <label class="form-label" for="reset-password-confirm">Confirm Password</label>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input class="form-control form-control-merge" id="password-confirm" type="password" name="password-confirm" placeholder="············" aria-describedby="reset-password-confirm" tabindex="2" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                                            <input class="form-control form-control-merge" id="password-confirm" type="password" name="confirm" placeholder="············" aria-describedby="reset-password-confirm" tabindex="2" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                         </div>
                                         {{-- @if ($errors->has('password-confirm'))
                                             <span class="error-text">
@@ -133,7 +148,7 @@
                                             </span>
                                         @endif --}}
                                     </div>
-                                    <button class="btn btn-primary w-100" type="button" tabindex="3">Set New Password</button>
+                                    <button class="btn btn-primary w-100"  type="submit" tabindex="3">Set New Password</button>
                                 </form>
                                 <p class="text-center mt-2"><a href="/admin/login"><i data-feather="chevron-left"></i> Back to login</a></p>
                             </div>
@@ -153,20 +168,20 @@
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    {{-- <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script> --}}
+     <!-- BEGIN: Page Vendor JS-->
+     <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    {{-- <script src="../../../app-assets/js/core/app-menu.js"></script>
-    <script src="../../../app-assets/js/core/app.js"></script> --}}
+     <script src="../../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../../app-assets/js/core/app.js"></script>
     <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page JS-->
-    {{-- <script src="../../../app-assets/js/scripts/pages/auth-reset-password.js"></script> --}}
+     <!-- BEGIN: Page JS-->
+     <script src="../../../app-assets/js/scripts/pages/auth-reset-password.js"></script>
     <!-- END: Page JS-->
 
-    {{-- <script>
+    <script>
         $(window).on('load', function() {
             if (feather) {
                 feather.replace({
@@ -175,7 +190,7 @@
                 });
             }
         })
-    </script> --}}
+    </script>
      @jquery
      @toastr_js
      @toastr_render

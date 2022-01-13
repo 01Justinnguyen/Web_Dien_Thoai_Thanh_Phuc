@@ -119,7 +119,7 @@
                                                             <a href="/detail/{{$value->slug}}-{{$value->id}}">
                                                                 <img src="{{$value->image_product}}" alt="Li's Product Image">
                                                             </a>
-                                                            <span class="sticker" style="color: yellow">
+                                                            <span class="{{ $value->price_sell ? "sticker" : " " }}" style="color: yellow">
                                                                 @if(!empty($value->price_sell))
                                                                     <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
                                                                 @endif

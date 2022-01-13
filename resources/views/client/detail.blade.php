@@ -89,31 +89,6 @@
                                             <img src="{{$value->image_product}}" alt="product image">
                                         </a>
                                     </div>
-                                    {{-- <div class="lg-image">
-                                        <a class="popup-img venobox vbox-item" href="/client/images/product/large-size/2.jpg" data-gall="myGallery">
-                                            <img src="/client/images/product/large-size/2.jpg" alt="product image">
-                                        </a>
-                                    </div>
-                                    <div class="lg-image">
-                                        <a class="popup-img venobox vbox-item" href="/client/images/product/large-size/3.jpg" data-gall="myGallery">
-                                            <img src="/client/images/product/large-size/3.jpg" alt="product image">
-                                        </a>
-                                    </div>
-                                    <div class="lg-image">
-                                        <a class="popup-img venobox vbox-item" href="/client/images/product/large-size/4.jpg" data-gall="myGallery">
-                                            <img src="/client/images/product/large-size/4.jpg" alt="product image">
-                                        </a>
-                                    </div>
-                                    <div class="lg-image">
-                                        <a class="popup-img venobox vbox-item" href="/client/images/product/large-size/5.jpg" data-gall="myGallery">
-                                            <img src="/client/images/product/large-size/5.jpg" alt="product image">
-                                        </a>
-                                    </div>
-                                    <div class="lg-image">
-                                        <a class="popup-img venobox vbox-item" href="/client/images/product/large-size/6.jpg" data-gall="myGallery">
-                                            <img src="/client/images/product/large-size/6.jpg" alt="product image">
-                                        </a>
-                                    </div> --}}
                                 </div>
                                 <div class="product-details-thumbs slider-thumbs-1">
                                     {{-- <div class="sm-image"><img src="{{$value->image_product}}" alt="product image thumb"></div> --}}
@@ -372,7 +347,7 @@
                                                                 <a href="/detail/{{$value_all->slug}}-{{$value->id}}">
                                                                     <img src="{{$value_all->image_product}}" alt="Li's Product Image">
                                                                 </a>
-                                                                <span class="sticker" style="color: yellow">
+                                                                <span class="{{ $value_all->price_sell ? "sticker" : " " }}" style="color: yellow">
                                                                     @if(!empty($value->price_sell))
                                                                         <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
                                                                     @endif
