@@ -5,9 +5,11 @@
 <!-- index28:48-->
     @include('client.headCSS')
     <body>
+
         <!-- Begin Body Wrapper -->
         <div class="body-wrapper">
             <!-- Begin Header Area -->
+
             @include('client.top')
             <!-- Header Area End Here -->
             <!-- Begin Slider With Banner Area -->
@@ -131,6 +133,7 @@
         </div>
         @include('client.footCSS')
         @yield('js')
+        @include('client.ajax')
     </body>
 <!-- index30:23-->
 </html>

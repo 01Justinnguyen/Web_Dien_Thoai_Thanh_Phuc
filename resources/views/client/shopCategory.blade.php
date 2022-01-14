@@ -43,6 +43,8 @@
         <link rel="stylesheet" href="/client/css/responsive.css">
         <!-- Modernizr js -->
         <script src="/client/js/vendor/modernizr-2.8.3.min.js"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @toastr_css
 </head>
     <body>
         <div class="body-wrapper">
@@ -150,7 +152,7 @@
                                                             </div>
                                                             <div class="add-actions">
                                                                 <ul class="add-actions-link">
-                                                                    <li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
+                                                                    <li class="add-cart active"><a href="#" data-toggle="modal" data-target="#modalLogin">Add to cart</a></li>
                                                                     <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                                                     <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
                                                                 </ul>
@@ -160,7 +162,6 @@
                                                     <!-- single-product-wrap end -->
                                                 </div>
                                                 @endforeach
-
                                             </div>
                                         </div>
                                     </div>
@@ -195,7 +196,7 @@
             </div>
             <!-- Footer Area End Here -->
             <!-- Begin Quick View | Modal Area -->
-            {{-- <div class="modal fade modal-wrapper" id="exampleModalCenter" >
+            <div class="modal fade modal-wrapper" id="exampleModalCenter" >
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -304,7 +305,7 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <!-- Quick View | Modal Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
@@ -350,6 +351,7 @@
         <script src="/client/js/scrollUp.min.js"></script>
         <!-- Main/Activator js -->
         <script src="/client/js/main.js"></script>
+        @include('client.ajax')
     </body>
 
 <!-- shop-left-sidebar31:48-->

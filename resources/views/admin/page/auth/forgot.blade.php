@@ -95,7 +95,7 @@
                                 <div class="auth-forgot-password-form mt-2">
                                     <form action="{{ Route('re_email') }}" method="POST">
                                         @csrf
-                                        @if(session()->has('message'))
+                                        {{-- @if(session()->has('message'))
                                         <div class="alert alert-success">
                                             {!! session()->get('message') !!}
                                         </div>
@@ -103,7 +103,7 @@
                                         <div class="alert alert-danger">
                                             {!! session()->get('error') !!}
                                         </div>
-                                        @endif
+                                        @endif --}}
                                         <div class="mb-1">
                                             <label class="form-label" for="forgot-password-email">Email</label>
                                             <input class="form-control" id="email" type="text" name="email_account" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" />

@@ -215,3 +215,95 @@
     </div>
     <!-- Footer Static Bottom Area End Here -->
 </div>
+@if (!isset($user))
+    <div id="modalLogin" class="modal fade" role="" style="z-index: 1400;">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 style="font-family: Arial, Helvetica, sans-serif">Welcome! Please Login to continue</h5>
+                <span>
+                    New member?
+                    <a style="text-decoration: underline; color: #1a9cb7; cursor: pointer" type="button" data-toggle="modal" data-target="#test2">Register</a>
+                    here.
+                </span>
+                {{-- <form action="#" method="POST"> --}}
+                    <div class="login-form">
+                        <h4 class="login-title">Login</h4>
+                        <div class="row">
+                            <div class="col-md-12 col-12 mb-20">
+                                <label>Email Address*</label>
+                                <input class="mb-0" type="email" placeholder="Email Address" id="emailLogin">
+                            </div>
+                            <div class="col-12 mb-20">
+                                <label>Password</label>
+                                <input class="mb-0" type="password" placeholder="Password" id="passwordLogin">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
+                                    <input type="checkbox" id="remember_meLogin">
+                                    <label for="remember_me">Remember me</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
+                                <a href="#"> Forgotten pasward?</a>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="register-button mt-0" id="loginButton">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                {{-- </form> --}}
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="test2" class="modal fade" role="dialog" style="z-index: 1600; padding-right:-16px">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <h5>Create your PKN Account</h5>
+                    <span>
+                        Already member?
+                        <a style="text-decoration: underline; color: #1a9cb7; cursor: pointer" type="button" data-dismiss="modal">Login</a>
+                        {{-- <a style="text-decoration: underline; color: #1a9cb7; cursor: pointer" type="button" class="close" data-dismiss="modal" aria-hidden="true">Login</a> --}}
+                        here.
+                    </span>
+                {{-- <form action="#"> --}}
+                    <div class="login-form">
+                        <h4 class="login-title">Register</h4>
+                        <div class="row">
+                            <div class="col-md-12 col-12 mb-20">
+                                <label>Full Name</label>
+                                <input class="mb-0" type="text" placeholder="Full Name" id="fullname_register">
+                            </div>
+                            {{-- <div class="col-md-6 col-12 mb-20">
+                                <label>Birthday</label>
+                                <input class="mb-0" type="date" placeholder="Last Name">
+                            </div> --}}
+                            <div class="col-md-12 mb-20">
+                                <label>Email Address*</label>
+                                <input class="mb-0" type="email" placeholder="Email Address" id="email_register">
+                            </div>
+                            <div class="col-md-6 mb-20">
+                                <label>Password</label>
+                                <input class="mb-0" type="password" placeholder="Password" id="password_register">
+                            </div>
+                            <div class="col-md-6 mb-20">
+                                <label>Confirm Password</label>
+                                <input class="mb-0" type="password" placeholder="Confirm Password" id="re_password_register">
+                            </div>
+                            <div class="col-12">
+                                <button class="register-button mt-0" id="registerButton">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                {{-- </form> --}}
+            </div>
+        </div>
+        </div>
+    </div>
+@endif

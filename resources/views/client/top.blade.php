@@ -1,6 +1,10 @@
 <header>
+        @php
+            $user = Auth::user()
+        @endphp
     <!-- Begin Header Top Area -->
     <div class="header-top">
+
         <div class="container">
             <div class="row">
                 <!-- Begin Header Top Left Area -->
@@ -21,9 +25,13 @@
                                 <div class="ht-setting-trigger"><span>Setting</span></div>
                                 <div class="setting ht-setting">
                                     <ul class="ht-setting-list">
-                                        <li><a href="/profile">My Account</a></li>
-                                        <li><a href="/checkout">Checkout</a></li>
-                                        <li><a href="/loginRegister">Sign In</a></li>
+                                        @if(isset($user))
+                                            <li><a href="/profile">My Account</a></li>
+                                            <li><a href="/checkout">Checkout</a></li>
+                                            <li><a href="/logout">Logout</a></li>
+                                        @else
+                                            <li><a href="/loginRegister">Sign In</a></li>
+                                        @endif
                                     </ul>
                                 </div>
                             </li>

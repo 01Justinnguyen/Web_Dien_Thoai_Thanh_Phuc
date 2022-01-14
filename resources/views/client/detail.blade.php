@@ -42,6 +42,8 @@
         <link rel="stylesheet" href="/client/css/responsive.css">
         <!-- Modernizr js -->
         <script src="/client/js/vendor/modernizr-2.8.3.min.js"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @toastr_css
 </head>
     <body>
         <div class="body-wrapper">
@@ -91,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="product-details-thumbs slider-thumbs-1">
-                                    {{-- <div class="sm-image"><img src="{{$value->image_product}}" alt="product image thumb"></div> --}}
+                                    <div class="sm-image"><img src="{{$value->image_product}}" alt="product image thumb"></div>
                                     {{-- <div class="sm-image"><img src="/client/images/product/small-size/2.jpg" alt="product image thumb"></div>
                                     <div class="sm-image"><img src="/client/images/product/small-size/3.jpg" alt="product image thumb"></div>
                                     <div class="sm-image"><img src="/client/images/product/small-size/4.jpg" alt="product image thumb"></div>
@@ -101,7 +103,6 @@
                             </div>
                             <!--// Product Details Left -->
                         </div>
-
                         <div class="col-lg-7 col-md-6">
                             <div class="product-details-view-content pt-60">
                                 <div class="product-info">
@@ -146,7 +147,7 @@
                                                     <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                                 </div>
                                             </div>
-                                            <button class="add-to-cart" type="submit">Add to cart</button>
+                                            <button href="" class="add-to-cart" type="button" data-toggle="modal" data-target="#modalLogin">Add to cart</button>
                                         </form>
                                     </div>
                                     <div class="product-additional-info pt-25">
@@ -194,6 +195,11 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal -->
+
+              {{-- ***Modal*** --}}
+            {{-- ***Information*** --}}
             <div class="product-area pt-35">
                 <div class="container">
                     <div class="row">
@@ -324,6 +330,7 @@
                     </div>
                 </div>
             </div>
+            {{-- ***Information*** --}}
             @endforeach
 
             <section class="product-area li-laptop-product pt-30 pb-50">
@@ -403,7 +410,7 @@
             </div>
             <!-- Footer Area End Here -->
             <!-- Begin Quick View | Modal Area -->
-            {{-- <div class="modal fade modal-wrapper" id="exampleModalCenter" >
+            <div class="modal fade modal-wrapper" id="exampleModalCenter" >
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -440,7 +447,7 @@
                                             <div class="sm-image"><img src="/client/images/product/small-size/3.jpg" alt="product image thumb"></div>
                                             <div class="sm-image"><img src="/client/images/product/small-size/4.jpg" alt="product image thumb"></div>
                                             <div class="sm-image"><img src="/client/images/product/small-size/5.jpg" alt="product image thumb"></div>
-                                            <div class="sm-image"><img src="images/product/small-size/6.jpg" alt="product image thumb"></div>
+                                            <div class="sm-image"><img src="/client/images/product/small-size/6.jpg" alt="product image thumb"></div>
                                         </div>
                                     </div>
                                     <!--// Product Details Left -->
@@ -512,7 +519,7 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <!-- Quick View | Modal Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
@@ -558,6 +565,7 @@
         <script src="/client/js/scrollUp.min.js"></script>
         <!-- Main/Activator js -->
         <script src="/client/js/main.js"></script>
+        @include('client.ajax')
     </body>
 
 <!-- single-product31:32-->

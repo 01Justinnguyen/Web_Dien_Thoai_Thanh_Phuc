@@ -98,7 +98,7 @@
                                 <p class="card-text mb-2">Your new password must be different from previously used passwords</p>
                                 <form class="auth-reset-password-form mt-2" action="{{ Route('reset.Pass') }}" method="POST">
                                     @csrf
-                                    @if(session()->has('message'))
+                                    {{-- @if(session()->has('message'))
                                     <div class="alert alert-success">
                                         {!! session()->get('message') !!}
                                     </div>
@@ -106,7 +106,7 @@
                                     <div class="alert alert-danger">
                                         {!! session()->get('error') !!}
                                     </div>
-                                    @endif
+                                    @endif --}}
                                     {{-- <div class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="reset-password-new">Password Old</label>

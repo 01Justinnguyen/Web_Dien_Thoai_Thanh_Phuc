@@ -38,4 +38,6 @@
     <link rel="stylesheet" href="/client/css/responsive.css">
     <!-- Modernizr js -->
     <script src="/client/js/vendor/modernizr-2.8.3.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @toastr_css
 </head>

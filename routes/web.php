@@ -97,6 +97,29 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
 
 
 
+    Route::group([], function() {
+        Route::get('/register', [\App\Http\Controllers\UserController::class, 'viewRegister']);
+        Route::post('/register', [\App\Http\Controllers\UserController::class, 'register']);
+
+        Route::get('/login', [\App\Http\Controllers\UserController::class, 'viewLogin']);
+        Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
+
+        Route::get('/forget', [\App\Http\Controllers\UserController::class, 'viewForget']);
+        Route::post('/forget', [\App\Http\Controllers\UserController::class, 'forget'])->name('sendReset');
+
+        Route::get('/update-new-pass', [\App\Http\Controllers\UserController::class, 'updateNewPass']);
+        Route::post('/reset-new-pass', [\App\Http\Controllers\UserController::class, 'ResetPass']);
+
+        Route::get('/change-pass', [\App\Http\Controllers\UserController::class, 'viewChange']);
+        Route::post('/change-pass', [\App\Http\Controllers\UserController::class, 'changePass'])->name('changePass');
+
+        Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
+        Route::get('/reset', [\App\Http\Controllers\UserController::class, 'reset']);
+        Route::get('/active/{xxx}', [\App\Http\Controllers\UserController::class, 'Active']);
+        });
+
+
+
 
 
 

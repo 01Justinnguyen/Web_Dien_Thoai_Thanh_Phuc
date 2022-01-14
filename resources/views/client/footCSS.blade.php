@@ -53,4 +53,24 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
+     @jquery
+     @toastr_js
+     @toastr_render
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script>
+        @if(count($errors) > 0)
+            @foreach($errors->all() as $error)
+                toastr.error("{{$error}}");
+            @endforeach
+            @endif
+    </script>
+
+
+
     <!--End of Tawk.to Script-->

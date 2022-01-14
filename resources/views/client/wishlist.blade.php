@@ -43,6 +43,8 @@
         <link rel="stylesheet" href="/client/css/responsive.css">
         <!-- Modernizr js -->
         <script src="/cient/js/vendor/modernizr-2.8.3.min.js"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @toastr_css
 </head>
     <body>
     <!--[if lt IE 8]>
@@ -101,9 +103,9 @@
                                                 <td class="li-product-name"><a href="#">Giro Civilia</a></td>
                                                 <td class="li-product-price"><span class="amount">$23.39</span></td>
                                                 <td class="li-product-stock-status"><span class="in-stock">in stock</span></td>
-                                                <td class="li-product-add-cart"><a href="#">add to cart</a></td>
+                                                <td class="li-product-add-cart"><a href="#" data-toggle="modal" data-target="#modalLogin">add to cart</a></td>
                                             </tr>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
                                                 <td class="li-product-thumbnail"><a href="#"><img src="/client/images/wishlist-thumb/2.jpg" alt=""></a></td>
                                                 <td class="li-product-name"><a href="#">Pro Bike Shoes</a></td>
@@ -118,7 +120,7 @@
                                                 <td class="li-product-price"><span class="amount">$40.19</span></td>
                                                 <td class="li-product-stock-status"><span class="out-stock">out stock</span></td>
                                                 <td class="li-product-add-cart"><a href="#">add to cart</a></td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -282,6 +284,85 @@
         <script src="/client/js/scrollUp.min.js"></script>
         <!-- Main/Activator js -->
         <script src="/client/js/main.js"></script>
+        @jquery
+        @toastr_js
+        @toastr_render
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
+        <script>
+            @if(count($errors) > 0)
+                @foreach($errors->all() as $error)
+                    toastr.error("{{$error}}");
+                @endforeach
+                @endif
+        </script>
+        <script>
+            $(document).ready(function(){
+                $('#loginButton').click(function(e){
+                    var email        = $("#emailLogin").val();
+                    var password     = $("#passwordLogin").val();
+
+                    var data = {
+                        'email'       : email,
+                        'password'    : password,
+
+                };
+                $.ajax({
+                        url : '/login',
+                        type: 'post',
+                        data: data,
+                        success: function($data){
+                            if($data.status == 0){
+                                toastr.error($data.message);
+                            } else if($data.status == 1) {
+                                toastr.warning($data.message);
+                            } else {
+                                toastr.success($data.message);
+                            }
+                            setTimeout(function(){location.reload()}, 1500);
+                        },
+                        error: function($errors){
+                            var listErrors = $errors.responseJSON.errors;
+                            $.each(listErrors, function(key, value) {
+                                toastr.error(value[0]);
+                            });
+                        }
+                    });
+                });
+                $('#registerButton').click(function(e){
+                var email        = $("#email_register").val();
+                var password     = $("#password_register").val();
+                var re_password  = $("#re_password_register").val();
+                var fullname     = $("#fullname_register").val();
+                var data = {
+                    'email'       : email,
+                    'password'    : password,
+                    're_password' : re_password,
+                    'name'        : fullname,
+            };
+            $.ajax({
+                    url : '/register',
+                    type: 'post',
+                    data: data,
+                    success: function($xxx){
+                        toastr.success('Đã tạo mới tài khoản thành công');
+                        location.reload();
+                    },
+                    error: function($errors){
+                        var listErrors = $errors.responseJSON.errors;
+                        $.each(listErrors, function(key, value) {
+                            toastr.error(value[0]);
+                        });
+                    }
+                });
+            });
+            });
+        </script>
     </body>
 
 <!-- wishlist31:30-->
