@@ -327,5 +327,5 @@
         </div>
     </div>
 </section>
-@include('client.ajax')
+{{-- @include('client.ajax') --}}
 @endsection

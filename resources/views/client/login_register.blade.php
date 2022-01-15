@@ -79,4 +79,4 @@
     </div>
 </div>
 @endsection
-@include('client.ajax')
+{{-- @include('client.ajax') --}}

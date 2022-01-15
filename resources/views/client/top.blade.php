@@ -1,7 +1,5 @@
 <header>
-        @php
-            $user = Auth::user()
-        @endphp
+
     <!-- Begin Header Top Area -->
     <div class="header-top">
 

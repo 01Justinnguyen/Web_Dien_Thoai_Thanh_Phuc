@@ -5,7 +5,9 @@
 <!-- index28:48-->
     @include('client.headCSS')
     <body>
-
+        @php
+            $user = Auth::user()
+        @endphp
         <!-- Begin Body Wrapper -->
         <div class="body-wrapper">
             <!-- Begin Header Area -->
@@ -133,7 +135,6 @@
         </div>
         @include('client.footCSS')
         @yield('js')
-        @include('client.ajax')
     </body>
 <!-- index30:23-->
 </html>
