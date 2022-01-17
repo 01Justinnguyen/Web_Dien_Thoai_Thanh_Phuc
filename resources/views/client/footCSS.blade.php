@@ -132,6 +132,24 @@
         });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+           $(".callDelete").click(function() {
+                   var id = $(this).data('delete');
+                   row = $(this);
+                   console.log("Chuẩn bị xóa loại sản phẩm có id: " + id);
+                   $(this).closest('li').remove();
+                   $.ajax({
+                       url : '/cart/remove/' + id,
+                       type: 'get',
+                       success: function($data){
+                            toastr.success('Delete this product successfully!', 'Success');
+                       },
+                   });
+                });
+            });
+   </script>
+
 
 
 

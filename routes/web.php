@@ -116,6 +116,11 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
         Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
         Route::get('/reset', [\App\Http\Controllers\UserController::class, 'reset']);
         Route::get('/active/{xxx}', [\App\Http\Controllers\UserController::class, 'Active']);
+
+        Route::post('/cart', [\App\Http\Controllers\CartController::class, 'store']);
+        Route::get('/cart/remove/{id}', [\App\Http\Controllers\CartController::class, 'removeProduct']);
+
+
         });
 
 

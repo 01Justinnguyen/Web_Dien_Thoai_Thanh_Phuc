@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Home;
 use App\Http\Controllers\Controller;
 use App\Models\brand;
+use App\Models\Cart;
 use App\Models\categories;
 use App\Models\MainBanner;
 use App\Models\product;
 use App\Models\SubBanner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -98,6 +100,9 @@ class HomeController extends Controller
     }
     public function index()
     {
+        $gioHang = null;
+        $user = Auth::user();
+
         $SmallBanner1 = SubBanner::where('is_view_1', 1)->limit(1)->get();
         $SmallBanner2 = SubBanner::where('is_view_2', 1)->limit(1)->get();
         $SubBanner = SubBanner::where('is_view_sub', 1)->limit(1)->get();
@@ -106,7 +111,13 @@ class HomeController extends Controller
         $product2 = product::where('feature', 1)->get();
         $product3 = product::where('status', 2)->get();
         $listProducts = product::where('is_view', 1)->get();
-        return view('client.index', compact('SmallBanner1', 'SmallBanner2', 'SubBanner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner'));
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+
+
+        return view('client.index', compact('SmallBanner1', 'SmallBanner2', 'SubBanner', 'product', 'product2', 'product3', 'listProducts', 'mainBanner', 'gioHang'));
     }
 
     public function search(Request $request)

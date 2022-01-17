@@ -97,12 +97,20 @@
                                         <div class="quantity">
                                             <label>Quantity</label>
                                             <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="1" type="text">
+                                                <input class="cart-plus-minus-box" value="1" type="text" id="qty">
                                                 <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
                                                 <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                             </div>
+                                            <input type="hidden" name="" id="product_id" value="{{ $value->id }}">
                                         </div>
-                                        <button href="" class="add-to-cart" type="button" data-toggle="modal" data-target="#modalLogin">Add to cart</button>
+                                        @php
+                                            $user = Auth::user();
+                                        @endphp
+                                        @if (isset($user))
+                                            <button href="" class="add-to-cart" type="button" id="addToCart">Add to cart</button>
+                                        @else
+                                            <button href="" class="add-to-cart" type="button" data-toggle="modal" data-target="#modalLogin">Add to cart</button>
+                                        @endif
                                     </form>
                                 </div>
                                 <div class="product-additional-info pt-25">
@@ -306,12 +314,12 @@
                                                     <!-- single-product-wrap start -->
                                                     <div class="single-product-wrap">
                                                         <div class="product-image">
-                                                            <a href="/detail/{{$value_all->slug}}-{{$value->id}}">
+                                                            <a href="/detail/{{$value_all->slug}}-{{$value_all->id}}">
                                                                 <img src="{{$value_all->image_product}}" alt="Li's Product Image">
                                                             </a>
                                                             <span class="{{ $value_all->price_sell ? "sticker" : " " }}" style="color: yellow">
-                                                                @if(!empty($value->price_sell))
-                                                                    <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
+                                                                @if(!empty($value_all->price_sell))
+                                                                    <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value_all->price_root - $value_all->price_sell) / $value_all->price_root * 100, 0) }}%</span>
                                                                 @endif
                                                             </span>
                                                         </div>
@@ -334,8 +342,8 @@
                                                                 </div>
                                                                 <h4><a class="product_name" href="/detail/{{$value_all->slug}}-{{$value->id}}">{{$value_all->name}}</a></h4>
                                                                 <div class="price-box">
-                                                                    <span class="new-price new-price-2">{{ empty($value->price_sell) ?  number_format($value->price_root, 0, '.', ',') . " đ" : number_format($value->price_sell, 0, '.', ',') . " đ"}}</span>
-                                                                    <span class="old-price" style="text-decoration-line: line-through" >{{ empty($value->price_sell) ?  '' : number_format($value->price_root, 0, '.', ',') . " đ" }}</span>
+                                                                    <span class="new-price new-price-2">{{ empty($value_all->price_sell) ?  number_format($value_all->price_root, 0, '.', ',') . " đ" : number_format($value_all->price_sell, 0, '.', ',') . " đ"}}</span>
+                                                                    <span class="old-price" style="text-decoration-line: line-through" >{{ empty($value_all->price_sell) ?  '' : number_format($value_all->price_root, 0, '.', ',') . " đ" }}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="add-actions">
@@ -365,7 +373,7 @@
         </div> --}}
         <!-- Footer Area End Here -->
         <!-- Begin Quick View | Modal Area -->
-        <div class="modal fade modal-wrapper" id="exampleModalCenter" >
+        {{-- <div class="modal fade modal-wrapper" id="exampleModalCenter" >
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -448,10 +456,11 @@
                                                 <div class="quantity">
                                                     <label>Quantity</label>
                                                     <div class="cart-plus-minus">
-                                                        <input class="cart-plus-minus-box" value="1" type="text">
+                                                        <input class="cart-plus-minus-box" value="1" type="text" id="qty">
                                                         <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
                                                         <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                                     </div>
+                                                    <input type="hidden" name="" id="product_id">
                                                 </div>
                                                 <button class="add-to-cart" type="submit">Add to cart</button>
                                             </form>
@@ -474,52 +483,38 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Quick View | Modal Area End Here -->
     </div>
     <!-- Body Wrapper End Here -->
     <!-- jQuery-V1.12.4 -->
-    {{-- <script src="/client/js/vendor/jquery-1.12.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="/client/js/vendor/popper.min.js"></script>
-    <!-- Bootstrap V4.1.3 Fremwork js -->
-    <script src="/client/js/bootstrap.min.js"></script>
-    <!-- Ajax Mail js -->
-    <script src="/client/js/ajax-mail.js"></script>
-    <!-- Meanmenu js -->
-    <script src="/client/js/jquery.meanmenu.min.js"></script>
-    <!-- Wow.min js -->
-    <script src="/client/js/wow.min.js"></script>
-    <!-- Slick Carousel js -->
-    <script src="/client/js/slick.min.js"></script>
-    <!-- Owl Carousel-2 js -->
-    <script src="/client/js/owl.carousel.min.js"></script>
-    <!-- Magnific popup js -->
-    <script src="/client/js/jquery.magnific-popup.min.js"></script>
-    <!-- Isotope js -->
-    <script src="/client/js/isotope.pkgd.min.js"></script>
-    <!-- Imagesloaded js -->
-    <script src="/client/js/imagesloaded.pkgd.min.js"></script>
-    <!-- Mixitup js -->
-    <script src="/client/js/jquery.mixitup.min.js"></script>
-    <!-- Countdown -->
-    <script src="/client/js/jquery.countdown.min.js"></script>
-    <!-- Counterup -->
-    <script src="/client/js/jquery.counterup.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/client/js/waypoints.min.js"></script>
-    <!-- Barrating -->
-    <script src="/client/js/jquery.barrating.min.js"></script>
-    <!-- Jquery-ui -->
-    <script src="/client/js/jquery-ui.min.js"></script>
-    <!-- Venobox -->
-    <script src="/client/js/venobox.min.js"></script>
-    <!-- Nice Select js -->
-    <script src="/client/js/jquery.nice-select.min.js"></script>
-    <!-- ScrollUp js -->
-    <script src="/client/js/scrollUp.min.js"></script>
-    <!-- Main/Activator js -->
-    <script src="/client/js/main.js"></script>
-    @include('client.ajax') --}}
+
 </body>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function(){
+            $("#addToCart").click(function(){
+                var payload = {
+                    'qty'        : $("#qty").val(),
+                    'product_id' : $("#product_id").val(),
+                };
+
+                $.ajax({
+                    url : '/cart',
+                    type: 'post',
+                    data: payload,
+                    success: function($xxx){
+                        toastr.success('Đã thêm sản phẩm vào giỏ hàng');
+                    },
+                    error: function($errors){
+                        var listErrors = $errors.responseJSON.errors;
+                        $.each(listErrors, function(key, value) {
+                            toastr.error(value[0]);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -60,8 +60,12 @@
                     <!-- Begin Header Middle Searchbox Area -->
                     <form action="#" class="hm-searchbox">
                         <select class="nice-select select-search-category">
-                            <option value="0">All</option>
-                            <option value="10">Laptops</option>
+                            <option>ALL Categories</option>
+                            @foreach ($category as $value)
+                            <option>{{ $value->name }}</option>
+                            @endforeach
+
+                            {{-- <option value="10">Laptops</option>
                             <option value="17">- -  Prime Video</option>
                             <option value="20">- - - -  All Videos</option>
                             <option value="21">- - - -  Blouses</option>
@@ -129,7 +133,7 @@
                             <option value="13">Cameras</option>
                             <option value="14">headphone</option>
                             <option value="15">Smartwatch</option>
-                            <option value="16">Accessories</option>
+                            <option value="16">Accessories</option> --}}
                         </select>
                         <form action="{{ Route('search.products') }}" method="POST">
                             @csrf
@@ -151,41 +155,46 @@
                             <!-- Header Middle Wishlist Area End Here -->
                             <!-- Begin Header Mini Cart Area -->
                             <li class="hm-minicart">
+                                @php
+                                    $thanhTien = 0;
+                                    $tongSanPham = 0;
+                                @endphp
+                                @if (isset($gioHang))
+                                @foreach ($gioHang as $key => $value)
+                                    @php
+                                        $donGia  = empty($value->product->price_sale) ? $value->product->price_root : $value->product->price_sale;
+                                        $soLuong = $value->qty;
+                                        $thanhTien = $thanhTien + $donGia * $soLuong;
+                                        $tongSanPham += $value->qty;
+                                    @endphp
+                                @endforeach
+                                @endif
                                 <div class="hm-minicart-trigger">
                                     <span class="item-icon"></span>
-                                    <span class="item-text">£80.00
-                                        <span class="cart-item-count">2</span>
+                                    <span class="item-text"><span>Giỏ Hàng</span>
+                                        {{-- <span class="cart-item-count">{{$tongSanPham}}</span> --}}
                                     </span>
                                 </div>
                                 <span></span>
+                                @if (isset($gioHang))
                                 <div class="minicart">
                                     <ul class="minicart-product-list">
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="/client/images/product/small-size/5.jpg" alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>£40 x 1</span>
-                                            </div>
-                                            <button class="close" title="Remove">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="/client/images/product/small-size/6.jpg" alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>£40 x 1</span>
-                                            </div>
-                                            <button class="close" title="Remove">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </li>
+                                        @foreach ($gioHang as $key => $value)
+                                            <li>
+                                                <a href="/detail/{{$value->product->slug}}-{{$value->product->id}}" class="minicart-product-image">
+                                                    <img src="{{$value->product->image_product}}" alt="cart products">
+                                                </a>
+                                                <div class="minicart-product-details">
+                                                    <h6><a href="/detail/{{$value->product->slug}}-{{$value->product->id}}">{{$value->product->name}}</a></h6>
+                                                    <span>{{ empty($value->product->price_sell) ?  number_format($value->product->price_root, 0, '.', ',') . " đ" : number_format($value->product->price_sell, 0, '.', ',') . " đ"}} x {{ $value->qty }}</span>
+                                                </div>
+                                                <button data-delete={{$value->id}} class="close callDelete" title="Remove">
+                                                    <i class="fa fa-close"></i>
+                                                </button>
+                                            </li>
+                                        @endforeach
                                     </ul>
-                                    <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                    {{-- <p class="minicart-total">SUBTOTAL: <span>{{ number_format($thanhTien, 0, '.', ',') }} đ</span></p> --}}
                                     <div class="minicart-button">
                                         <a href="/cart" class="li-button li-button-fullwidth li-button-dark">
                                             <span>View Full Cart</span>
@@ -195,6 +204,7 @@
                                         </a>
                                     </div>
                                 </div>
+                                @endif
                             </li>
                             <!-- Header Mini Cart Area End Here -->
                         </ul>
