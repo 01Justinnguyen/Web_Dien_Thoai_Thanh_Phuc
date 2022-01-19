@@ -20,26 +20,56 @@ class HomeController extends Controller
 {
     public function profile()
     {
-        return view('client.profile');
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+        return view('client.profile', compact('gioHang'));
     }
 
     public function errors()
     {
-        return view('client.404');
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+        return view('client.404', compact('gioHang'));
     }
 
     public function thanks()
     {
-        return view('client.thanks');
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+        return view('client.thanks', compact('gioHang'));
     }
 
     public function wishlist()
     {
-        return view('client.wishlist');
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+        return view('client.wishlist', compact('gioHang'));
     }
 
     public function detail($slug)
     {
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
         $i = 0;
         for($i = strlen($slug)-1; $i >= 0; $i--){
             if($slug[$i] == '-'){
@@ -51,7 +81,7 @@ class HomeController extends Controller
         $products = product::all();
         if($data){
             $product = product::where('id', $data->id)->get();
-            return view('client.detail', compact('product','data', 'products'));
+            return view('client.detail', compact('product','data', 'products', 'gioHang'));
         } else {
             toastr()->error("Product is not exits");
             return redirect('/');
@@ -60,6 +90,13 @@ class HomeController extends Controller
 
     public function shopProduct($slug)
     {
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+
         $i = 0;
         for($i = strlen($slug)-1; $i >= 0; $i--){
             if($slug[$i] == '-'){
@@ -71,7 +108,7 @@ class HomeController extends Controller
         $banner = brand::all();
         if($data){
             $product = product::where('brand_id', $data->id)->where('id', '<>', $id)->get();
-            return view('client.shopProduct', compact('product', 'data', 'banner'));
+            return view('client.shopProduct', compact('product', 'data', 'banner', 'gioHang'));
         } else {
             toastr()->error("Product is not exits");
             return redirect('/');
@@ -81,6 +118,12 @@ class HomeController extends Controller
 
     public function shopCategory($slug)
     {
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
         $i = 0;
         for($i = strlen($slug)-1; $i >= 0; $i--){
             if($slug[$i] == '-'){
@@ -91,7 +134,7 @@ class HomeController extends Controller
         $data = categories::find($id);
         if($data){
             $product = product::where('category_id', $data->id)->get();
-            return view('client.shopCategory', compact('product', 'data'));
+            return view('client.shopCategory', compact('product', 'data', 'gioHang'));
         } else {
             toastr()->error("Product is not exits");
             return redirect('/');
@@ -100,9 +143,6 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $gioHang = null;
-        $user = Auth::user();
-
         $SmallBanner1 = SubBanner::where('is_view_1', 1)->limit(1)->get();
         $SmallBanner2 = SubBanner::where('is_view_2', 1)->limit(1)->get();
         $SubBanner = SubBanner::where('is_view_sub', 1)->limit(1)->get();
@@ -111,6 +151,9 @@ class HomeController extends Controller
         $product2 = product::where('feature', 1)->get();
         $product3 = product::where('status', 2)->get();
         $listProducts = product::where('is_view', 1)->get();
+
+        $gioHang = null;
+        $user = Auth::user();
 
         if($user){
             $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
@@ -137,17 +180,57 @@ class HomeController extends Controller
 
     public function loginRegister()
     {
-        return view('client.login_register');
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+        return view('client.login_register', compact('gioHang'));
     }
 
-    public function checkOut()
+    public function checkout()
     {
-        return view('client.checkout');
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+
+        // $data = Cart::where('user_id', $user->id)->where('type', 0)->get();
+        return view('client.checkout', compact('gioHang'));
     }
+
+    // public function checkoutData()
+    // {
+    //     $user = Auth::user();
+    //     $data = Cart::where('user_id', $user->id)->where('type', 0)->get();
+
+    //     return response()->json(['data' => $data]);
+    // }
 
     public function cart()
     {
-        return view('client.cart');
+        $gioHang = null;
+        $user = Auth::user();
+
+        if($user){
+            $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
+        }
+        return view('client.cart', compact('gioHang'));
+    }
+
+    public function cartData()
+    {
+        $user = Auth::user();
+        // $data = Cart::where('user_id', $user->id)->where('type', 0)->get();
+        $data = Cart::join('products', 'products.id', 'carts.product_id')
+	                ->select('carts.*', 'products.image_product','products.price_root','products.price_sell','products.name')
+	                ->where('carts.user_id', $user->id)
+	                ->where('products.status', 0)
+	                ->get();
+        return response()->json(['data' => $data]);
     }
 
 

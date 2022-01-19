@@ -90,10 +90,14 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
     Route::get('/shopProduct/{slug}', [\App\Http\Controllers\HomeController::class, 'shopProduct']);
     Route::get('/shopCategory/{slug}', [\App\Http\Controllers\HomeController::class, 'shopCategory']);
     Route::get('/loginRegister', [\App\Http\Controllers\HomeController::class, 'loginRegister']);
-    Route::get('/checkout', [\App\Http\Controllers\HomeController::class, 'checkOut']);
-    Route::get('/cart', [\App\Http\Controllers\HomeController::class, 'cart']);
     Route::get('/thanks', [\App\Http\Controllers\HomeController::class, 'thanks']);
     Route::get('/wishlist', [\App\Http\Controllers\HomeController::class, 'wishlist']);
+    Route::get('/checkout', [\App\Http\Controllers\HomeController::class, 'checkout']);
+    Route::get('/checkout/data', [\App\Http\Controllers\HomeController::class, 'checkoutData']);
+    Route::get('/cart', [\App\Http\Controllers\HomeController::class, 'cart']);
+    Route::get('/cart/data', [\App\Http\Controllers\HomeController::class, 'cartData']);
+
+
 
 
 

@@ -26,7 +26,7 @@ class CartController extends Controller
     {
         // Để xác định sản phẩm của người mua nào để xóa không được xóa vào sản phẩm của người khác
         $user = Auth::user();
-        $data = Cart::where('id', $id)->where('user_id', $user->id)->first();
+        $data = Cart::where('id', $id)->where('user_id', $user->id)->where('type', 0)->first();
         if($data){
             $data->delete();
             return response()->json(true);

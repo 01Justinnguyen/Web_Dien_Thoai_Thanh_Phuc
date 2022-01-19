@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <form action="#">
                             <div class="table-content table-responsive">
-                                <table class="table">
+                                <table class="table" id="myTable">
                                     <thead>
                                         <tr>
                                             <th class="li-product-remove">remove</th>
@@ -48,36 +48,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            <td class="li-product-thumbnail"><a href="#"><img src="/client/images/product/small-size/5.jpg" alt="Li's Product Image"></a></td>
-                                            <td class="li-product-name"><a href="#">Accusantium dolorem1</a></td>
-                                            <td class="li-product-price"><span class="amount">$46.80</span></td>
-                                            <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal"><span class="amount">$70.00</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            <td class="li-product-thumbnail"><a href="#"><img src="/client/images/product/small-size/6.jpg" alt="Li's Product Image"></a></td>
-                                            <td class="li-product-name"><a href="#">Mug Today is a good day</a></td>
-                                            <td class="li-product-price"><span class="amount">$71.80</span></td>
-                                            <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal"><span class="amount">$60.50</span></td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -88,9 +59,9 @@
                                             <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
                                             <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
                                         </div>
-                                        <div class="coupon2">
+                                        {{-- <div class="coupon2">
                                             <input class="button" name="update_cart" value="Update cart" type="submit">
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +73,7 @@
                                             <li>Subtotal <span>$130.00</span></li>
                                             <li>Total <span>$130.00</span></li>
                                         </ul>
-                                        <a href="#">Proceed to checkout</a>
+                                        <a href="/checkout">Proceed to checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -112,54 +83,48 @@
             </div>
         </div>
         <!--Shopping Cart Area End-->
-        <!-- Begin Footer Area -->
-        {{-- <div class="footer">
-            @include('client.footer')
-        </div> --}}
-        <!-- Footer Area End Here -->
     </div>
-    <!-- Body Wrapper End Here -->
-    <!-- jQuery-V1.12.4 -->
-    {{-- <script src="/client/js/vendor/jquery-1.12.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="/client/js/vendor/popper.min.js"></script>
-    <!-- Bootstrap V4.1.3 Fremwork js -->
-    <script src="/client/js/bootstrap.min.js"></script>
-    <!-- Ajax Mail js -->
-    <script src="/client/js/ajax-mail.js"></script>
-    <!-- Meanmenu js -->
-    <script src="/client/js/jquery.meanmenu.min.js"></script>
-    <!-- Wow.min js -->
-    <script src="/client/js/wow.min.js"></script>
-    <!-- Slick Carousel js -->
-    <script src="/client/js/slick.min.js"></script>
-    <!-- Owl Carousel-2 js -->
-    <script src="/client/js/owl.carousel.min.js"></script>
-    <!-- Magnific popup js -->
-    <script src="/client/js/jquery.magnific-popup.min.js"></script>
-    <!-- Isotope js -->
-    <script src="/client/js/isotope.pkgd.min.js"></script>
-    <!-- Imagesloaded js -->
-    <script src="/client/js/imagesloaded.pkgd.min.js"></script>
-    <!-- Mixitup js -->
-    <script src="/client/js/jquery.mixitup.min.js"></script>
-    <!-- Countdown -->
-    <script src="/client/js/jquery.countdown.min.js"></script>
-    <!-- Counterup -->
-    <script src="/client/js/jquery.counterup.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/client/js/waypoints.min.js"></script>
-    <!-- Barrating -->
-    <script src="/client/js/jquery.barrating.min.js"></script>
-    <!-- Jquery-ui -->
-    <script src="/client/js/jquery-ui.min.js"></script>
-    <!-- Venobox -->
-    <script src="/client/js/venobox.min.js"></script>
-    <!-- Nice Select js -->
-    <script src="/client/js/jquery.nice-select.min.js"></script>
-    <!-- ScrollUp js -->
-    <script src="/client/js/scrollUp.min.js"></script>
-    <!-- Main/Activator js -->
-    <script src="/client/js/main.js"></script> --}}
 </body>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function(){
+            // load data lên trên view dùng hàm này, hàm này là hàm tự đặt tên có thể đặt tên khác cũng được
+            function loadData(){
+                axios
+                    .get('/cart/data')
+                    .then((res) => {
+                        var data = res.data.data;
+                        var html = '';
+                        $.each(data, function(key, value){
+                            if(value.price_sell == null ){
+                                var price = value.price_root;
+                            } else {
+                                var price = value.price_sell;
+                            }
+                            html += '<tr>';
+                            html += '<td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>';
+                            html += '<td class="li-product-thumbnail"><a href="#"><img style="width; 150px; height: 150px" src="' + value.image_product +'"></a></td>';
+                            html += '<td class="li-product-name"><a href="#">' + value.name + '</a></td>';
+                            html += '<td class="li-product-price"><span class="amount">'+ new Intl.NumberFormat('vi-VI', { style: 'currency', currency: 'VND' }).format(price) +'</span></td>';
+                            html += '<td class="quantity">';
+                            html += '<label>Quantity</label>';
+                            html += '<div class="cart-plus-minus">';
+                            html += '<input class="cart-plus-minus-box" value="' + value.qty + '" type="text">';
+                            html += '<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>';
+                            html += '<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>';
+                            html += '</div>';
+                            html += '</td>';
+                            html += '<td class="product-subtotal"><span class="amount">'+ new Intl.NumberFormat('vi-VI', { style: 'currency', currency: 'VND' }).format(price * value.qty) +'</span></td>';
+                            html += '</tr>';
+                        });
+                        $('#myTable tbody').html(html);
+                    });
+            }
+            loadData();
+
+
+        });
+    </script>
+
 @endsection

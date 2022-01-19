@@ -13,10 +13,10 @@
                         <div class="single-slide align-center-left  animation-style-01 bg-1" style="background-image: url({{$value->main_banner_1}})">
                             <div class="slider-progress"></div>
                             <div class="slider-content">
-                                {{-- <h5>Sale Offer <span>-20% Off</span> This Week</h5>
-                                <h2>Chamcham Galaxy S9 | S9+</h2>
+                                <h5>Sale Offer <span>-20% Off</span> This Week</h5>
+                                <h2>Samsung Galaxy S9 | S9+</h2>
                                 <h3>Starting at <span>$1209.00</span></h3>
-                                <div class="default-btn slide-btn">
+                                {{-- <div class="default-btn slide-btn">
                                     <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
                                 </div> --}}
                             </div>
@@ -109,7 +109,7 @@
                                             <ul class="add-actions-link">
                                                 <li class="add-cart active"><a href="#" data-toggle="modal" data-target="#modalLogin">Add to cart</a></li>
                                                 <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                                <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                                {{-- <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li> --}}
                                             </ul>
                                         </div>
                                     </div>
@@ -166,7 +166,7 @@
                                         <ul class="add-actions-link">
                                             <li class="add-cart active"><a href="#" data-toggle="modal" data-target="#modalLogin">Add to cart</a></li>
                                             <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                            {{-- <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -241,7 +241,7 @@
                                         <ul class="add-actions-link">
                                             <li class="add-cart active"><a href="#" data-toggle="modal" data-target="#modalLogin">Add to cart</a></li>
                                             <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                            <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                            {{-- <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -327,5 +327,4 @@
         </div>
     </div>
 </section>
-{{-- @include('client.ajax') --}}
 @endsection
