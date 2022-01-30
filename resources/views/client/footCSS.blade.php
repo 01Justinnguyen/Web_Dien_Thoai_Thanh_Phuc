@@ -130,6 +130,26 @@
                 }
             });
         });
+        $("#addToWishList").click(function(){
+                    var product_id      = $("#product_id").val();
+                    var data = {
+                        'product_id'    : product_id,
+                };
+                $.ajax({
+                        url : '/wishlist/add',
+                        type: 'post',
+                        data: data,
+                        success: function($data){
+                            toastr.success('Sản phẩm đã có trong mục yêu thích');
+                        },
+                        error: function($errors){
+                            var listErrors = $errors.responseJSON.errors;
+                            $.each(listErrors, function(key, value) {
+                                toastr.error(value[0]);
+                            });
+                        }
+                    });
+                });
         });
     </script>
     <script>

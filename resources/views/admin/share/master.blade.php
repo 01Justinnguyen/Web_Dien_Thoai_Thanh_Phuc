@@ -19,7 +19,7 @@
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content">
         @yield('content')
     </div>
     <!-- END: Content-->

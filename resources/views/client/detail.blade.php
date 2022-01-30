@@ -114,7 +114,7 @@
                                     </form>
                                 </div>
                                 <div class="product-additional-info pt-25">
-                                    <a class="wishlist-btn" href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a>
+                                    <a class="wishlist-btn" id="addToWishList1" style="cursor: pointer"><i class="fa fa-heart-o"></i>Add to wishlist</a>
                                     <div class="product-social-sharing pt-25">
                                         <ul>
                                             <li class="facebook"><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
@@ -348,9 +348,18 @@
                                                             </div>
                                                             <div class="add-actions">
                                                                 <ul class="add-actions-link">
-                                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                                                    @php
+                                                                        $user = Auth::user();
+                                                                    @endphp
+                                                                    @if (isset($user))
+                                                                        {{-- <button href="" class="add-cart active" type="button" id="addToCart">Add to cart</button> --}}
+                                                                        <li class="add-cart active"><a id="addToCart" href="#">Add to cart</a></li>
+                                                                    @else
+                                                                        <li class="add-cart active"><a data-toggle="modal" data-target="#modalLogin" >Add to cart</a></li>
+                                                                        {{-- <button href="" class="add-cart active" type="button" data-toggle="modal" data-target="#modalLogin">Add to cart</button> --}}
+                                                                    @endif
                                                                     <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
+                                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -367,13 +376,8 @@
             </div>
         </section>
         <!-- Li's Laptop Product Area End Here -->
-        <!-- Begin Footer Area -->
-        {{-- <div class="footer">
-            @include('client.footer')
-        </div> --}}
-        <!-- Footer Area End Here -->
         <!-- Begin Quick View | Modal Area -->
-        {{-- <div class="modal fade modal-wrapper" id="exampleModalCenter" >
+        <div class="modal fade modal-wrapper" id="exampleModalCenter" >
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -483,7 +487,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- Quick View | Modal Area End Here -->
     </div>
     <!-- Body Wrapper End Here -->

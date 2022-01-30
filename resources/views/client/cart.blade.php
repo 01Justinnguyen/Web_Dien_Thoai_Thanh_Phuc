@@ -59,9 +59,9 @@
                                             <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
                                             <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
                                         </div>
-                                        {{-- <div class="coupon2">
+                                        <div class="coupon2">
                                             <input class="button" name="update_cart" value="Update cart" type="submit">
-                                        </div> --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -96,6 +96,7 @@
                     .then((res) => {
                         var data = res.data.data;
                         var html = '';
+                        // var productId = product.product_id;
                         $.each(data, function(key, value){
                             if(value.price_sell == null ){
                                 var price = value.price_root;
@@ -110,20 +111,51 @@
                             html += '<td class="quantity">';
                             html += '<label>Quantity</label>';
                             html += '<div class="cart-plus-minus">';
-                            html += '<input class="cart-plus-minus-box" value="' + value.qty + '" type="text">';
-                            html += '<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>';
-                            html += '<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>';
+                            html += '<input data-qty="'+ value.id +'" class="cart-plus-minus-box" value="' + value.qty + '" type="text" min="1" disabled="disabled">';
+                            html += '<div id="sub" class="dec qtybutton"><i class="fa fa-angle-down"></i></div>';
+                            html += '<div id="add" class="inc qtybutton"><i class="fa fa-angle-up"></i></div>';
                             html += '</div>';
                             html += '</td>';
                             html += '<td class="product-subtotal"><span class="amount">'+ new Intl.NumberFormat('vi-VI', { style: 'currency', currency: 'VND' }).format(price * value.qty) +'</span></td>';
                             html += '</tr>';
                         });
                         $('#myTable tbody').html(html);
+                        $(".qtybutton").on("click", function() {
+                            var $button = $(this);
+                            var oldValue = $button.parent().find("input").val();
+                            if ($button.hasClass('inc')) {
+                            var newVal = parseFloat(oldValue) + 1;
+                            } else {
+                                // Don't allow decrementing below zero
+                            if (oldValue > 1) {
+                                var newVal = parseFloat(oldValue) - 1;
+                                } else {
+                                newVal = 1;
+                            }
+                            }
+                            $button.parent().find("input").val(newVal);
+
+                            var id = $(this).parent().find("input").data('qty');
+                            var qty = $button.parent().find("input").val();
+                            var payload = {
+                                'id' : id,
+                                'qty': qty,
+                            };
+                                axios
+                                    .post('/client/cart/editQty', payload)
+                                    .then((res) => {
+                                        if(res.data.status == true){
+                                            toastr.success("Cart is updated successfully!");
+                                            loadData();
+                                        }else {
+                                            toastr.error("Sorry,it has error somewhere!")
+                                        }
+                            });
+
+                        });
                     });
             }
             loadData();
-
-
         });
     </script>
 

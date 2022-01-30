@@ -48,30 +48,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $status = ['Available','Out of stock', 'Coming soon'];
+                                            $color = ['Green','Red','Warning']
+                                        @endphp
+                                        @if(isset($wishlist))
+                                        @foreach ($wishlist as $key => $value)
                                         <tr>
                                             <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            <td class="li-product-thumbnail"><a href="#"><img src="/client/images/wishlist-thumb/1.jpg" alt=""></a></td>
-                                            <td class="li-product-name"><a href="#">Giro Civilia</a></td>
-                                            <td class="li-product-price"><span class="amount">$23.39</span></td>
-                                            <td class="li-product-stock-status"><span class="in-stock">in stock</span></td>
+                                            <td class="li-product-thumbnail"><a href="#"><img src="{{ $value->Wishlist->image_product }}" alt=""></a></td>
+                                            <td class="li-product-name"><a>{{ $value->Wishlist->name }}</a></td>
+                                            <td class="li-product-price"><span class="amount">{{ empty($value->Wishlist->price_sell) ?  number_format($value->Wishlist->price_root, 0, '.', ',') . " đ" : number_format($value->Wishlist->price_sell, 0, '.', ',') . " đ"}}</span></td>
+                                            <td style="color:{{$color[$value->wishlist->status ]}}; font-size:18px" value={{$value->wishlist->status}}><span class="in-stock"> {{$status[ $value->wishlist->status ]}}</span></td>
                                             <td class="li-product-add-cart"><a href="#" data-toggle="modal" data-target="#modalLogin">add to cart</a></td>
                                         </tr>
-                                        {{-- <tr>
-                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            <td class="li-product-thumbnail"><a href="#"><img src="/client/images/wishlist-thumb/2.jpg" alt=""></a></td>
-                                            <td class="li-product-name"><a href="#">Pro Bike Shoes</a></td>
-                                            <td class="li-product-price"><span class="amount">$30.50</span></td>
-                                            <td class="li-product-stock-status"><span class="in-stock">in stock</span></td>
-                                            <td class="li-product-add-cart"><a href="#">add to cart</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            <td class="li-product-thumbnail"><a href="#"><img src="/client/images/wishlist-thumb/3.jpg" alt=""></a></td>
-                                            <td class="li-product-name"><a href="#">Nero Urban Shoes</a></td>
-                                            <td class="li-product-price"><span class="amount">$40.19</span></td>
-                                            <td class="li-product-stock-status"><span class="out-stock">out stock</span></td>
-                                            <td class="li-product-add-cart"><a href="#">add to cart</a></td>
-                                        </tr> --}}
+                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

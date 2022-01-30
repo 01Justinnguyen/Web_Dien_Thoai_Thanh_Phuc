@@ -6,8 +6,7 @@
             <tr>
                 <th class="text-center">STT</th>
                 <th class="text-center">Name Category</th>
-                {{-- <th class="text-center">Parent Id</th> --}}
-                {{-- <th class="text-center">Banner</th> --}}
+
                 <th class="text-center">Status</th>
                 <th class="text-center">Actions</th>
             </tr>
@@ -17,15 +16,16 @@
             <tr class="text-center">
                 <td style="width:30px"> {{$key+1}} </td>
                 <td> {{$value->name}}</td>
-                {{-- <td> {{empty($value->nameParent) ? 'root' : $value->nameParent}}</td> --}}
-                {{-- <td><img  id="banneredit" style="width:100px; height:100px" src="{{$value->banner}}"></td> --}}
                 <td>
                     <div class="form-check form-switch">
                         <input type="checkbox" class="form-check-input is_view" data-id="{{ $value->id }}" {{ $value->is_view ? 'checked' : '' }}>
                     </div>
                 </td>
                 <td>
-                    <button data-id={{$value->id}} type="button" class="btn btn-primary waves-effect waves-float waves-light callModal" data-bs-toggle="modal" data-bs-target="#addNewCard">
+                    {{-- <button data-id={{$value->id}} type="button" class="btn btn-primary waves-effect waves-float waves-light callModal" data-bs-toggle="modal" data-bs-target="#addNewProduct">
+                        Delete
+                    </button> --}}
+                    <button type="button" data-id="{{$value->id}}" class="btn btn-danger callModal" data-bs-toggle="modal" data-bs-target="#deleteCate">
                         Delete
                     </button>
                     <button type="button" data-edit="{{$value->id}}" class="btn btn-danger callEdit" data-bs-toggle="modal" data-bs-target="#editCategory">
@@ -36,6 +36,49 @@
             @endforeach
         </tbody>
     </table>
+</div>
+
+{{-- <div class="modal fade" id="addNewProduct">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-transparent">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-sm-5 mx-50 pb-5">
+                <h1 class="text-center mb-1" id="addNewCardTitle">Notification</h1>
+                <input type="hidden" id="product_id">
+                <p class="text-center"> Are you sure to delete this product?</p>
+                    <div class="col-12 text-center">
+                        <button type="submit" id="delete_only" class="btn btn-danger me-1 mt-1 waves-effect waves-float waves-light">Delete Only</button>
+                        <button type="submit" id="delete_all" class="btn btn-warning me-1 mt-1 waves-effect waves-float waves-light">Delete All</button>
+                        <button type="reset" class="btn btn-outline-secondary mt-1 waves-effect" data-bs-dismiss="modal" aria-label="Close">
+                            Cancel
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+<div class="modal fade" id="deleteCate">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-transparent">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-sm-5 mx-50 pb-5">
+                <h1 class="text-center mb-1" id="addNewCardTitle">Notification</h1>
+                <input type="hidden" id="category_id">
+                <p> Are you sure to delete this category?</p>
+                    <div class="col-12 text-center">
+                        <button type="submit" id="delete_only" class="btn btn-danger me-1 mt-1 waves-effect waves-float waves-light">Delete Only</button>
+                        <button type="submit" id="delete_all" class="btn btn-warning me-1 mt-1 waves-effect waves-float waves-light">Delete All</button>
+                        <button type="reset" class="btn btn-outline-secondary mt-1 waves-effect" data-bs-dismiss="modal" aria-label="Close">
+                            Cancel
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -112,27 +155,6 @@
 </div>
 
 
-<div class="modal fade" id="addNewCard">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-transparent">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body px-sm-5 mx-50 pb-5">
-                <h1 class="text-center mb-1" id="addNewCardTitle">Notification</h1>
-                <input type="hidden" id="category_id">
-                <p> Are you sure to delete this category?</p>
-                    <div class="col-12 text-center">
-                        <button type="submit" id="delete_only" class="btn btn-danger me-1 mt-1 waves-effect waves-float waves-light">Delete Only</button>
-                        <button type="submit" id="delete_all" class="btn btn-warning me-1 mt-1 waves-effect waves-float waves-light">Delete All</button>
-                        <button type="reset" class="btn btn-outline-secondary mt-1 waves-effect" data-bs-dismiss="modal" aria-label="Close">
-                            Cancel
-                        </button>
-                    </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection
 @section('js')

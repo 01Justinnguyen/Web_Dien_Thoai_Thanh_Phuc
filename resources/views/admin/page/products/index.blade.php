@@ -59,8 +59,8 @@
                                 <td>{!!$value->details!!}</td>
                                 <td>{!!$value->reviews!!}</td>
                                 <td>
-                                    <button type="button" data-edit={{$value->id}}  class="btn btn-outline-success round waves-effect callEdit" type="button" data-bs-toggle="modal" data-bs-target="#editProduct">Edit</button>
-                                    <button data-delete={{$value->id}} type="button" class="btn btn-outline-danger round waves-effect callDelete" type="button" data-bs-toggle="modal" data-bs-target="#addNewProduct">Delete</button>
+                                    <button data-edit={{$value->id}}  class="btn btn-outline-success round waves-effect callEdit" type="button" data-bs-toggle="modal" data-bs-target="#editProduct">Edit</button>
+                                    <button data-delete={{$value->id}} class="btn btn-outline-danger round waves-effect callDelete" type="button" data-bs-toggle="modal" data-bs-target="#addNewProduct">Delete</button>
                                 </td>
                             </tr>
                             @endforeach

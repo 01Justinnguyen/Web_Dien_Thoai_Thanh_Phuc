@@ -26,4 +26,6 @@ class Cart extends Model
     {
         return $this->belongsTo('\App\Models\Product', 'product_id', 'id');
     }
+
+
 }

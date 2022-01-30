@@ -200,7 +200,7 @@
                     <!-- Begin Footer Payment Area -->
                     <div class="copyright text-center">
                         <a href="#">
-                            <img src="images/payment/1.png" alt="">
+                            <img src="/client/images/payment/1.png" alt="">
                         </a>
                     </div>
                     <!-- Footer Payment Area End Here -->

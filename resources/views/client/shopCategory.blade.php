@@ -67,53 +67,53 @@
                                     <div class="product-area shop-product-area">
                                         <div class="row">
                                             @foreach ($product as $value)
-                                            <div class="col-lg-4 col-md-4 col-sm-6 mt-40">
-                                                <!-- single-product-wrap start -->
-                                                <div class="single-product-wrap">
-                                                    <div class="product-image">
-                                                        <a href="/detail/{{$value->slug}}-{{$value->id}}">
-                                                            <img src="{{ $value->image_product }}" alt="Li's Product Image">
-                                                        </a>
-                                                        <span class="{{ $value->price_sell ? "sticker" : " " }}" style="color: yellow">
-                                                            @if(!empty($value->price_sell))
-                                                                <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
-                                                            @endif
-                                                        </span>
-                                                    </div>
-                                                    <div class="product_desc">
-                                                        <div class="product_desc_info">
-                                                            <div class="product-review">
-                                                                <h5 class="manufacturer">
-                                                                    <a href="product-details.html">Đánh giá</a>
-                                                                </h5>
-                                                                <div class="rating-box">
-                                                                    <ul class="rating">
-                                                                        @php
-                                                                            $star = rand(4, 5);
-                                                                        @endphp
-                                                                        @for ($x=1;$x<=$star;$x++)
-                                                                            <li><i class="fa fa-star-o"></i></li>
-                                                                        @endfor
-                                                                    </ul>
+                                                <div class="col-lg-4 col-md-4 col-sm-6 mt-40">
+                                                    <!-- single-product-wrap start -->
+                                                    <div class="single-product-wrap">
+                                                        <div class="product-image">
+                                                            <a href="/detail/{{$value->slug}}-{{$value->id}}">
+                                                                <img src="{{ $value->image_product }}" alt="Li's Product Image">
+                                                            </a>
+                                                            <span class="{{ $value->price_sell ? "sticker" : " " }}" style="color: yellow">
+                                                                @if(!empty($value->price_sell))
+                                                                    <span style="text-align: text-nowrap" class="discount-percentage">-{{ number_format(($value->price_root - $value->price_sell) / $value->price_root * 100, 0) }}%</span>
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                        <div class="product_desc">
+                                                            <div class="product_desc_info">
+                                                                <div class="product-review">
+                                                                    <h5 class="manufacturer">
+                                                                        <a href="product-details.html">Đánh giá</a>
+                                                                    </h5>
+                                                                    <div class="rating-box">
+                                                                        <ul class="rating">
+                                                                            @php
+                                                                                $star = rand(4, 5);
+                                                                            @endphp
+                                                                            @for ($x=1;$x<=$star;$x++)
+                                                                                <li><i class="fa fa-star-o"></i></li>
+                                                                            @endfor
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <h4><a class="product_name" href="single-product.html">{{ $value->name }}</a></h4>
+                                                                <div class="price-box">
+                                                                    <span class="new-price new-price-2">{{ empty($value->price_sell) ?  number_format($value->price_root, 0, '.', ',') . " đ" : number_format($value->price_sell, 0, '.', ',') . " đ"}}</span>
+                                                                    <span class="old-price">{{ empty($value->price_sell) ?  '' : number_format($value->price_root, 0, '.', ',') . " đ" }}</span>
                                                                 </div>
                                                             </div>
-                                                            <h4><a class="product_name" href="single-product.html">{{ $value->name }}</a></h4>
-                                                            <div class="price-box">
-                                                                <span class="new-price new-price-2">{{ empty($value->price_sell) ?  number_format($value->price_root, 0, '.', ',') . " đ" : number_format($value->price_sell, 0, '.', ',') . " đ"}}</span>
-                                                                <span class="old-price">{{ empty($value->price_sell) ?  '' : number_format($value->price_root, 0, '.', ',') . " đ" }}</span>
+                                                            <div class="add-actions">
+                                                                <ul class="add-actions-link">
+                                                                    <li class="add-cart active"><a href="#" data-toggle="modal" data-target="#modalLogin">Add to cart</a></li>
+                                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                                                    <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
+                                                                </ul>
                                                             </div>
                                                         </div>
-                                                        <div class="add-actions">
-                                                            <ul class="add-actions-link">
-                                                                <li class="add-cart active"><a href="#" data-toggle="modal" data-target="#modalLogin">Add to cart</a></li>
-                                                                <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                                <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                                            </ul>
-                                                        </div>
                                                     </div>
+                                                    <!-- single-product-wrap end -->
                                                 </div>
-                                                <!-- single-product-wrap end -->
-                                            </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -149,44 +149,27 @@
         </div> --}}
         <!-- Footer Area End Here -->
         <!-- Begin Quick View | Modal Area -->
-        {{-- <div class="modal fade modal-wrapper" id="exampleModalCenter" >
+        <div class="modal fade modal-wrapper" id="exampleModalCenter" >
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
+                        @foreach ($product as $value_product)
+                        @if ($value_product->id)
                         <div class="modal-inner-area row">
                             <div class="col-lg-5 col-md-6 col-sm-6">
                                <!-- Product Details Left -->
                                 <div class="product-details-left">
                                     <div class="product-details-images slider-navigation-1">
                                         <div class="lg-image">
-                                            <img src="/client/images/product/large-size/1.jpg" alt="product image">
-                                        </div>
-                                        <div class="lg-image">
-                                            <img src="/client/images/product/large-size/2.jpg" alt="product image">
-                                        </div>
-                                        <div class="lg-image">
-                                            <img src="/client/images/product/large-size/3.jpg" alt="product image">
-                                        </div>
-                                        <div class="lg-image">
-                                            <img src="/client/images/product/large-size/4.jpg" alt="product image">
-                                        </div>
-                                        <div class="lg-image">
-                                            <img src="/client/images/product/large-size/5.jpg" alt="product image">
-                                        </div>
-                                        <div class="lg-image">
-                                            <img src="/client/images/product/large-size/6.jpg" alt="product image">
+                                            <img src="{{ $value_product->image_product }}" alt="product image">
                                         </div>
                                     </div>
                                     <div class="product-details-thumbs slider-thumbs-1">
-                                        <div class="sm-image"><img src="/client/images/product/small-size/1.jpg" alt="product image thumb"></div>
-                                        <div class="sm-image"><img src="/client/images/product/small-size/2.jpg" alt="product image thumb"></div>
-                                        <div class="sm-image"><img src="/client/images/product/small-size/3.jpg" alt="product image thumb"></div>
-                                        <div class="sm-image"><img src="/client/images/product/small-size/4.jpg" alt="product image thumb"></div>
-                                        <div class="sm-image"><img src="/client/images/product/small-size/5.jpg" alt="product image thumb"></div>
-                                        <div class="sm-image"><img src="/client/images/product/small-size/6.jpg" alt="product image thumb"></div>
+                                        {{-- <div class="sm-image"><img src="/client/images/product/small-size/1.jpg" alt="product image thumb"></div> --}}
+
                                     </div>
                                 </div>
                                 <!--// Product Details Left -->
@@ -255,55 +238,13 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- Quick View | Modal Area End Here -->
     </div>
-    <!-- Body Wrapper End Here -->
-    <!-- jQuery-V1.12.4 -->
-    {{-- <script src="/client/js/vendor/jquery-1.12.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="/client/js/vendor/popper.min.js"></script>
-    <!-- Bootstrap V4.1.3 Fremwork js -->
-    <script src="/client/js/bootstrap.min.js"></script>
-    <!-- Ajax Mail js -->
-    <script src="/client/js/ajax-mail.js"></script>
-    <!-- Meanmenu js -->
-    <script src="/client/js/jquery.meanmenu.min.js"></script>
-    <!-- Wow.min js -->
-    <script src="/client/js/wow.min.js"></script>
-    <!-- Slick Carousel js -->
-    <script src="/client/js/slick.min.js"></script>
-    <!-- Owl Carousel-2 js -->
-    <script src="/client/js/owl.carousel.min.js"></script>
-    <!-- Magnific popup js -->
-    <script src="/client/js/jquery.magnific-popup.min.js"></script>
-    <!-- Isotope js -->
-    <script src="/client/js/isotope.pkgd.min.js"></script>
-    <!-- Imagesloaded js -->
-    <script src="/client/js/imagesloaded.pkgd.min.js"></script>
-    <!-- Mixitup js -->
-    <script src="/client/js/jquery.mixitup.min.js"></script>
-    <!-- Countdown -->
-    <script src="/client/js/jquery.countdown.min.js"></script>
-    <!-- Counterup -->
-    <script src="/client/js/jquery.counterup.min.js"></script>
-    <!-- Waypoints -->
-    <script src="/client/js/waypoints.min.js"></script>
-    <!-- Barrating -->
-    <script src="/client/js/jquery.barrating.min.js"></script>
-    <!-- Jquery-ui -->
-    <script src="/client/js/jquery-ui.min.js"></script>
-    <!-- Venobox -->
-    <script src="/client/js/venobox.min.js"></script>
-    <!-- Nice Select js -->
-    <script src="/client/js/jquery.nice-select.min.js"></script>
-    <!-- ScrollUp js -->
-    <script src="/client/js/scrollUp.min.js"></script>
-    <!-- Main/Activator js -->
-    <script src="/client/js/main.js"></script>
-    @include('client.ajax') --}}
 </body>
 @endsection

@@ -35,4 +35,6 @@ class product extends Model
     {
         return $this->belongsTo('App\Models\brand', 'brand_id', 'id');
     }
+
+
 }

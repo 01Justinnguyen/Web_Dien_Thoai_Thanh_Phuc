@@ -72,5 +72,15 @@
                 </ul>
             </li>
         </ul>
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item"><a class="d-flex align-items-center" href=""><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Kho</span><span class="badge badge-light-warning rounded-pill ms-auto me-2">2</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="/admin/inventory"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">Quản lí kho</span></a>
+                    </li>
+                    <li class=""><a class="d-flex align-items-center" href="/admin/order"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="eCommerce">Quản lí đơn hàng</span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>

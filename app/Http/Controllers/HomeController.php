@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Home;
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\brand;
 use App\Models\Cart;
 use App\Models\categories;
+use App\Models\City;
 use App\Models\MainBanner;
 use App\Models\product;
+use App\Models\Province;
 use App\Models\SubBanner;
+use App\Models\Wards;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class HomeController extends Controller
 {
@@ -83,8 +87,8 @@ class HomeController extends Controller
             $product = product::where('id', $data->id)->get();
             return view('client.detail', compact('product','data', 'products', 'gioHang'));
         } else {
-            toastr()->error("Product is not exits");
-            return redirect('/');
+            // toastr()->error("Product is not exits");
+            return redirect('/errors');
         }
     }
 
@@ -110,8 +114,8 @@ class HomeController extends Controller
             $product = product::where('brand_id', $data->id)->where('id', '<>', $id)->get();
             return view('client.shopProduct', compact('product', 'data', 'banner', 'gioHang'));
         } else {
-            toastr()->error("Product is not exits");
-            return redirect('/');
+            // toastr()->error("Product is not exits");
+            return redirect('/errors');
         }
         return view('client.shopProduct');
     }
@@ -136,8 +140,8 @@ class HomeController extends Controller
             $product = product::where('category_id', $data->id)->get();
             return view('client.shopCategory', compact('product', 'data', 'gioHang'));
         } else {
-            toastr()->error("Product is not exits");
-            return redirect('/');
+            // toastr()->error("Product is not exits");
+            return redirect('/errors');
         }
 
     }
@@ -191,24 +195,66 @@ class HomeController extends Controller
 
     public function checkout()
     {
+        $checkout = Cart::all();
+
         $gioHang = null;
         $user = Auth::user();
+
+        $city = City::orderby('matp', 'ASC')->get();
+        $data = Address::all();
 
         if($user){
             $gioHang = Cart::where('type', 0)->where('user_id', $user->id)->get();
         }
 
-        // $data = Cart::where('user_id', $user->id)->where('type', 0)->get();
-        return view('client.checkout', compact('gioHang'));
+        return view('client.checkout', compact('gioHang', 'data', 'city', 'checkout'));
     }
 
-    // public function checkoutData()
-    // {
-    //     $user = Auth::user();
-    //     $data = Cart::where('user_id', $user->id)->where('type', 0)->get();
 
-    //     return response()->json(['data' => $data]);
-    // }
+
+    public function district($id)
+    {
+        // $data = $request->all();
+        // if($data['action']){
+        //     $output = '';
+        //     if($data['action'] == 'city'){
+        //         $select_district = Province::where('matp', $data['ma_id'])->orderby('maqh', 'ASC')->get();
+        //         $output = '<option>Quận / Huyện</option>';
+        //         foreach($select_district as $district){
+        //             $output = '<option value="'.$district->maqh.'">'.$district->name_quanhuyen.'</option>';
+        //         }
+        //     } else {
+        //         $select_wards = Wards::where('maqh', $data['ma_id'])->orderby('xaid', 'ASC')->get();
+        //         $output = '<option>Xã / Phường</option>';
+        //         foreach($select_wards as $wards){
+        //             $output = '<option value="'.$wards->xaid.'">'.$wards->name_xaphuong.'</option>';
+        //         }
+        //     }
+        //     echo $output;
+        // }
+
+            $data = Province::where('matp',$id)->get();
+
+           return response()->json(['data' => $data]);
+
+
+    }
+
+    public function wards($id)
+    {
+        $data = Wards::where('maqh',$id)->get();
+        return response()->json(['data' => $data]);
+    }
+
+    public function checkoutData(Request $request)
+    {
+        $user = Auth::user();
+        $data = Cart::where('user_id', $user->id)->where('type', 0)->first();
+        $data = $request->all();
+
+        Address::create($data);
+        return response()->json(['data' => $data]);
+    }
 
     public function cart()
     {
@@ -234,11 +280,22 @@ class HomeController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function editQty(Request $request)
+    {
+        $user = Auth::user();
+
+        $data = Cart::where('type', 0)->where('user_id', $user->id)->where('id', $request->id)->first();
+
+        if($data) {
+            $data->qty = $request->qty;
+            $data->save();
+            return response()->json(['status' => true]);
+        } else {
+            return response()->json(['status' => false]);
+        }
+    }
+
+
     public function create()
     {
         //

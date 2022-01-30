@@ -62,6 +62,10 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdmin'], function(){
     Route::get('/banner/editSub/{id}', [\App\Http\Controllers\BannerController::class, 'editSub']);
     Route::post('/banner/updateSub/{id}', [\App\Http\Controllers\BannerController::class, 'updateSub']);
 
+
+    Route::get('/inventory', [\App\Http\Controllers\StorageController::class, 'viewInventory']);
+    Route::get('/order', [\App\Http\Controllers\StorageController::class, 'viewOder']);
+
 });
 
 Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], function(){
@@ -91,12 +95,16 @@ Route::group(['prefix' => '/admin' , 'middleware' => 'checkAdminLogin'], functio
     Route::get('/shopCategory/{slug}', [\App\Http\Controllers\HomeController::class, 'shopCategory']);
     Route::get('/loginRegister', [\App\Http\Controllers\HomeController::class, 'loginRegister']);
     Route::get('/thanks', [\App\Http\Controllers\HomeController::class, 'thanks']);
-    Route::get('/wishlist', [\App\Http\Controllers\HomeController::class, 'wishlist']);
+    Route::get('/wishlist', [\App\Http\Controllers\WishlistController::class, 'index']);
+    Route::post('/wishlist/add', [\App\Http\Controllers\WishlistController::class, 'create']);
     Route::get('/checkout', [\App\Http\Controllers\HomeController::class, 'checkout']);
-    Route::get('/checkout/data', [\App\Http\Controllers\HomeController::class, 'checkoutData']);
+    Route::get('/checkout/district/{id}', [\App\Http\Controllers\HomeController::class, 'district']);
+    Route::get('/checkout/wards/{id}', [\App\Http\Controllers\HomeController::class, 'wards']);
+    Route::post('/checkout/address', [\App\Http\Controllers\HomeController::class, 'checkoutData']);
+    // Route::get('/checkout/data', [\App\Http\Controllers\HomeController::class, 'createCheckout']);
     Route::get('/cart', [\App\Http\Controllers\HomeController::class, 'cart']);
     Route::get('/cart/data', [\App\Http\Controllers\HomeController::class, 'cartData']);
-
+    Route::post('/client/cart/editQty', [\App\Http\Controllers\HomeController::class, 'editQty']);
 
 
 
